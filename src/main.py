@@ -1,5 +1,4 @@
 import osmnx as ox
-import matplotlib.pyplot as plt
 
 #Center of the map  
 latitude = 52.90837464776529
