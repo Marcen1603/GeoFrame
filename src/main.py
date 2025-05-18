@@ -1,124 +1,123 @@
-import osmnx as ox
+from pyrosm import OSM, get_data
+import matplotlib.pyplot as plt
 
-#Center of the map  
+from src.ColorMapping import ColorMapping
+
+# Beispielpfad zu deiner PBF-Datei
+pbf_path = "resources/clipped.osm.pbf"  # <--- hier dein Pfad
+
+colorMapping = ColorMapping()
+
+# Definiere deine Bounding Box
 latitude = 52.90837464776529
 longitude = 8.60048609236055
-
-#Limit borders 
 north = latitude + 0.05
 south = latitude - 0.05
 east = longitude + 0.05
 west = longitude - 0.05
+bbox = [west, south, east, north]
 
-bbox = north, south, east, west
-place = ["Hazleton, Pensylvania"]
+# ./osmconvert64-0.8.8p.exe planet-250505.osm.pbf -b=8.5505,52.8584,8.6505,52.9584 -o=clipped.osm.pbf
 
-G = ox.graph_from_bbox(bbox = (north, south, east, west), retain_all=True, simplify = True, network_type='all')
-#fig, ax = ox.plot_graph(ox.project_graph(G))
+# Lade das PBF-File mit Bounding Box
+osm = OSM(pbf_path, bounding_box=bbox)
 
-naturaltags = {'natural': True}
-natural = ox.geometries_from_bbox(north, south, east, west, naturaltags)
-len(natural)
-#natural.head(3)
-#fig, ax = ox.plot_footprints(natural, color="black", bgcolor='white')
+# Jetzt funktioniert get_network ohne weiteres bbox-Argument
+roads = osm.get_network(network_type="all")
 
-natural["natural"].value_counts()
+# Extrahiere natürliche Flächen (z.B. Wälder, Wasserflächen)
+natural = osm.get_data_by_custom_criteria(custom_filter={"natural": True})
 
-Woods = natural[natural["natural"].isin(["wood"])]
-Woods.plot(color="green")
+# Extrahiere Landnutzung
+landuse = osm.get_data_by_custom_criteria(custom_filter={"landuse": True})
 
-Water = natural[natural["natural"].isin(["water"])]
-Water.plot(color="blue")
+aeroway = osm.get_data_by_custom_criteria(custom_filter={"aeroway": True})
 
-landusetags = {'landuse': True}
-landuse = ox.geometries_from_bbox(north, south, east, west, landusetags)
-#fig, ax = ox.plot_footprints(landuse,color="black", bgcolor='white')
+# Extrahiere Gebäude
+buildings = osm.get_buildings()
 
-landuse["landuse"].value_counts()
+# ----------------- Visualisierung --------------------
 
-Farmland = landuse[landuse["landuse"].isin(["farmland","farmyard"])]
-#Farmland.plot(color="brown")
+fig, ax = plt.subplots(figsize=(12, 12))
+bgcolor = "white"
+fig.patch.set_facecolor(bgcolor)
 
-Residental = landuse[landuse["landuse"].isin(["residential"])]
-#Residental.plot(color="blue")
+# Plot Roads
+if roads is not None:
+    print("Roads plotted!")
+    roads.plot(ax=ax, linewidth=0.3, color=colorMapping.get_color("roads"), alpha=0.7)
+else:
+    print("Roads not plotted!")
 
+# Plot natural areas
+if natural is not None:
+    if "natural" in natural.columns:
+        natural_wood = natural[natural["natural"] == "wood"]
+        natural_water = natural[natural["natural"] == "water"]
+        grassland = natural[natural["natural"] == "grassland"]
 
-Mining = landuse[landuse["landuse"].isin(["mine","landfill"])]
-#Mining.plot(color="blue")
-
-buildingtags = {'building': True}
-building = ox.geometries_from_bbox(north, south, east, west, buildingtags)
-len(building)
-#fig, ax = ox.plot_footprints(building, color="black", bgcolor='white')
-
-###############################################################################
-#                               4. Unpack Data                                #
-###############################################################################
-u = []
-v = []
-key = []
-data = []
-for uu, vv, kkey, ddata in G.edges(keys=True, data=True):
-    u.append(uu)
-    v.append(vv)
-    key.append(kkey)
-    data.append(ddata)
-    
-# Lists to store colors and widths 
-roadColors = []
-roadWidths = []
-
-for item in data:
-    if "length" in item.keys():
-        if item["length"] <= 100:
-            linewidth = 0.10
-            color = "#858585" 
-            
-        elif item["length"] > 100 and item["length"] <= 200:
-            linewidth = 0.15
-            color = "#474747"
-            
-        elif item["length"] > 200 and item["length"] <= 400:
-            linewidth = 0.25
-            color = "#454545"
-            
-        elif item["length"] > 400 and item["length"] <= 800:
-            color = "#bdbdbd"
-            linewidth = 0.35
+        if not natural_wood.empty:
+            print("Natural wood plotted!")
+            natural_wood.plot(ax=ax, color=colorMapping.get_color("natural_wood"), alpha=0.5)
         else:
-            color = "#000000"
-            linewidth = 0.45
-
-        if "primary" in item["highway"]:
-            linewidth = 0.5
-            color = "#262626"
-    else:
-        color = "#4d4d4d"
-        linewidth = 0.10
-            
-    roadColors.append(color)
-    roadWidths.append(linewidth)
-    
-    for item in data:
-        if "footway" in item["highway"]:
-            color = "#ededed"
-            linewidth = 0.25
+            print("Natural wood not plotted!")
+        if not natural_water.empty:
+            print("Natural water plotted!")
+            natural_water.plot(ax=ax, color=colorMapping.get_color("natural_water"), alpha=0.5)
         else:
-            color = "#a6a6a6"
-            linewidth = 0.5
-        
-    roadWidths.append(linewidth)
-    
-    bgcolor = "white"
+            print("Natural water not plotted!")
+        if not grassland.empty:
+            print("Grassland plotted!")
+            grassland.plot(ax=ax, color=colorMapping.get_color("grassland"), alpha=0.5)
+        else:
+            print("Grassland not plotted!")
 
-fig, ax = ox.plot_graph(G, node_size=0, bbox = (north, south, east, west), dpi = 300,bgcolor = bgcolor,save = False, edge_color=roadColors,edge_linewidth=roadWidths, edge_alpha=1)
-building.plot(ax=ax, color='brown', alpha=0.5)
-Water.plot(ax=ax, color='blue', alpha=0.5)
-Woods.plot(ax=ax, color='green', alpha=0.5)
-Mining.plot(ax=ax, color='gray', alpha=0.5)
-Residental.plot(ax=ax, color='grey', alpha=0.1)
-Farmland.plot(ax=ax, color='yellow', alpha=0.1)
+if aeroway is not None:
+    if "landuse" in landuse.columns:
 
-fig.tight_layout(pad=0)
-fig.savefig("map.png", dpi=300, bbox_inches='tight', format="png", 
-            facecolor=fig.get_facecolor(), transparent=False)
+        apron = aeroway[aeroway["aeroway"] == "apron"]
+
+        if not apron.empty:
+            print("Farmland plotted!")
+            apron.plot(ax=ax, color=colorMapping.get_color("apron"), alpha=0.3)
+        else:
+            print("Apron not plotted!")
+
+# Plot Landuse
+if landuse is not None:
+
+    if "landuse" in landuse.columns:
+        farmland = landuse[landuse["landuse"].isin(["farmland", "farmyard"])]
+        residential = landuse[landuse["landuse"] == "residential"]
+        mining = landuse[landuse["landuse"].isin(["mine", "landfill"])]
+
+        if not farmland.empty:
+            print("Farmland plotted!")
+            farmland.plot(ax=ax, color=colorMapping.get_color("farmland"), alpha=0.3)
+        else:
+            print("Farmland not platted!")
+        if not residential.empty:
+            print("Residential plotted!")
+            residential.plot(ax=ax, color=colorMapping.get_color("residential"), alpha=0.2)
+        else:
+            print("Residential not plotted!")
+        if not mining.empty:
+            print("Mining plotted!")
+            mining.plot(ax=ax, color=colorMapping.get_color("mining"), alpha=0.5)
+        else:
+            print("Mining not plotted!")
+# Plot Buildings
+if buildings is not None:
+    print("Buildings plotted!")
+    buildings.plot(ax=ax, color=colorMapping.get_color("buildings"), alpha=0.5)
+else:
+    print("Buildings not plotted!")
+
+# Kartenlimits setzen
+ax.set_xlim(west, east)
+ax.set_ylim(south, north)
+ax.set_facecolor(bgcolor)
+ax.axis('off')
+plt.tight_layout()
+plt.savefig("map.png", dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
+plt.show()
