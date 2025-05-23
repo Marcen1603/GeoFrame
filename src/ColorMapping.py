@@ -83,7 +83,6 @@ class ColorMapping:
         # --- Transport ----
 
         self.transportation_area = '#e9e7e2'
-        self.apron = '#dadae0'
         self.garages = '#dfddce'
         self.parking = '#eeeeee'
         #self.parking_outline = saturate(darken(self.parking, 40%), 20%);
@@ -128,6 +127,20 @@ class ColorMapping:
         self.stadium = self.leisure
         self.sports_centre = self.stadium
         self.golf_course = self.campsite
+
+        # Aero way
+        self.apron = '#dadae0'
+        self.terminal = '#C4B6AB'
+
+        # Landuse
+        self.landfill = '#A7A87E'
+        self.flowerbed = '#CDEBB0'
+        self.greenhouse_horticulture = '#EEF0D5'
+        self.basin = '#AAD3DF'
+        self.salt_pond = self.basin
+        self.greenfield = '#F1EEE8'
+        self.recreation_ground = '#DFFCE2'
+        self.religious = '#CDCCC9'
 
 
     def get_color(self, value: str) -> str | None:
