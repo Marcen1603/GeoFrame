@@ -45,7 +45,6 @@ class ColorMapping:
         self.meadow = self.grass
         self.village_green = self.grass
         self.garden = self.grass
-        self.allotments = self.grass
         self.natural_wood = "#9DCA8A"
         self.natural_water = "#AAD3DF"
 
@@ -53,7 +52,7 @@ class ColorMapping:
         self.forest = '#add19e'             # Lch(80,30,135)
         self.forest_text = '#46673b'        # Lch(40,30,135)
         self.park = '#c8facc'               # Lch(94,30,145)
-        self.allotments= '#c9e1bf'          # Lch(87,20,135)
+        self.allotments = '#c9e1bf'         # Lch(87,20,135)
         self.orchard = '#aedfa3'
         self.vineyard = self.orchard
         self.plant_nursery = self.orchard
@@ -123,7 +122,7 @@ class ColorMapping:
         # --- Sports ---
 
         self.pitch = '#88e0be'                # Lch(83,35,166)
-        self.track = self.pitch
+        self.track = '#88E0BE'
         self.stadium = self.leisure
         self.sports_centre = self.stadium
         self.golf_course = self.campsite
@@ -141,6 +140,19 @@ class ColorMapping:
         self.greenfield = '#F1EEE8'
         self.recreation_ground = '#DFFCE2'
         self.religious = '#CDCCC9'
+
+        # Leisure
+        self.dog_park = '#DFFCE2'
+        self.ice_rink = '#DDECEC'
+
+        # Man made
+        self.bridge = '#B8B8B8'
+
+        # Natural
+        self.glacier = '#DDECEC'
+        self.shingle = '#EDE4DC'
+        self.shoal = '#FFF1BA'
+        self.scree = '#E9E1D9'
 
 
     def get_color(self, value: str) -> str | None:
