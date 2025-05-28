@@ -4,9 +4,6 @@ from src.ColorMapping import ColorMapping
 
 import matplotlib.pyplot as plt
 
-# Path to the clipped file
-pbf_path = "resources/clipped.osm.pbf"
-
 
 def clip_world_map():
 
@@ -53,6 +50,11 @@ def plot_natural(osm: pyrosm, ax):
                 grassland.plot(ax=ax, color=colorMapping.get_color("grassland"), alpha=0.5)
             else:
                 print("Grassland not plotted!")
+            if not natural.empty:
+                print("Natural plotted!")
+                natural.plot(ax=ax, color=colorMapping.get_color("natural"), alpha=0.5)
+            else:
+                print("Natural not plotted!")
 
 
 def plot_landuse(osm: pyrosm, ax):
@@ -97,6 +99,17 @@ def plot_aeroway(osm:pyrosm, ax):
                 terminal.plot(ax=ax, color=colorMapping.get_color("terminal"), alpha=0.5)
 
 
+def plot_buildings(osm:pyrosm, ax):
+
+    buildings = osm.get_buildings()
+
+    if buildings is not None:
+        print("Buildings plotted!")
+        buildings.plot(ax=ax, color=colorMapping.get_color("buildings"), alpha=0.5)
+    else:
+        print("Buildings not plotted!")
+
+
 if __name__ == "__main__":
 
     # Definition of location
@@ -110,36 +123,41 @@ if __name__ == "__main__":
 
     colorMapping = ColorMapping()
 
+    # Path to the clipped file
+    pbf_path = "resources/clipped.osm.pbf"
+
     # Load pdf file and with bounding box
-    osm = OSM(pbf_path, bounding_box=bbox)
+    clipped_osm = OSM(pbf_path, bounding_box=bbox)
 
-    fig, ax = plt.subplots(figsize=(12, 12))
-    bgcolor = "white"
-    fig.patch.set_facecolor(bgcolor)
+    fig, axes = plt.subplots(figsize=(12, 12))
+    background_color = "white"
+    fig.patch.set_facecolor(background_color)
 
-    plot_roads(osm, ax)
-    plot_natural(osm, ax)
-    plot_landuse(osm, ax)
-    plot_buildings(osm, ax)
+    available_tags = pyrosm.pyrosm.Conf.tags.available
+    print("Available tags:")
+    print(available_tags)
+
+    for value in available_tags:
+        tag_values = clipped_osm.get_data_by_custom_criteria(custom_filter={value: True})
+        if tag_values is not None:
+            print("Found " + value)
+            print(tag_values)
+        else:
+            print(value + " was not found!")
+
+    print("--------------------")
+
+    plot_roads(clipped_osm, axes)
+    plot_natural(clipped_osm, axes)
+    plot_landuse(clipped_osm, axes)
+    plot_buildings(clipped_osm, axes)
 
 
-# Extrahiere Gebäude
-buildings = osm.get_buildings()
-
-# ----------------- Visualisierung --------------------
-
-# Plot Buildings
-if buildings is not None:
-    print("Buildings plotted!")
-    buildings.plot(ax=ax, color=colorMapping.get_color("buildings"), alpha=0.5)
-else:
-    print("Buildings not plotted!")
-
-# Kartenlimits setzen
-ax.set_xlim(west, east)
-ax.set_ylim(south, north)
-ax.set_facecolor(bgcolor)
-ax.axis('off')
-plt.tight_layout()
-plt.savefig("map.png", dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
-plt.show()
+    # Kartenlimits setzen
+    axes.set_xlim(west, east)
+    axes.set_ylim(south, north)
+    axes.set_facecolor(background_color)
+    axes.axis('off')
+    plt.tight_layout()
+    plt.savefig("map.png", dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
+    plt.show()
