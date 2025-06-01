@@ -1,3 +1,5 @@
+import math
+
 import pyrosm
 from pyrosm import OSM
 from src.ColorMapping import ColorMapping
@@ -7,7 +9,7 @@ import matplotlib.pyplot as plt
 
 def clip_world_map():
 
-    # ./osmconvert64-0.8.8p.exe planet-250505.osm.pbf -b=8.5505,52.8584,8.6505,52.9584 -o=clipped.osm.pbf
+    # ./osmconvert64-0.8.8p.exe planet-250505.osm.pbf -b="8.5505,52.8584,8.6505,52.9584" -o="clipped.osm.pbf"
 
     pass
 
@@ -110,24 +112,52 @@ def plot_buildings(osm:pyrosm, ax):
         print("Buildings not plotted!")
 
 
+def bounding_box(lat, lon, distance_m):
+    """
+    Calculates a bounding box around a geographic point for a given distance in all directions.
+
+    :param lat: Latitude of the center point in decimal degrees
+    :param lon: Longitude of the center point in decimal degrees
+    :param distance_m: Distance in meters to extend in all directions (north, south, east, west)
+    :return: List in the format [west, south, east, north]
+    """
+    # Approximate length of one degree of latitude in meters
+    meters_per_degree_lat = 111320
+
+    # Approximate length of one degree of longitude in meters (varies by latitude)
+    meters_per_degree_lon = 111320 * math.cos(math.radians(lat))
+
+    delta_lat = distance_m / meters_per_degree_lat
+    delta_lon = distance_m / meters_per_degree_lon
+
+    south = lat - delta_lat
+    north = lat + delta_lat
+    west = lon - delta_lon
+    east = lon + delta_lon
+
+    return [west, south, east, north]
+
+
 if __name__ == "__main__":
 
     # Definition of location
-    latitude = 52.90837464776529
-    longitude = 8.60048609236055
-    north = latitude + 0.05
-    south = latitude - 0.05
-    east = longitude + 0.05
-    west = longitude - 0.05
-    bbox = [west, south, east, north]
+    latitude = 22.317380521068817# 52.90837464776529
+    longitude = 114.16983034197081 # 8.60048609236055
+    distance = 1000
+
+    # [west, south, east, north]
+    bbox = bounding_box(latitude, longitude, distance)
+
+    print(bbox)
+
 
     colorMapping = ColorMapping()
 
-    # Path to the clipped file
-    pbf_path = "resources/clipped.osm.pbf"
+    # Path to the clipped.osm.pbf file
+    pbf_path = "resources/planet-250505.osm.pbf"
 
     # Load pdf file and with bounding box
-    clipped_osm = OSM(pbf_path, bounding_box=bbox)
+    clipped_osm = OSM(pbf_path, bounding_box=bounding_box(latitude, longitude, distance))
 
     fig, axes = plt.subplots(figsize=(12, 12))
     background_color = "white"
@@ -152,10 +182,9 @@ if __name__ == "__main__":
     plot_landuse(clipped_osm, axes)
     plot_buildings(clipped_osm, axes)
 
-
     # Kartenlimits setzen
-    axes.set_xlim(west, east)
-    axes.set_ylim(south, north)
+    axes.set_xlim(bbox[0], bbox[2])
+    axes.set_ylim(bbox[1], bbox[3])
     axes.set_facecolor(background_color)
     axes.axis('off')
     plt.tight_layout()

@@ -16,3 +16,9 @@ https://wiki.openstreetmap.org/wiki/Key:natural
 pip freeze > requirements.txt
 
 pip uninstall -r requirements.txt -y
+
+## Error
+
+### Error while installing pyrosm
+
+The reason why the error occur is, that Microsoft Visual C++ 14.0 or greater is required
