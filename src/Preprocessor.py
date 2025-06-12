@@ -18,20 +18,20 @@ class Preprocessor:
         self.preprocessed_files_statistics = {}
 
 
-    def create_sub_file(self, path_to_raw_file: str, min_lat: float, min_lon: float, max_lat:float, max_lon:float) -> str:
+    def create_sub_file(self, path_to_raw_file: str, min_lon: float, min_lat: float, max_lon:float, max_lat:float) -> str:
 
         if not os.path.exists(self.path_to_buffer):
             os.makedirs(self.path_to_buffer)
 
         basename = os.path.basename(path_to_raw_file).split('/')[-1].split("_")[0].replace('.osm.pbf', '')
-        new_file_name = f'{self.path_to_buffer}\\{basename}_{min_lat}_{min_lon}_{max_lat}_{max_lon}.osm.pbf'
+        new_file_name = f'{self.path_to_buffer}\\{basename}_{min_lon}_{min_lat}_{max_lon}_{max_lat}.osm.pbf'
         new_file_name_parameter = f'-o="{new_file_name}"'
-        bounding_box_parameter = f'-b="{min_lat}, {min_lon}, {max_lat}, {max_lon}"'
+        bounding_box_parameter = f'-b="{min_lon}, {min_lat}, {max_lon}, {max_lat}"'
 
-        print_to_console("Command: " + os.path.join(f'.\\{self.path_to_osmcovert}', path_to_raw_file, bounding_box_parameter, new_file_name_parameter))
-        test = subprocess.run(f'.\\resources\\osmconvert64-0.8.8p.exe resources\\raw\\africa-latest.osm.pbf -b="{min_lat}, {min_lon}, {max_lat}, {max_lon}" -o="resources\\buffer\\africa-latest_{min_lat}_{min_lon}_{max_lat}_{max_lon}.osm.pbf"')
-        print_to_console("Returncode:")
-        print_to_console(str(test.returncode))
+        try:
+            subprocess.run(f'.\\resources\\osmconvert64-0.8.8p.exe resources\\raw\\{basename}.osm.pbf {bounding_box_parameter} {new_file_name_parameter}')
+        except subprocess.CalledProcessError as grepexc:
+            print("error code", grepexc.returncode, grepexc.output)
 
         return new_file_name
 
@@ -70,8 +70,6 @@ class Preprocessor:
         lat_min_bound = -90.0
         lat_max_bound = 90.0
 
-        path_to_new_file = ''
-
         # Longitudinal
         for x in range(split_size):
 
@@ -89,7 +87,7 @@ class Preprocessor:
                 new_lat_min = latitude_min + (y * latitude_split) - offset
                 new_lat_max = latitude_min + ((y + 1) * latitude_split) + offset
 
-                print_to_console(f'Range x: {x}/{split_size} | Range y: {y}/{split_size}')
+                print_to_console(f'Range x: {x}/{split_size-1} | Range y: {y}/{split_size-1}')
 
                 if new_lat_min < lat_min_bound:
                     new_lat_min = lat_min_bound
@@ -103,7 +101,7 @@ class Preprocessor:
                 print_to_console("new_lat_max: " + str(new_lat_max))
 
                 # Create sub-files
-                path_to_new_file = self.create_sub_file(os.path.join(self.path_to_raw, raw_file_path), new_lat_min, new_lon_min, new_lat_max, new_lon_max)
+                path_to_new_file = self.create_sub_file(os.path.join(self.path_to_raw, raw_file_path), new_lon_min, new_lat_min, new_lon_max, new_lat_max)
                 print_to_console(f'New file: {path_to_new_file} from {raw_file_path}')
 
                 # Get file size
@@ -135,11 +133,15 @@ class Preprocessor:
         # Delete original file
         if not raw_file:
             try:
-                os.remove(path_to_new_file)
+                os.remove(raw_file_path)
             except IOError:
                 print_to_console(f'Error while trying to remove file: {traceback.format_exc()}')
             finally:
-                print_to_console(f"File '{path_to_new_file}' deleted successfully.")
+                print_to_console(f"File '{raw_file_path}' deleted successfully.")
+
+        # Move all buffer files to preprocessed
+        for file in os.listdir(self.path_to_buffer):
+            subprocess.run(['mv', os.path.join(self.path_to_buffer, file), os.path.join(self.path_to_preprocessed)])
 
 
     def main(self):
