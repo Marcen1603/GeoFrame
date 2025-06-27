@@ -1,7 +1,10 @@
 import datetime
+import json
 import math
 import os
+import shutil
 import subprocess
+import sys
 import time
 import traceback
 
@@ -12,16 +15,42 @@ class Preprocessor:
         self.path_to_raw = 'resources\\raw'
         self.path_to_buffer = 'resources\\buffer'
         self.path_to_preprocessed = 'resources\\preprocessed'
-        self.path_to_osmcovert = 'resources\\osmconvert64-0.8.8p.exe'
+        self.path_to_osm_covert = 'resources\\osmconvert64-0.8.8p.exe'
+        self.path_to_cachefile = 'resources\\preprocessed\\cache_file.json'
+
+        # Init folders
+        if not os.path.exists(self.path_to_preprocessed):
+            os.makedirs(self.path_to_preprocessed)
+
+        if not os.path.exists(self.path_to_buffer):
+            os.makedirs(self.path_to_buffer)
+
+        if os.path.exists(self.path_to_cachefile):
+            print("Cache file still exists, but will be cleared!")
+            os.remove(self.path_to_cachefile)
+            with open(self.path_to_cachefile, 'w') as f:
+                json.dump({}, f)
+
+        else:
+            print("The file does not exist, but will be created!")
+            with open(self.path_to_cachefile, 'w') as f:
+                json.dump({}, f)
 
         self.raw_files_statistics = {}
         self.preprocessed_files_statistics = {}
 
 
-    def create_sub_file(self, path_to_raw_file: str, min_lon: float, min_lat: float, max_lon:float, max_lat:float) -> str:
+    def append_cache_file(self, key, value):
 
-        if not os.path.exists(self.path_to_buffer):
-            os.makedirs(self.path_to_buffer)
+        with open(self.path_to_cachefile, "r", encoding="utf-8") as f:
+
+            data = json.load(f)
+            data[key] = value
+            with open(self.path_to_cachefile, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=4)
+
+
+    def create_sub_file(self, path_to_raw_file: str, min_lon: float, min_lat: float, max_lon:float, max_lat:float) -> str:
 
         basename = os.path.basename(path_to_raw_file).split('/')[-1].split("_")[0].replace('.osm.pbf', '')
         new_file_name = f'{self.path_to_buffer}\\{basename}_{min_lon}_{min_lat}_{max_lon}_{max_lat}.osm.pbf'
@@ -30,8 +59,9 @@ class Preprocessor:
 
         try:
             subprocess.run(f'.\\resources\\osmconvert64-0.8.8p.exe resources\\raw\\{basename}.osm.pbf {bounding_box_parameter} {new_file_name_parameter}')
-        except subprocess.CalledProcessError as grepexc:
-            print("error code", grepexc.returncode, grepexc.output)
+        except subprocess.CalledProcessError as processError:
+            print_to_console(f"Error code: {processError.returncode}, {processError.output}")
+            sys.exit(1)
 
         return new_file_name
 
@@ -102,6 +132,8 @@ class Preprocessor:
 
                 # Create sub-files
                 path_to_new_file = self.create_sub_file(os.path.join(self.path_to_raw, raw_file_path), new_lon_min, new_lat_min, new_lon_max, new_lat_max)
+                name_of_new_file = path_to_new_file.split("\\")[-1]
+                print(name_of_new_file)
                 print_to_console(f'New file: {path_to_new_file} from {raw_file_path}')
 
                 # Get file size
@@ -111,17 +143,17 @@ class Preprocessor:
                 # Get file statistics
                 new_file_statistics = self.get_osm_statistics(path_to_new_file)
 
+                # Create statistics dict
+                new_statistics_dict = {}
+                for statistic in new_file_statistics.split("\n"):
+
+                    if statistic != '':
+                        split = statistic.split(":", 1)
+                        new_statistics_dict[split[0]] = split[1]
+
                 if file_size_gb > 2.0:
 
                     print_to_console("File is larger than 2 GB!" + str(file_size_gb))
-
-                    # Create statistics dict
-                    new_statistics_dict = {}
-                    for statistic in new_file_statistics.split("\n"):
-
-                        if statistic != '':
-                            split = statistic.split(":", 1)
-                            new_statistics_dict[split[0]] = split[1]
 
                     self.split_file(file_size_gb, new_statistics_dict, path_to_new_file)
 
@@ -129,6 +161,14 @@ class Preprocessor:
                     print_to_console("File is smaller than 2 GB!" + str(file_size_gb))
 
                     self.preprocessed_files_statistics[os.path.basename(path_to_new_file).split('/')[-1]] = new_file_statistics
+
+                    coordinates = {
+                        'lon min': new_statistics_dict['lon min'],
+                        'lon max': new_statistics_dict['lon max'],
+                        'lat min': new_statistics_dict['lat min'],
+                        'lat max': new_statistics_dict['lat max']
+                    }
+                    self.append_cache_file(os.path.join(self.path_to_preprocessed, name_of_new_file), coordinates)
 
         # Delete original file
         if not raw_file:
@@ -141,7 +181,11 @@ class Preprocessor:
 
         # Move all buffer files to preprocessed
         for file in os.listdir(self.path_to_buffer):
-            subprocess.run(['mv', os.path.join(self.path_to_buffer, file), os.path.join(self.path_to_preprocessed)])
+            try:
+                shutil.move(os.path.join(self.path_to_buffer, file), os.path.join(self.path_to_preprocessed, file))
+            except Exception:
+                print_to_console(f'Error while executing statement! Error: {traceback.format_exc()}')
+                sys.exit(1)
 
 
     def main(self):
@@ -166,6 +210,8 @@ class Preprocessor:
                     split = statistic.split(":", 1)
                     statistics_dict[split[0]] = split[1]
 
+            print(statistics_dict)
+
             # Save statistics of raw file
             self.raw_files_statistics[raw_file] = statistics_dict
 
@@ -175,6 +221,24 @@ class Preprocessor:
                 print_to_console("File is larger than 2 GB!")
 
                 self.split_file(file_size_gb, statistics_dict, raw_file, raw_file=True)
+
+            else:
+
+                print_to_console("File is smaller than 2 GB! No split needed!")
+
+                try:
+                    shutil.copy(os.path.join(self.path_to_raw, raw_file), os.path.join(self.path_to_preprocessed, raw_file))
+                    coordinates = {
+                        'lon min': statistics_dict['lon min'],
+                        'lon max': statistics_dict['lon max'],
+                        'lat min': statistics_dict['lat min'],
+                        'lat max': statistics_dict['lat max']
+                    }
+                    self.append_cache_file(os.path.join(self.path_to_preprocessed, raw_file), coordinates)
+                except Exception:
+                    print_to_console(f'Error while executing copy statement! Error: {traceback.format_exc()}')
+                    sys.exit(1)
+
 
 
 def print_to_console(message:str):

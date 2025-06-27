@@ -1,12 +1,16 @@
 import os
-import subprocess
 import unittest
+import numpy as np
+
+from src import HelperFunctions as hf
+
 
 class TestPreprocessor(unittest.TestCase):
 
-    path_to_raw = 'resources\\raw'
+    path_to_raw = '..\\src\\resources\\raw\\'
     path_to_buffer = 'resources\\buffer'
     path_to_preprocessed = 'resources\\preprocessed'
+    path_to_osm_convert = '.\\..\\src\\resources\\osmconvert64-0.8.8p.exe'
 
     def test_amount_of_raw_files(self):
 
@@ -15,22 +19,51 @@ class TestPreprocessor(unittest.TestCase):
 
     def test_preprocessed_files(self):
 
-        for file in os.listdir(os.path.join('..', 'src', self.path_to_raw)):
+        for file in os.listdir(self.path_to_raw):
 
-            raw_statistics = subprocess.run(['.\\resources\\osmconvert64-0.8.8p.exe', os.path.join('..', 'src', self.path_to_raw, file), '--out-statistics'], stdout=subprocess.PIPE).stdout.decode('utf-8')
-            raw_statistics_dict = {}
-            for statistic in raw_statistics.split("\n"):
+            path_raw_file = os.path.join(self.path_to_raw, file)
+            raw_statistics_dict = hf.extract_osm_statistics(self.path_to_osm_convert, path_raw_file)
 
-                if statistic != '':
-                    split = statistic.split(":", 1)
-                    raw_statistics_dict[split[0]] = split[1]
+            # Create array from min to max with stepsize
+            step = 0.0001
+            lat_vals = np.arange(float(raw_statistics_dict['lat min']), float(raw_statistics_dict['lat max']) + step, step)
+            lon_vals = np.arange(float(raw_statistics_dict['lon min']), float(raw_statistics_dict['lon max']) + step, step)
 
-            longitudinal_min = float(raw_statistics_dict['lon min'])
-            longitudinal_max = float(raw_statistics_dict['lon max'])
-            latitude_min = float(raw_statistics_dict['lat min'])
-            latitude_max = float(raw_statistics_dict['lat max'])
+            # Create grid as convert to set
+            LAT, LON = np.meshgrid(lat_vals, lon_vals)
+            all_points = set(zip(LAT.ravel(), LON.ravel()))
 
+            def get_covered_points_by_subfile(min_lat, max_lat, min_lon, max_lon):
+
+                #
+                sub_lat_vals = lat_vals[(lat_vals >= min_lat) & (lat_vals <= max_lat)]
+                sub_lon_vals = lon_vals[(lon_vals >= min_lon) & (lon_vals <= max_lon)]
+
+                # Gitter für die Subdatei erzeugen
+                sub_LAT, sub_LON = np.meshgrid(sub_lat_vals, sub_lon_vals)
+
+                # Punkte als Set von (lat, lon) Paaren zurückgeben
+                return set(zip(sub_LAT.ravel(), sub_LON.ravel()))
             filename = file.split('.')[0]
+            print("Filename: " + filename)
+            print("Name: " + file)
+
+            # Beispiel: zwei Teilbereiche
+            subfiles_bounds = [
+                (48.0, 48.001, 11.0, 11.001),
+                (48.001, 48.002, 11.001, 11.002),
+            ]
+
+            for bounds in subfiles_bounds:
+                covered = get_covered_points_by_subfile(bounds)
+                all_points -= covered
+
+            # 4. Ergebnis prüfen
+            if all_points:
+                print(f"{len(all_points)} Punkte wurden NICHT abgedeckt!")
+            else:
+                print("Alle Punkte wurden erfolgreich abgedeckt.")
+
 
 
 if __name__ == '__main__':
