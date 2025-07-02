@@ -1,15 +1,18 @@
 import os
 import unittest
 import numpy as np
+import folium
 
 from src import HelperFunctions as hf
+from src.HelperFunctions import extract_osm_statistics
+from src.Preprocessor import print_to_console
 
 
 class TestPreprocessor(unittest.TestCase):
 
     path_to_raw = '..\\src\\resources\\raw\\'
     path_to_buffer = 'resources\\buffer'
-    path_to_preprocessed = 'resources\\preprocessed'
+    path_to_preprocessed = '..\\src\\resources\\preprocessed'
     path_to_osm_convert = '.\\..\\src\\resources\\osmconvert64-0.8.8p.exe'
 
     def test_amount_of_raw_files(self):
@@ -64,6 +67,39 @@ class TestPreprocessor(unittest.TestCase):
             else:
                 print("Alle Punkte wurden erfolgreich abgedeckt.")
 
+
+    def test_availability(self):
+
+        # Initialize map
+        m = folium.Map(location=[0, 0], zoom_start=2)
+
+        file_list = os.listdir(os.path.join(self.path_to_preprocessed))
+        amount_of_files = len(file_list)
+
+        file_counter = 0
+        for file in file_list:
+            file_counter += 1
+
+            print_to_console(f"Processing file {file_counter} of {amount_of_files}")
+            statistics = extract_osm_statistics(self.path_to_osm_convert, os.path.join(self.path_to_preprocessed + file))
+
+            polygon_points = [
+                [float(statistics['lat min']), float(statistics['lon min'])],
+                [float(statistics['lat min']), float(statistics['lon max'])],
+                [float(statistics['lat max']), float(statistics['lon max'])],
+                [float(statistics['lat max']), float(statistics['lon min'])],
+                [float(statistics['lat min']), float(statistics['lon min'])]
+            ]
+
+            folium.Polygon(
+                locations=polygon_points,
+                color='blue',
+                weight=2,
+                fill=True,
+                fill_opacity=0.4
+            ).add_to(m)
+
+        m.save("availability_map.html")
 
 
 if __name__ == '__main__':
