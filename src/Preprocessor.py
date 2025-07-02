@@ -8,6 +8,26 @@ import sys
 import time
 import traceback
 
+from src.HelperFunctions import extract_osm_statistics
+
+
+def delete_original_files(raw_file, raw_file_path):
+    # Delete original file
+    if not raw_file:
+        try:
+            os.remove(raw_file_path)
+        except IOError as e:
+            print_to_console(f'Error while trying to remove file: {traceback.format_exc()}. {e}')
+        finally:
+            print_to_console(f"File '{raw_file_path}' deleted successfully.")
+
+
+def print_to_console(message:str):
+
+    current_datetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+    print(f'{current_datetime}: {message}')
+
+
 class Preprocessor:
 
     def __init__(self):
@@ -18,6 +38,12 @@ class Preprocessor:
         self.path_to_osm_covert = 'resources\\osmconvert64-0.8.8p.exe'
         self.path_to_cachefile = 'resources\\preprocessed\\cache_file.json'
 
+        self.offset = 0.00001
+        self.lon_min_bound = -180.0
+        self.lon_max_bound = 180.0
+        self.lat_min_bound = -90.0
+        self.lat_max_bound = 90.0
+
         # Init folders
         if not os.path.exists(self.path_to_preprocessed):
             os.makedirs(self.path_to_preprocessed)
@@ -26,13 +52,13 @@ class Preprocessor:
             os.makedirs(self.path_to_buffer)
 
         if os.path.exists(self.path_to_cachefile):
-            print("Cache file still exists, but will be cleared!")
+            print_to_console("Cache file still exists, but will be cleared!")
             os.remove(self.path_to_cachefile)
             with open(self.path_to_cachefile, 'w') as f:
                 json.dump({}, f)
 
         else:
-            print("The file does not exist, but will be created!")
+            print_to_console("The file does not exist, but will be created!")
             with open(self.path_to_cachefile, 'w') as f:
                 json.dump({}, f)
 
@@ -66,11 +92,31 @@ class Preprocessor:
         return new_file_name
 
 
-    def get_osm_statistics(self, path_to_file):
+    def calculate_min_max_longitude(self, x, longitudinal_min, longitudinal_split):
 
-        raw_statistic = subprocess.run(['.\\resources\\osmconvert64-0.8.8p.exe', path_to_file, '--out-statistics'], stdout=subprocess.PIPE).stdout.decode('utf-8')
+        new_lon_min = longitudinal_min + (x * longitudinal_split) - self.offset
+        new_lon_max = longitudinal_min + ((x + 1) * longitudinal_split) + self.offset
 
-        return raw_statistic
+        if new_lon_min < self.lon_min_bound:
+            new_lon_min = self.lon_min_bound
+        if new_lon_max > self.lon_max_bound:
+            new_lon_max = self.lon_max_bound
+
+        return new_lon_min, new_lon_max
+
+
+    def calculate_min_max_latitude(self, y, latitude_min, latitude_split):
+
+        new_lat_min = latitude_min + (y * latitude_split) - self.offset
+        new_lat_max = latitude_min + ((y + 1) * latitude_split) + self.offset
+
+        if new_lat_min < self.lat_min_bound:
+            new_lat_min = self.lat_min_bound
+        if new_lat_max > self.lat_max_bound:
+            new_lat_max = self.lat_max_bound
+
+        return new_lat_min, new_lat_max
+
 
     def split_file(self, file_size_gb:float, statistics_dict:dict, raw_file_path:str, raw_file=False):
 
@@ -91,38 +137,20 @@ class Preprocessor:
         longitudinal_diff = abs(longitudinal_min - longitudinal_max)
         latitude_diff = abs(latitude_min - latitude_max)
 
-        offset = 0.00001
         longitudinal_split = longitudinal_diff / split_size
         latitude_split = latitude_diff / split_size
-
-        lon_min_bound = -180.0
-        lon_max_bound = 180.0
-        lat_min_bound = -90.0
-        lat_max_bound = 90.0
 
         # Longitudinal
         for x in range(split_size):
 
-            new_lon_min = longitudinal_min + (x * longitudinal_split) - offset
-            new_lon_max = longitudinal_min + ((x + 1) * longitudinal_split) + offset
-
-            if new_lon_min < lon_min_bound:
-                new_lon_min = lon_min_bound
-            if new_lon_max > lon_max_bound:
-                new_lon_max = lon_max_bound
+            new_lon_min, new_lon_max = self.calculate_min_max_longitude(x, longitudinal_min, longitudinal_split)
 
             # Latitude
             for y in range(split_size):
 
-                new_lat_min = latitude_min + (y * latitude_split) - offset
-                new_lat_max = latitude_min + ((y + 1) * latitude_split) + offset
+                new_lat_min, new_lat_max = self.calculate_min_max_latitude(y, latitude_min, latitude_split)
 
                 print_to_console(f'Range x: {x}/{split_size-1} | Range y: {y}/{split_size-1}')
-
-                if new_lat_min < lat_min_bound:
-                    new_lat_min = lat_min_bound
-                if new_lat_max > lat_max_bound:
-                    new_lat_max = lat_max_bound
 
                 print_to_console("New values:")
                 print_to_console("new_lon_min: " + str(new_lon_min))
@@ -133,35 +161,24 @@ class Preprocessor:
                 # Create sub-files
                 path_to_new_file = self.create_sub_file(os.path.join(self.path_to_raw, raw_file_path), new_lon_min, new_lat_min, new_lon_max, new_lat_max)
                 name_of_new_file = path_to_new_file.split("\\")[-1]
-                print(name_of_new_file)
+                print_to_console(name_of_new_file)
                 print_to_console(f'New file: {path_to_new_file} from {raw_file_path}')
 
                 # Get file size
                 file_size = os.path.getsize(path_to_new_file)
                 file_size_gb = file_size / math.pow(10, 9)
 
-                # Get file statistics
-                new_file_statistics = self.get_osm_statistics(path_to_new_file)
-
                 # Create statistics dict
-                new_statistics_dict = {}
-                for statistic in new_file_statistics.split("\n"):
-
-                    if statistic != '':
-                        split = statistic.split(":", 1)
-                        new_statistics_dict[split[0]] = split[1]
+                new_statistics_dict = extract_osm_statistics('.\\resources\\osmconvert64-0.8.8p.exe', path_to_new_file)
 
                 if file_size_gb > 2.0:
 
                     print_to_console("File is larger than 2 GB!" + str(file_size_gb))
-
                     self.split_file(file_size_gb, new_statistics_dict, path_to_new_file)
 
                 else:
+
                     print_to_console("File is smaller than 2 GB!" + str(file_size_gb))
-
-                    self.preprocessed_files_statistics[os.path.basename(path_to_new_file).split('/')[-1]] = new_file_statistics
-
                     coordinates = {
                         'lon min': new_statistics_dict['lon min'],
                         'lon max': new_statistics_dict['lon max'],
@@ -170,21 +187,17 @@ class Preprocessor:
                     }
                     self.append_cache_file(os.path.join(self.path_to_preprocessed, name_of_new_file), coordinates)
 
-        # Delete original file
-        if not raw_file:
-            try:
-                os.remove(raw_file_path)
-            except IOError:
-                print_to_console(f'Error while trying to remove file: {traceback.format_exc()}')
-            finally:
-                print_to_console(f"File '{raw_file_path}' deleted successfully.")
+        delete_original_files(raw_file, raw_file_path)
+        self.move_files()
 
+
+    def move_files(self):
         # Move all buffer files to preprocessed
         for file in os.listdir(self.path_to_buffer):
             try:
                 shutil.move(os.path.join(self.path_to_buffer, file), os.path.join(self.path_to_preprocessed, file))
-            except Exception:
-                print_to_console(f'Error while executing statement! Error: {traceback.format_exc()}')
+            except Exception as e:
+                print_to_console(f'Error while executing statement! Error: {traceback.format_exc()}. {e}')
                 sys.exit(1)
 
 
@@ -200,17 +213,7 @@ class Preprocessor:
             print_to_console(f'Size in GB: {file_size_gb}')
 
             # Get file statistics
-            file_statistics = self.get_osm_statistics(os.path.join(self.path_to_raw, raw_file))
-
-            # Create statistics dict
-            statistics_dict = {}
-            for statistic in file_statistics.split("\n"):
-
-                if statistic != '':
-                    split = statistic.split(":", 1)
-                    statistics_dict[split[0]] = split[1]
-
-            print(statistics_dict)
+            statistics_dict = extract_osm_statistics('.\\resources\\osmconvert64-0.8.8p.exe' ,os.path.join(self.path_to_raw, raw_file))
 
             # Save statistics of raw file
             self.raw_files_statistics[raw_file] = statistics_dict
@@ -219,13 +222,11 @@ class Preprocessor:
             if file_size_gb > 2.0:
 
                 print_to_console("File is larger than 2 GB!")
-
                 self.split_file(file_size_gb, statistics_dict, raw_file, raw_file=True)
 
             else:
 
                 print_to_console("File is smaller than 2 GB! No split needed!")
-
                 try:
                     shutil.copy(os.path.join(self.path_to_raw, raw_file), os.path.join(self.path_to_preprocessed, raw_file))
                     coordinates = {
@@ -235,17 +236,9 @@ class Preprocessor:
                         'lat max': statistics_dict['lat max']
                     }
                     self.append_cache_file(os.path.join(self.path_to_preprocessed, raw_file), coordinates)
-                except Exception:
-                    print_to_console(f'Error while executing copy statement! Error: {traceback.format_exc()}')
+                except Exception as e:
+                    print_to_console(f'Error while executing copy statement! Error: {traceback.format_exc()}. {e}')
                     sys.exit(1)
-
-
-
-def print_to_console(message:str):
-
-    current_datetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-
-    print(f'{current_datetime}: {message}')
     
 
 if __name__ == '__main__':

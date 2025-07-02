@@ -6,7 +6,7 @@ import sys
 def extract_osm_statistics(osm_convert_path: str, file_path: str) -> dict:
 
     print(os.path.dirname(os.path.abspath(sys.argv[0])))
-    command = f'.\\..\\src\\resources\\osmconvert64-0.8.8p.exe ..\\src\\resources\\raw\\africa-latest.osm.pbf --out-statistics'
+    command = f'{osm_convert_path} {file_path} --out-statistics'
     statistics = None
 
     try:
