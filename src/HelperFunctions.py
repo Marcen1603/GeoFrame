@@ -1,18 +1,20 @@
 import os
 import subprocess
 import sys
+import datetime
+import time
+import traceback
 
 
 def extract_osm_statistics(osm_convert_path: str, file_path: str) -> dict:
 
-    print(os.path.dirname(os.path.abspath(sys.argv[0])))
     command = f'{osm_convert_path} {file_path} --out-statistics'
     statistics = None
 
     try:
         statistics = subprocess.run(command, stdout=subprocess.PIPE).stdout.decode('utf-8')
     except FileNotFoundError:
-        print('Error while executing subprocess: ' + command)
+        print_to_console('Error while executing subprocess: ' + command)
         sys.exit(-1)
 
     return osm_statistics_to_dict(statistics)
@@ -28,3 +30,21 @@ def osm_statistics_to_dict(oms_statistics: str) -> dict:
             statistics_dict[split[0]] = split[1]
 
     return statistics_dict
+
+
+def delete_original_files(raw_file, raw_file_path):
+    # Delete original file
+    if not raw_file:
+        try:
+            os.remove(raw_file_path)
+            print_to_console(f'Successfully removed file: {raw_file_path}')
+        except IOError as e:
+            print_to_console(f'Error while trying to remove file: {traceback.format_exc()}. {e}')
+        finally:
+            print_to_console(f"File '{raw_file_path}' deleted successfully.")
+
+
+def print_to_console(message:str):
+
+    current_datetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+    print(f'{current_datetime}: {message}')

@@ -1,4 +1,5 @@
 import datetime
+import glob
 import json
 import math
 import os
@@ -8,24 +9,7 @@ import sys
 import time
 import traceback
 
-from src.HelperFunctions import extract_osm_statistics
-
-
-def delete_original_files(raw_file, raw_file_path):
-    # Delete original file
-    if not raw_file:
-        try:
-            os.remove(raw_file_path)
-        except IOError as e:
-            print_to_console(f'Error while trying to remove file: {traceback.format_exc()}. {e}')
-        finally:
-            print_to_console(f"File '{raw_file_path}' deleted successfully.")
-
-
-def print_to_console(message:str):
-
-    current_datetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-    print(f'{current_datetime}: {message}')
+from src.HelperFunctions import extract_osm_statistics, print_to_console, delete_original_files
 
 
 class Preprocessor:
@@ -36,7 +20,8 @@ class Preprocessor:
         self.path_to_buffer = 'resources\\buffer'
         self.path_to_preprocessed = 'resources\\preprocessed'
         self.path_to_osm_covert = 'resources\\osmconvert64-0.8.8p.exe'
-        self.path_to_cachefile = 'resources\\preprocessed\\cache_file.json'
+        self.path_to_cachefile = 'resources\\preprocessed\\cache_file*.json'
+        self.path_to_cachefile_archive = 'resources\\preprocessed\\archive'
 
         self.offset = 0.00001
         self.lon_min_bound = -180.0
@@ -51,16 +36,23 @@ class Preprocessor:
         if not os.path.exists(self.path_to_buffer):
             os.makedirs(self.path_to_buffer)
 
-        if os.path.exists(self.path_to_cachefile):
-            print_to_console("Cache file still exists, but will be cleared!")
-            os.remove(self.path_to_cachefile)
-            with open(self.path_to_cachefile, 'w') as f:
-                json.dump({}, f)
+        if not os.path.exists(self.path_to_cachefile_archive):
+            os.makedirs(self.path_to_cachefile_archive)
 
-        else:
-            print_to_console("The file does not exist, but will be created!")
-            with open(self.path_to_cachefile, 'w') as f:
-                json.dump({}, f)
+        # Move cache files
+        cache_files = glob.glob(self.path_to_cachefile)
+        if len(cache_files) > 0:
+
+            for cache_file in cache_files:
+                basename = os.path.basename(cache_file)
+                target_path = os.path.join(self.path_to_cachefile_archive, basename)
+                shutil.move(cache_file, target_path)
+                print_to_console(f"Moved {cache_file} to {target_path}")
+
+        # Create cache file
+        current_datetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d%H%M%S')
+        with open(os.path.join(self.path_to_preprocessed, f'cache_file_{current_datetime}.json'), 'w') as f:
+            json.dump({}, f)
 
         self.raw_files_statistics = {}
         self.preprocessed_files_statistics = {}
@@ -68,11 +60,20 @@ class Preprocessor:
 
     def append_cache_file(self, key, value):
 
-        with open(self.path_to_cachefile, "r", encoding="utf-8") as f:
+        cache_files = glob.glob(self.path_to_cachefile)
+        if len(cache_files) > 1:
+            try:
+                raise ValueError(f'More than one file ({len(cache_files)}) in the folder {self.path_to_cachefile}. Files: {cache_files}')
+            except ValueError as e:
+                print_to_console(f'Error while trying to write to the cache file! Error: {traceback.format_exc()}. {e}')
+                sys.exit(-1)
+
+        cache_file = cache_files.pop()
+        with open(cache_file, "r", encoding="utf-8") as f:
 
             data = json.load(f)
             data[key] = value
-            with open(self.path_to_cachefile, "w", encoding="utf-8") as f:
+            with open(cache_file, "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False, indent=4)
 
 
@@ -179,15 +180,21 @@ class Preprocessor:
                 else:
 
                     print_to_console("File is smaller than 2 GB!" + str(file_size_gb))
-                    coordinates = {
-                        'lon min': new_statistics_dict['lon min'],
-                        'lon max': new_statistics_dict['lon max'],
-                        'lat min': new_statistics_dict['lat min'],
-                        'lat max': new_statistics_dict['lat max']
-                    }
-                    self.append_cache_file(os.path.join(self.path_to_preprocessed, name_of_new_file), coordinates)
+
+                    # If new file is covering nothing
+                    if 'lon min' not in new_statistics_dict:
+                        delete_original_files(False, os.path.join(self.path_to_buffer, name_of_new_file))
+                    else:
+                        coordinates = {
+                            'lon min': new_statistics_dict['lon min'],
+                            'lon max': new_statistics_dict['lon max'],
+                            'lat min': new_statistics_dict['lat min'],
+                            'lat max': new_statistics_dict['lat max']
+                        }
+                        self.append_cache_file(os.path.join(self.path_to_preprocessed, name_of_new_file), coordinates)
 
         delete_original_files(raw_file, raw_file_path)
+        # Will also be executed if a split file is larger than 2GB and will be split again
         self.move_files()
 
 
