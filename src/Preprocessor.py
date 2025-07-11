@@ -8,6 +8,7 @@ import subprocess
 import sys
 import time
 import traceback
+from multiprocessing import Pool
 
 from src.HelperFunctions import extract_osm_statistics, print_to_console, delete_original_files
 
@@ -119,6 +120,48 @@ class Preprocessor:
         return new_lat_min, new_lat_max
 
 
+    def process_tile(self, args):
+        x, y, split_size, latitude_min, latitude_split, longitude_min, longitude_split, raw_file_path = args
+
+        new_lon_min, new_lon_max = self.calculate_min_max_longitude(x, longitude_min, longitude_split)
+        new_lat_min, new_lat_max = self.calculate_min_max_latitude(y, latitude_min, latitude_split)
+
+        print_to_console(f'Range x: {x}/{split_size-1} | Range y: {y}/{split_size-1}')
+        print_to_console("New values:")
+        print_to_console(f"new_lon_min: {new_lon_min}")
+        print_to_console(f"new_lon_max: {new_lon_max}")
+        print_to_console(f"new_lat_min: {new_lat_min}")
+        print_to_console(f"new_lat_max: {new_lat_max}")
+
+        # Create sub-file
+        path_to_new_file = self.create_sub_file(os.path.join(self.path_to_raw, raw_file_path), new_lon_min, new_lat_min, new_lon_max, new_lat_max)
+        name_of_new_file = path_to_new_file.split("\\")[-1]
+        print_to_console(name_of_new_file)
+        print_to_console(f'New file: {path_to_new_file} from {raw_file_path}')
+
+        file_size = os.path.getsize(path_to_new_file)
+        file_size_gb = file_size / math.pow(10, 9)
+
+        new_statistics_dict = extract_osm_statistics('.\\resources\\osmconvert64-0.8.8p.exe', path_to_new_file)
+
+        if file_size_gb > 2.0:
+            print_to_console("File is larger than 2 GB!" + str(file_size_gb))
+            self.split_file(file_size_gb, new_statistics_dict, path_to_new_file)
+        else:
+            print_to_console("File is smaller than 2 GB!" + str(file_size_gb))
+            if 'lon min' not in new_statistics_dict:
+                delete_original_files(False, os.path.join(self.path_to_buffer, name_of_new_file))
+            else:
+                coordinates = {
+                    'lon min': new_statistics_dict['lon min'],
+                    'lon max': new_statistics_dict['lon max'],
+                    'lat min': new_statistics_dict['lat min'],
+                    'lat max': new_statistics_dict['lat max']
+                }
+                self.append_cache_file(os.path.join(self.path_to_preprocessed, name_of_new_file), coordinates)
+
+
+
     def split_file(self, file_size_gb:float, statistics_dict:dict, raw_file_path:str, raw_file=False):
 
         # Files larger than 2GB are cut into small pieces
@@ -144,54 +187,13 @@ class Preprocessor:
         # Longitudinal
         for x in range(split_size):
 
-            new_lon_min, new_lon_max = self.calculate_min_max_longitude(x, longitudinal_min, longitudinal_split)
+            args_list = []
 
-            # Latitude
             for y in range(split_size):
+                args_list.append((x, y, split_size, latitude_min, latitude_split, longitudinal_min, longitudinal_split, raw_file_path))
 
-                new_lat_min, new_lat_max = self.calculate_min_max_latitude(y, latitude_min, latitude_split)
-
-                print_to_console(f'Range x: {x}/{split_size-1} | Range y: {y}/{split_size-1}')
-
-                print_to_console("New values:")
-                print_to_console("new_lon_min: " + str(new_lon_min))
-                print_to_console("new_lon_max: " + str(new_lon_max))
-                print_to_console("new_lat_min: " + str(new_lat_min))
-                print_to_console("new_lat_max: " + str(new_lat_max))
-
-                # Create sub-files
-                path_to_new_file = self.create_sub_file(os.path.join(self.path_to_raw, raw_file_path), new_lon_min, new_lat_min, new_lon_max, new_lat_max)
-                name_of_new_file = path_to_new_file.split("\\")[-1]
-                print_to_console(name_of_new_file)
-                print_to_console(f'New file: {path_to_new_file} from {raw_file_path}')
-
-                # Get file size
-                file_size = os.path.getsize(path_to_new_file)
-                file_size_gb = file_size / math.pow(10, 9)
-
-                # Create statistics dict
-                new_statistics_dict = extract_osm_statistics('.\\resources\\osmconvert64-0.8.8p.exe', path_to_new_file)
-
-                if file_size_gb > 2.0:
-
-                    print_to_console("File is larger than 2 GB!" + str(file_size_gb))
-                    self.split_file(file_size_gb, new_statistics_dict, path_to_new_file)
-
-                else:
-
-                    print_to_console("File is smaller than 2 GB!" + str(file_size_gb))
-
-                    # If new file is covering nothing
-                    if 'lon min' not in new_statistics_dict:
-                        delete_original_files(False, os.path.join(self.path_to_buffer, name_of_new_file))
-                    else:
-                        coordinates = {
-                            'lon min': new_statistics_dict['lon min'],
-                            'lon max': new_statistics_dict['lon max'],
-                            'lat min': new_statistics_dict['lat min'],
-                            'lat max': new_statistics_dict['lat max']
-                        }
-                        self.append_cache_file(os.path.join(self.path_to_preprocessed, name_of_new_file), coordinates)
+            with Pool(processes=split_size) as pool:
+                pool.map(self._wrap_process_tile, args_list)
 
         delete_original_files(raw_file, raw_file_path)
         # Will also be executed if a split file is larger than 2GB and will be split again
@@ -246,7 +248,16 @@ class Preprocessor:
                 except Exception as e:
                     print_to_console(f'Error while executing copy statement! Error: {traceback.format_exc()}. {e}')
                     sys.exit(1)
-    
+
+
+    @staticmethod
+    def _wrap_process_tile(args):
+        # Hier musst du eine neue Instanz oder den Kontext übergeben
+        # z. B. über functools.partial oder global
+        # Oder einfach: Wenn der Code ohnehin in einer Klasse läuft, instanziere die Klasse vorher
+        instance = Preprocessor()  # Hier deine Klasse mit den nötigen Parametern
+        return instance.process_tile(args)
+
 
 if __name__ == '__main__':
 
