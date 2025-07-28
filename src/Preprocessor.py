@@ -10,7 +10,7 @@ import time
 import traceback
 from multiprocessing import Pool
 
-from src.HelperFunctions import extract_osm_statistics, print_to_console, delete_original_files, calc_file_size_gb
+from HelperFunctions import extract_osm_statistics, print_to_console, delete_original_files, calc_file_size_gb
 
 
 class Preprocessor:
