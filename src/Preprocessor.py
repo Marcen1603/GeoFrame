@@ -18,12 +18,12 @@ class Preprocessor:
     def __init__(self):
 
         self.path_to_raw = os.path.join('resources', 'raw')
-        self.path_to_done = 'resources\\done'
-        self.path_to_buffer = 'resources\\buffer'
-        self.path_to_preprocessed = 'resources\\preprocessed'
-        self.path_to_osm_covert = 'resources\\osmconvert64-0.8.8p.exe'
-        self.path_to_cachefile = 'resources\\preprocessed\\cache_file*.json'
-        self.path_to_cachefile_archive = 'resources\\preprocessed\\archive'
+        self.path_to_done = os.path.join('resources', 'done')
+        self.path_to_buffer = os.path.join('resources', 'buffer')
+        self.path_to_preprocessed = os.path.join('resources', 'preprocessed')
+        self.path_to_osm_covert = os.path.join('resources', 'osmconvert64-0.8.8p.exe')
+        self.path_to_cachefile = os.path.join('resources', 'preprocessed', 'cache_file*.json')
+        self.path_to_cachefile_archive = os.path.join('resources', 'preprocessed', 'archive')
 
         self.max_split_size = 1 # Defined as gigabyte
         self.split_multiplicator = 2 # Sqrt(file_size) * split_multiplicator
