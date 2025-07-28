@@ -17,7 +17,7 @@ class Preprocessor:
 
     def __init__(self):
 
-        self.path_to_raw = 'resources\\raw'
+        self.path_to_raw = os.path.join('resources', 'raw')
         self.path_to_done = 'resources\\done'
         self.path_to_buffer = 'resources\\buffer'
         self.path_to_preprocessed = 'resources\\preprocessed'
