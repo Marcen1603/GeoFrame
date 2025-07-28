@@ -43,7 +43,6 @@ class Preprocessor:
         if not os.path.exists(self.path_to_cachefile_archive):
             os.makedirs(self.path_to_cachefile_archive)
 
-        print("Move cache")
         # Move cache files
         cache_files = glob.glob(self.path_to_cachefile)
         if len(cache_files) > 0:
@@ -53,7 +52,7 @@ class Preprocessor:
                 target_path = os.path.join(self.path_to_cachefile_archive, basename)
                 shutil.move(cache_file, target_path)
                 print_to_console(f"Moved {cache_file} to {target_path}")
-        print("Finished cache")
+
         # Create cache file
         current_datetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d%H%M%S')
         with open(os.path.join(self.path_to_preprocessed, f'cache_file_{current_datetime}.json'), 'w') as f:
@@ -217,6 +216,8 @@ class Preprocessor:
         initial_run = True
         process_files = os.listdir(self.path_to_raw)
 
+        print("Processing:")
+        print(process_files)
         while len(process_files) > 0:
             for process_file in process_files:
 
