@@ -1,3 +1,5 @@
+import math
+import multiprocessing
 import os
 import subprocess
 import sys
@@ -47,4 +49,14 @@ def delete_original_files(raw_file, raw_file_path):
 def print_to_console(message:str):
 
     current_datetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-    print(f'{current_datetime}: {message}')
+    print(f'{current_datetime} (Thread: {multiprocessing.current_process().name}): {message}')
+
+
+def calc_file_size_gb(file_path: str) -> float:
+
+    # Get file size
+    file_size = os.path.getsize(file_path)
+    file_size_gb = file_size / math.pow(10, 9)
+    print_to_console(f'Size in GB: {file_size_gb}')
+
+    return file_size_gb

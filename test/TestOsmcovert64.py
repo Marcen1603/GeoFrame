@@ -1,6 +1,5 @@
 import datetime
 import json
-import multiprocessing
 import os
 import subprocess
 import sys
@@ -9,10 +8,9 @@ import unittest
 from multiprocessing import Pool
 from typing import Tuple
 
-from src.HelperFunctions import print_to_console, extract_osm_statistics
+from src.HelperFunctions import extract_osm_statistics
 
 
-# Ausgelagerte Hilfsfunktionen auf Modulebene
 def create_sub_file(path_to_raw_file: str, min_lon: float, min_lat: float, max_lon: float, max_lat: float) -> str:
     basename = os.path.basename(path_to_raw_file).split('/')[-1].split("_")[0].replace('.osm.pbf', '')
     new_file_name = f'results\\{basename}_{min_lon}_{min_lat}_{max_lon}_{max_lat}.osm.pbf'
@@ -27,8 +25,9 @@ def create_sub_file(path_to_raw_file: str, min_lon: float, min_lat: float, max_l
 
     return new_file_name
 
-def execute(args: Tuple[str, str]):
+def osmconvert_execute(args: Tuple[str, str]):
     path_to_osmconvert64, test_file = args
+    start = time.time()
 
     statistics = extract_osm_statistics(path_to_osmconvert64, test_file)
     longitudinal_min = float(statistics['lon min'])
@@ -37,7 +36,8 @@ def execute(args: Tuple[str, str]):
     latitude_max = float(statistics['lat max'])
 
     create_sub_file(test_file, longitudinal_min, latitude_min, longitudinal_max, latitude_max)
-
+    end = time.time()
+    print(f"Task dauerte: {end - start:.2f} Sekunden")
 
 
 class TestOsmconvert64(unittest.TestCase):
@@ -47,11 +47,12 @@ class TestOsmconvert64(unittest.TestCase):
     path_to_results = 'results'
 
     offset = 0.00001
-    lon_min_bound = -180.0
-    lon_max_bound = 180.0
-    lat_min_bound = -90.0
-    lat_max_bound = 90.0
+    lon_min_bound = -127.5000007
+    lon_max_bound = -22.5000000
+    lat_min_bound = -76.6199935
+    lat_max_bound = 65.1925988
 
+    bounding_box_parameter = f'-b="{lon_min_bound}, {lat_min_bound}, {lon_max_bound}, {lat_max_bound}"'
 
     def test_osm_convert_options(self):
 
@@ -65,68 +66,41 @@ class TestOsmconvert64(unittest.TestCase):
 
             start_time = time.time()
 
-            os.system(f'{self.path_to_osmconvert64} {self.test_file} --hash-memory={bound}')
+            test_out_file_name = f'-o="{os.path.join(self.path_to_results, f'hash_memory_{bound}.osm.pbf')}"'
+            os.system(f'{self.path_to_osmconvert64} {self.test_file} --hash-memory={bound} {self.bounding_box_parameter} {test_out_file_name}')
             test_results[f'test_memory_size_{bound}'] = time.time() - start_time
 
             bound += 500
 
-        # Test max objects from 15.000.000 up to 45.000.000 (maximum)
-        bound = 15000000
-        while bound <= 45000000:
-
-            start_time = time.time()
-
-            os.system(f'{self.path_to_osmconvert64} {self.test_file} --max-objects={bound}')
-            test_results[f'test_max_objects_{bound}'] = time.time() - start_time
-
-            bound += 10000000
-
-        # Test max objects from 100.000 up to 500.000 (maximum)
-        bound = 100000
-        while bound <= 500000:
-
-            start_time = time.time()
-
-            os.system(f'{self.path_to_osmconvert64} {self.test_file} --max-objects={bound}')
-            test_results[f'test_max_objects_{bound}'] = time.time() - start_time
-
-            bound += 100000
-
         current_datetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d%H%M%S')
-        file_name = f'TestOsmconvert64_results_{current_datetime}_{current_datetime}'
+        file_name = f'test_osm_convert_options_{current_datetime}.json'
         with open(os.path.join(self.path_to_results, file_name), "w", encoding="utf-8") as f:
             json.dump(test_results, f, ensure_ascii=False, indent=4)
 
 
     def test_multiprocessing(self):
 
-        # Test single processing
-        #start_time_single = time.time()
+        cpu_test_size = 24
+        results = {}
 
-        #for i in range(4):
+        for cpu_usage in range(1, cpu_test_size + 1, 1):
+            print(f'CPU usage: {cpu_usage}')
 
-        #    statistics = extract_osm_statistics(self.path_to_osmconvert64, self.test_file)
-        #    longitudinal_min = float(statistics['lon min'])
-        #    longitudinal_max = float(statistics['lon max'])
-        #    latitude_min = float(statistics['lat min'])
-        #    latitude_max = float(statistics['lat max'])
+            start_time = time.time()
 
-        #    create_sub_file(self.test_file, longitudinal_min, latitude_min, longitudinal_max, latitude_max)
+            execute_value = []
+            for i in range(cpu_test_size):
+                execute_value.append(i)
 
-        #print(f'Single time: {time.time() - start_time_single}')
-        print(multiprocessing.cpu_count())
-        # Test multi processing
-        start_time_multi = time.time()
+            with Pool(cpu_usage) as pool:
+                pool.map(osmconvert_execute, [(self.path_to_osmconvert64, self.test_file)] * cpu_test_size)
 
-        execute_value = []
-        for i in range(8):
-            execute_value.append(i)
+            results[cpu_usage] = time.time() - start_time
 
-        with Pool(8) as pool:
-            pool.map(execute, [(self.path_to_osmconvert64, self.test_file)] * 4)
-
-        print(f'Multi time: {time.time() - start_time_multi}')
-
+        current_datetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d%H%M%S')
+        file_name = f'test_multiprocessing_results_{current_datetime}.json'
+        with open(os.path.join(self.path_to_results, file_name), "w", encoding="utf-8") as f:
+            json.dump(results, f, ensure_ascii=False, indent=4)
 
 if __name__ == '__main__':
     unittest.main()

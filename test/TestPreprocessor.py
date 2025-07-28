@@ -1,10 +1,13 @@
+import datetime
 import glob
 import json
+import math
 import os
+import time
 import unittest
 import folium
 
-from src.HelperFunctions import extract_osm_statistics
+from src.HelperFunctions import extract_osm_statistics, calc_file_size_gb
 from src.Preprocessor import print_to_console
 
 
@@ -18,8 +21,18 @@ class TestPreprocessor(unittest.TestCase):
 
     def test_amount_of_raw_files(self):
 
-        path = os.path.join('..', 'src', self.path_to_raw)
-        self.assertTrue(len(path) == 8)
+        path = os.path.join(self.path_to_raw)
+        self.assertTrue(len(os.listdir(path)) == 8)
+
+
+    def test_size_of_preprocessed_files(self):
+
+        for preprocessed_file in os.listdir(self.path_to_preprocessed):
+
+            # Get file size
+            path_to_file = os.path.join(self.path_to_preprocessed, preprocessed_file)
+            file_size_gb = os.path.getsize(path_to_file) / math.pow(10, 9)
+            self.assertTrue(file_size_gb <= 2.0, f'File {path_to_file} is larger than 2GB!')
 
 
     def test_availability(self):
@@ -27,7 +40,7 @@ class TestPreprocessor(unittest.TestCase):
         # Initialize map
         m = folium.Map(location=[0, 0], zoom_start=2)
 
-        cache_files = glob.glob('..\\src\\resources\\preprocessed\\cache_file*.json')
+        cache_files = glob.glob('..\\src\\resources\\preprocessed\\archive\\cache_file*.json')
         if len(cache_files) > 1:
             raise ValueError("Too much cache files!")
 
@@ -35,14 +48,20 @@ class TestPreprocessor(unittest.TestCase):
             with open(cache_files.pop(), "r", encoding="utf-8") as f:
 
                 data = json.load(f)
+                print(data)
                 for key in data:
 
+                    lat_min = min(float(data[key]['lat min']), float(data[key]['lat max']))
+                    lat_max = max(float(data[key]['lat min']), float(data[key]['lat max']))
+                    lon_min = min(float(data[key]['lon min']), float(data[key]['lon max']))
+                    lon_max = max(float(data[key]['lon min']), float(data[key]['lon max']))
+
                     polygon_points = [
-                        [float(data[key]['lat min']), float(data[key]['lon min'])],
-                        [float(data[key]['lat min']), float(data[key]['lon max'])],
-                        [float(data[key]['lat max']), float(data[key]['lon max'])],
-                        [float(data[key]['lat max']), float(data[key]['lon min'])],
-                        [float(data[key]['lat min']), float(data[key]['lon min'])]
+                        [lat_min, lon_min],  # SW
+                        [lat_min, lon_max],  # SE
+                        [lat_max, lon_max],  # NE
+                        [lat_max, lon_min],  # NW
+                        [lat_min, lon_min],  # zurück zum Anfang
                     ]
 
                     folium.Polygon(
@@ -53,40 +72,44 @@ class TestPreprocessor(unittest.TestCase):
                         fill_opacity=0.4
                     ).add_to(m)
 
-                m.save("availability_map.html")
+                m.save(f'preprocessed_availability_map.html')
+
 
     def test_original_availability(self):
 
         # Initialize map
         m = folium.Map(location=[0, 0], zoom_start=2)
 
-        file_list = os.listdir(os.path.join(self.path_to_raw))
-        amount_of_files = len(file_list)
+        file_list = os.listdir(self.path_to_buffer)
 
         file_counter = 0
         for file in file_list:
             file_counter += 1
 
-            print_to_console(f"Processing file {file_counter} of {amount_of_files}")
-            statistics = extract_osm_statistics(self.path_to_osm_convert, os.path.join(self.path_to_preprocessed + file))
+            print_to_console(f"Processing file {file_counter} of {len(file_list)}")
+            statistics = extract_osm_statistics(self.path_to_osm_convert, os.path.join(self.path_to_buffer, file))
 
-            polygon_points = [
-                [float(statistics['lat min']), float(statistics['lon min'])],
-                [float(statistics['lat min']), float(statistics['lon max'])],
-                [float(statistics['lat max']), float(statistics['lon max'])],
-                [float(statistics['lat max']), float(statistics['lon min'])],
-                [float(statistics['lat min']), float(statistics['lon min'])]
-            ]
+            if 'lat min' not in statistics:
+                print_to_console(f'File {file} does not contain lat_min. Size: {calc_file_size_gb(os.path.join(self.path_to_buffer, file))}')
 
-            folium.Polygon(
-                locations=polygon_points,
-                color='blue',
-                weight=2,
-                fill=True,
-                fill_opacity=0.4
-            ).add_to(m)
+            else:
 
-        m.save("original_availability_map.html")
+                polygon_points = [
+                    [float(statistics['lat min']), float(statistics['lon min'])],
+                    [float(statistics['lat min']), float(statistics['lon max'])],
+                    [float(statistics['lat max']), float(statistics['lon max'])],
+                    [float(statistics['lat max']), float(statistics['lon min'])],
+                ]
+
+                folium.Polygon(
+                    locations=polygon_points,
+                    color='blue',
+                    weight=2,
+                    fill=True,
+                    fill_opacity=0.4
+                ).add_to(m)
+
+        m.save(f'preprocessed_availability_map.html')
 
 if __name__ == '__main__':
     unittest.main()

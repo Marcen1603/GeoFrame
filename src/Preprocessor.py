@@ -10,7 +10,7 @@ import time
 import traceback
 from multiprocessing import Pool
 
-from src.HelperFunctions import extract_osm_statistics, print_to_console, delete_original_files
+from src.HelperFunctions import extract_osm_statistics, print_to_console, delete_original_files, calc_file_size_gb
 
 
 class Preprocessor:
@@ -18,12 +18,15 @@ class Preprocessor:
     def __init__(self):
 
         self.path_to_raw = 'resources\\raw'
+        self.path_to_done = 'resources\\done'
         self.path_to_buffer = 'resources\\buffer'
         self.path_to_preprocessed = 'resources\\preprocessed'
         self.path_to_osm_covert = 'resources\\osmconvert64-0.8.8p.exe'
         self.path_to_cachefile = 'resources\\preprocessed\\cache_file*.json'
         self.path_to_cachefile_archive = 'resources\\preprocessed\\archive'
 
+        self.max_split_size = 1 # Defined as gigabyte
+        self.split_multiplicator = 2 # Sqrt(file_size) * split_multiplicator
         self.offset = 0.00001
         self.lon_min_bound = -180.0
         self.lon_max_bound = 180.0
@@ -86,7 +89,7 @@ class Preprocessor:
         bounding_box_parameter = f'-b="{min_lon}, {min_lat}, {max_lon}, {max_lat}"'
 
         try:
-            subprocess.run(f'.\\resources\\osmconvert64-0.8.8p.exe resources\\raw\\{basename}.osm.pbf {bounding_box_parameter} {new_file_name_parameter}')
+            subprocess.run(f'{self.path_to_osm_covert} {path_to_raw_file} {bounding_box_parameter} {new_file_name_parameter}')
         except subprocess.CalledProcessError as processError:
             print_to_console(f"Error code: {processError.returncode}, {processError.output}")
             sys.exit(1)
@@ -136,19 +139,17 @@ class Preprocessor:
         # Create sub-file
         path_to_new_file = self.create_sub_file(os.path.join(self.path_to_raw, raw_file_path), new_lon_min, new_lat_min, new_lon_max, new_lat_max)
         name_of_new_file = path_to_new_file.split("\\")[-1]
-        print_to_console(name_of_new_file)
         print_to_console(f'New file: {path_to_new_file} from {raw_file_path}')
 
-        file_size = os.path.getsize(path_to_new_file)
-        file_size_gb = file_size / math.pow(10, 9)
+        file_size_gb = calc_file_size_gb(path_to_new_file)
 
-        new_statistics_dict = extract_osm_statistics('.\\resources\\osmconvert64-0.8.8p.exe', path_to_new_file)
+        new_statistics_dict = extract_osm_statistics(self.path_to_osm_covert, path_to_new_file)
 
-        if file_size_gb > 2.0:
-            print_to_console("File is larger than 2 GB!" + str(file_size_gb))
-            self.split_file(file_size_gb, new_statistics_dict, path_to_new_file)
+        if file_size_gb > self.max_split_size:
+            print_to_console(f'File is larger than {self.max_split_size} GB! Moved to raw and processing later. ' + str(file_size_gb))
+            shutil.move(os.path.join(self.path_to_buffer, name_of_new_file), os.path.join(self.path_to_raw, name_of_new_file))
         else:
-            print_to_console("File is smaller than 2 GB!" + str(file_size_gb))
+            print_to_console(f'File is smaller than {self.max_split_size} GB! ' + str(file_size_gb))
             if 'lon min' not in new_statistics_dict:
                 delete_original_files(False, os.path.join(self.path_to_buffer, name_of_new_file))
             else:
@@ -169,14 +170,13 @@ class Preprocessor:
         # The division is carried out at the latitude and longitude. For example, splitting into 4 files
         # divides the latitude once in the middle and the longitude once
 
-        split_size = int(math.sqrt(file_size_gb)) + 1
+        split_size = (int(math.sqrt(file_size_gb)) + 1) * self.split_multiplicator
+        print_to_console("Split size: " + str(split_size))
 
         longitudinal_min = float(statistics_dict['lon min'])
         longitudinal_max = float(statistics_dict['lon max'])
         latitude_min = float(statistics_dict['lat min'])
         latitude_max = float(statistics_dict['lat max'])
-
-        print_to_console("Split size: " + str(split_size))
 
         longitudinal_diff = abs(longitudinal_min - longitudinal_max)
         latitude_diff = abs(latitude_min - latitude_max)
@@ -184,18 +184,18 @@ class Preprocessor:
         longitudinal_split = longitudinal_diff / split_size
         latitude_split = latitude_diff / split_size
 
+        args_list = []
+
         # Longitudinal
         for x in range(split_size):
-
-            args_list = []
 
             for y in range(split_size):
                 args_list.append((x, y, split_size, latitude_min, latitude_split, longitudinal_min, longitudinal_split, raw_file_path))
 
-            with Pool(processes=split_size) as pool:
-                pool.map(self._wrap_process_tile, args_list)
+        with Pool(processes=8) as pool:
+            pool.map(self.process_tile, args_list)
 
-        delete_original_files(raw_file, raw_file_path)
+        # delete_original_files(raw_file, raw_file_path)
         # Will also be executed if a split file is larger than 2GB and will be split again
         self.move_files()
 
@@ -212,52 +212,50 @@ class Preprocessor:
 
     def main(self):
 
-        for raw_file in os.listdir(self.path_to_raw):
+        # Init with raw files
+        initial_run = True
+        process_files = os.listdir(self.path_to_raw)
 
-            print_to_console(f'Processing Raw-File: {raw_file}')
+        while len(process_files) > 0:
+            for process_file in process_files:
 
-            # Get file size
-            file_size = os.path.getsize(os.path.join(self.path_to_raw, raw_file))
-            file_size_gb = file_size / math.pow(10, 9)
-            print_to_console(f'Size in GB: {file_size_gb}')
+                print_to_console(f'Processing Raw-File: {process_file}')
 
-            # Get file statistics
-            statistics_dict = extract_osm_statistics('.\\resources\\osmconvert64-0.8.8p.exe' ,os.path.join(self.path_to_raw, raw_file))
+                path_to_process_file = os.path.join(self.path_to_raw, process_file)
+                file_size_gb = calc_file_size_gb(path_to_process_file)
 
-            # Save statistics of raw file
-            self.raw_files_statistics[raw_file] = statistics_dict
+                # Get file statistics
+                statistics_dict = extract_osm_statistics(self.path_to_osm_covert, path_to_process_file)
 
-            # Each file should be smaller than 2GB
-            if file_size_gb > 2.0:
+                # Save statistics of raw file
+                self.raw_files_statistics[process_file] = statistics_dict
 
-                print_to_console("File is larger than 2 GB!")
-                self.split_file(file_size_gb, statistics_dict, raw_file, raw_file=True)
+                # Each file should be smaller than 2GB
+                if file_size_gb > self.max_split_size:
 
-            else:
+                    print_to_console(f'File is larger than {self.max_split_size} GB!')
+                    self.split_file(file_size_gb, statistics_dict, process_file, raw_file=True)
 
-                print_to_console("File is smaller than 2 GB! No split needed!")
-                try:
-                    shutil.copy(os.path.join(self.path_to_raw, raw_file), os.path.join(self.path_to_preprocessed, raw_file))
-                    coordinates = {
-                        'lon min': statistics_dict['lon min'],
-                        'lon max': statistics_dict['lon max'],
-                        'lat min': statistics_dict['lat min'],
-                        'lat max': statistics_dict['lat max']
-                    }
-                    self.append_cache_file(os.path.join(self.path_to_preprocessed, raw_file), coordinates)
-                except Exception as e:
-                    print_to_console(f'Error while executing copy statement! Error: {traceback.format_exc()}. {e}')
-                    sys.exit(1)
+                else:
 
+                    print_to_console(f'File is smaller than {self.max_split_size} GB! No split needed!')
+                    try:
+                        shutil.copy(path_to_process_file, os.path.join(self.path_to_preprocessed, process_file))
+                        coordinates = {
+                            'lon min': statistics_dict['lon min'],
+                            'lon max': statistics_dict['lon max'],
+                            'lat min': statistics_dict['lat min'],
+                            'lat max': statistics_dict['lat max']
+                        }
+                        self.append_cache_file(os.path.join(self.path_to_preprocessed, process_file), coordinates)
+                    except Exception as e:
+                        print_to_console(f'Error while executing copy statement! Error: {traceback.format_exc()}. {e}')
+                        sys.exit(1)
 
-    @staticmethod
-    def _wrap_process_tile(args):
-        # Hier musst du eine neue Instanz oder den Kontext übergeben
-        # z. B. über functools.partial oder global
-        # Oder einfach: Wenn der Code ohnehin in einer Klasse läuft, instanziere die Klasse vorher
-        instance = Preprocessor()  # Hier deine Klasse mit den nötigen Parametern
-        return instance.process_tile(args)
+                shutil.move(os.path.join(self.path_to_raw, process_file), os.path.join(self.path_to_done, process_file))
 
+            process_files = os.listdir(self.path_to_raw)
+            initial_run = False
 
 if __name__ == '__main__':
 
