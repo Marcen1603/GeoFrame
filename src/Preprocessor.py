@@ -2,6 +2,7 @@ import datetime
 import glob
 import json
 import math
+import multiprocessing
 import os
 import platform
 import shutil
@@ -30,6 +31,8 @@ class OS(Enum):
 class Preprocessor:
 
     def __init__(self):
+
+        print_to_console(f'Available processors: {os.cpu_count()}')
 
         self.used_os = OS.from_str(platform.system())
 
