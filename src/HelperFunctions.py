@@ -10,13 +10,20 @@ import traceback
 
 def extract_osm_statistics(osm_convert_path: str, file_path: str) -> dict:
 
-    command = f'{osm_convert_path} {file_path} --out-statistics'
-    statistics = None
+    command = [
+        osm_convert_path,
+        file_path,
+        '--out-statistics'
+    ]
 
     try:
-        statistics = subprocess.run(command, stdout=subprocess.PIPE).stdout.decode('utf-8')
+        result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
+        statistics = result.stdout.decode('utf-8')
     except FileNotFoundError as e:
-        print_to_console(f'Error while executing subprocess: {command}. {e}')
+        print_to_console(f'Error: Executable not found: {e}')
+        sys.exit(-1)
+    except subprocess.CalledProcessError as e:
+        print_to_console(f'Error: Subprocess failed: {e.stderr.decode()}')
         sys.exit(-1)
 
     return osm_statistics_to_dict(statistics)
