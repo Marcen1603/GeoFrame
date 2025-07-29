@@ -21,7 +21,8 @@ class Preprocessor:
         self.path_to_done = os.path.join('resources', 'done')
         self.path_to_buffer = os.path.join('resources', 'buffer')
         self.path_to_preprocessed = os.path.join('resources', 'preprocessed')
-        self.path_to_osm_covert = os.path.join('resources', 'osmconvert64-0.8.8p.exe')
+        self.path_to_osm_covert = os.path.join('.', 'resources', 'osmconvert64-0.8.8p.exe')
+	self.path_to_osm_convert_linux = os.path.join('resources', 'osmconvert')
         self.path_to_cachefile = os.path.join('resources', 'preprocessed', 'cache_file*.json')
         self.path_to_cachefile_archive = os.path.join('resources', 'preprocessed', 'archive')
 
