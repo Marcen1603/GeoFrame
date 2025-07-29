@@ -15,8 +15,8 @@ def extract_osm_statistics(osm_convert_path: str, file_path: str) -> dict:
 
     try:
         statistics = subprocess.run(command, stdout=subprocess.PIPE).stdout.decode('utf-8')
-    except FileNotFoundError:
-        print_to_console('Error while executing subprocess: ' + command)
+    except FileNotFoundError as e:
+        print_to_console(f'Error while executing subprocess: {command}. {e}')
         sys.exit(-1)
 
     return osm_statistics_to_dict(statistics)
