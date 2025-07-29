@@ -32,9 +32,11 @@ class Preprocessor:
 
     def __init__(self):
 
-        print_to_console(f'Available processors: {os.cpu_count()}')
-
         self.used_os = OS.from_str(platform.system())
+        self.cpu_count = os.cpu_count()
+        self.use_multithreading = True
+
+        print_to_console(f'Available processors: {self.cpu_count} | Multithreading: {self.use_multithreading}')
 
         self.path_to_raw = os.path.join('resources', 'raw')
         self.path_to_done = os.path.join('resources', 'done')
@@ -219,7 +221,11 @@ class Preprocessor:
             for y in range(split_size):
                 args_list.append((x, y, split_size, latitude_min, latitude_split, longitudinal_min, longitudinal_split, raw_file_path))
 
-        with Pool(processes=8) as pool:
+        use_cpu = 1
+        if self.use_multithreading:
+            use_cpu = self.cpu_count
+
+        with Pool(processes=use_cpu) as pool:
             pool.map(self.process_tile, args_list)
 
         # delete_original_files(raw_file, raw_file_path)
