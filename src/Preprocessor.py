@@ -3,26 +3,42 @@ import glob
 import json
 import math
 import os
+import platform
 import shutil
 import subprocess
 import sys
 import time
 import traceback
+from enum import Enum
 from multiprocessing import Pool
 
 from HelperFunctions import extract_osm_statistics, print_to_console, delete_original_files, calc_file_size_gb
+
+
+class OS(Enum):
+    LINUX = 'linux'
+    WINDOWS = 'windows'
+
+    @classmethod
+    def from_str(cls, value: str):
+        for member in cls:
+            if member.value == value.lower():
+                return member
+        raise ValueError(f"{value} is not a valid os!")
 
 
 class Preprocessor:
 
     def __init__(self):
 
+        self.used_os = OS.from_str(platform.system())
+
         self.path_to_raw = os.path.join('resources', 'raw')
         self.path_to_done = os.path.join('resources', 'done')
         self.path_to_buffer = os.path.join('resources', 'buffer')
         self.path_to_preprocessed = os.path.join('resources', 'preprocessed')
-        self.path_to_osm_covert = os.path.join('.', 'resources', 'osmconvert64-0.8.8p.exe')
-	self.path_to_osm_convert_linux = os.path.join('resources', 'osmconvert')
+        self.path_to_osm_convert = os.path.join('.', 'resources', 'osmconvert64-0.8.8p.exe')
+        self.path_to_osm_convert_linux = os.path.join('resources', 'osmconvert')
         self.path_to_cachefile = os.path.join('resources', 'preprocessed', 'cache_file*.json')
         self.path_to_cachefile_archive = os.path.join('resources', 'preprocessed', 'archive')
 
@@ -63,6 +79,13 @@ class Preprocessor:
         self.preprocessed_files_statistics = {}
 
 
+    def get_osmconvert_path(self):
+
+        if self.used_os == OS.LINUX:
+            return self.path_to_osm_convert_linux
+        return self.path_to_osm_convert
+
+
     def append_cache_file(self, key, value):
 
         cache_files = glob.glob(self.path_to_cachefile)
@@ -90,7 +113,7 @@ class Preprocessor:
         bounding_box_parameter = f'-b="{min_lon}, {min_lat}, {max_lon}, {max_lat}"'
 
         try:
-            subprocess.run(f'{self.path_to_osm_covert} {path_to_raw_file} {bounding_box_parameter} {new_file_name_parameter}')
+            subprocess.run(f'{self.get_osmconvert_path()} {path_to_raw_file} {bounding_box_parameter} {new_file_name_parameter}')
         except subprocess.CalledProcessError as processError:
             print_to_console(f"Error code: {processError.returncode}, {processError.output}")
             sys.exit(1)
@@ -144,7 +167,7 @@ class Preprocessor:
 
         file_size_gb = calc_file_size_gb(path_to_new_file)
 
-        new_statistics_dict = extract_osm_statistics(self.path_to_osm_covert, path_to_new_file)
+        new_statistics_dict = extract_osm_statistics(self.get_osmconvert_path(), path_to_new_file)
 
         if file_size_gb > self.max_split_size:
             print_to_console(f'File is larger than {self.max_split_size} GB! Moved to raw and processing later. ' + str(file_size_gb))
@@ -228,7 +251,7 @@ class Preprocessor:
                 file_size_gb = calc_file_size_gb(path_to_process_file)
 
                 # Get file statistics
-                statistics_dict = extract_osm_statistics(self.path_to_osm_covert, path_to_process_file)
+                statistics_dict = extract_osm_statistics(self.get_osmconvert_path(), path_to_process_file)
 
                 # Save statistics of raw file
                 self.raw_files_statistics[process_file] = statistics_dict
