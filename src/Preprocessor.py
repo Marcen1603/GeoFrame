@@ -117,11 +117,21 @@ class Preprocessor:
         new_file_name_parameter = f'-o="{new_file_name}"'
         bounding_box_parameter = f'-b="{min_lon}, {min_lat}, {max_lon}, {max_lat}"'
 
+        command = [
+            self.get_osmconvert_path(),
+            path_to_raw_file,
+            bounding_box_parameter,
+            new_file_name_parameter
+        ]
+
         try:
-            subprocess.run(f'{self.get_osmconvert_path()} {path_to_raw_file} {bounding_box_parameter} {new_file_name_parameter}')
-        except subprocess.CalledProcessError as processError:
-            print_to_console(f"Error code: {processError.returncode}, {processError.output}")
-            sys.exit(1)
+            subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
+        except FileNotFoundError as e:
+            print_to_console(f'Error: Executable not found: {e}')
+            sys.exit(-1)
+        except subprocess.CalledProcessError as e:
+            print_to_console(f'Error: Subprocess failed: {e.stderr.decode()}')
+            sys.exit(-1)
 
         return new_file_name
 
@@ -249,8 +259,6 @@ class Preprocessor:
         initial_run = True
         process_files = os.listdir(self.path_to_raw)
 
-        print("Processing:")
-        print(process_files)
         while len(process_files) > 0:
             for process_file in process_files:
 
