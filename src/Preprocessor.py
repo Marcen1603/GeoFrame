@@ -113,7 +113,7 @@ class Preprocessor:
     def create_sub_file(self, path_to_raw_file: str, min_lon: float, min_lat: float, max_lon:float, max_lat:float) -> str:
 
         basename = os.path.basename(path_to_raw_file).split('/')[-1].split("_")[0].replace('.osm.pbf', '')
-        new_file_name = f'{self.path_to_buffer}\\{basename}_{min_lon}_{min_lat}_{max_lon}_{max_lat}.osm.pbf'
+        new_file_name = os.path.join(self.path_to_buffer, f'{basename}_{min_lon}_{min_lat}_{max_lon}_{max_lat}.osm.pbf')
         new_file_name_parameter = f'-o="{new_file_name}"'
         bounding_box_parameter = f'-b="{min_lon}, {min_lat}, {max_lon}, {max_lat}"'
 
