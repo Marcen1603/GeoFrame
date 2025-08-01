@@ -127,10 +127,10 @@ class Preprocessor:
         try:
             subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
         except FileNotFoundError as e:
-            print_to_console(f'Error: Executable not found: {e}')
+            print_to_console(f'Error: Executable not found: {e}. Command: {command}')
             sys.exit(-1)
         except subprocess.CalledProcessError as e:
-            print_to_console(f'Error: Subprocess failed: {e.stderr.decode()}')
+            print_to_console(f'Error: Subprocess failed: {e.stderr.decode()}. Command: {command}')
             sys.exit(-1)
 
         return new_file_name
