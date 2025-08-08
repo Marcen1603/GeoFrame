@@ -178,7 +178,7 @@ class Preprocessor:
         # Create sub-file
         print("Input: " + os.path.join(self.path_to_raw, raw_file_path))
         path_to_new_file = self.create_sub_file(os.path.join(self.path_to_raw, raw_file_path), new_lon_min, new_lat_min, new_lon_max, new_lat_max)
-        name_of_new_file = path_to_new_file.split("\\")[-1]
+        name_of_new_file = os.path.basename(path_to_new_file)
         print_to_console(f'New file: {path_to_new_file} from {raw_file_path}')
 
         file_size_gb = calc_file_size_gb(path_to_new_file)
