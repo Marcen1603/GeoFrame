@@ -33,7 +33,7 @@ class Preprocessor:
     def __init__(self):
 
         self.used_os = OS.from_str(platform.system())
-        self.cpu_count = os.cpu_count()
+        self.cpu_count = 4
         self.use_multithreading = True
 
         print_to_console(f'Available processors: {self.cpu_count} | Multithreading: {self.use_multithreading}')
@@ -164,7 +164,7 @@ class Preprocessor:
 
     def process_tile(self, args):
         x, y, split_size, latitude_min, latitude_split, longitude_min, longitude_split, raw_file_path = args
-
+        print("Raw file path: " + raw_file_path)
         new_lon_min, new_lon_max = self.calculate_min_max_longitude(x, longitude_min, longitude_split)
         new_lat_min, new_lat_max = self.calculate_min_max_latitude(y, latitude_min, latitude_split)
 
@@ -176,6 +176,7 @@ class Preprocessor:
         print_to_console(f"new_lat_max: {new_lat_max}")
 
         # Create sub-file
+        print("Input: " + os.path.join(self.path_to_raw, raw_file_path))
         path_to_new_file = self.create_sub_file(os.path.join(self.path_to_raw, raw_file_path), new_lon_min, new_lat_min, new_lon_max, new_lat_max)
         name_of_new_file = path_to_new_file.split("\\")[-1]
         print_to_console(f'New file: {path_to_new_file} from {raw_file_path}')
