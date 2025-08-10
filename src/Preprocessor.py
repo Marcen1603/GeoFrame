@@ -93,6 +93,7 @@ class Preprocessor:
 
     def append_cache_file(self, key, value):
 
+        print(f"Append to cache: {value}")
         cache_files = glob.glob(self.path_to_cachefile)
         if len(cache_files) > 1:
             try:
@@ -257,7 +258,6 @@ class Preprocessor:
     def main(self):
 
         # Init with raw files
-        initial_run = True
         process_files = os.listdir(self.path_to_raw)
 
         while len(process_files) > 0:
@@ -299,7 +299,7 @@ class Preprocessor:
                 shutil.move(os.path.join(self.path_to_raw, process_file), os.path.join(self.path_to_done, process_file))
 
             process_files = os.listdir(self.path_to_raw)
-            initial_run = False
+
 
 if __name__ == '__main__':
 
