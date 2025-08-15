@@ -7,8 +7,8 @@ import time
 import unittest
 import folium
 
-from src.HelperFunctions import extract_osm_statistics, calc_file_size_gb
-from src.Preprocessor import print_to_console
+from HelperFunctions import extract_osm_statistics, calc_file_size_gb
+from Preprocessor import print_to_console
 
 
 class TestPreprocessor(unittest.TestCase):
