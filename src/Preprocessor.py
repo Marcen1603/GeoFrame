@@ -64,6 +64,9 @@ class Preprocessor:
 
         if not os.path.exists(self.path_to_cachefile_archive):
             os.makedirs(self.path_to_cachefile_archive)
+            
+        if not os.path.exists(self.path_to_done):
+            os.makedirs(self.path_to_done)
 
         # Move cache files
         cache_files = glob.glob(self.path_to_cachefile)

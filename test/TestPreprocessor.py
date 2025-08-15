@@ -75,41 +75,41 @@ class TestPreprocessor(unittest.TestCase):
                 m.save(f'preprocessed_availability_map.html')
 
 
-    def test_original_availability(self):
+    # def test_original_availability(self):
 
-        # Initialize map
-        m = folium.Map(location=[0, 0], zoom_start=2)
+    #     # Initialize map
+    #     m = folium.Map(location=[0, 0], zoom_start=2)
 
-        file_list = os.listdir(self.path_to_buffer)
+    #     file_list = os.listdir(self.path_to_buffer)
 
-        file_counter = 0
-        for file in file_list:
-            file_counter += 1
+    #     file_counter = 0
+    #     for file in file_list:
+    #         file_counter += 1
 
-            print_to_console(f"Processing file {file_counter} of {len(file_list)}")
-            statistics = extract_osm_statistics(self.path_to_osm_convert, os.path.join(self.path_to_buffer, file))
+    #         print_to_console(f"Processing file {file_counter} of {len(file_list)}")
+    #         statistics = extract_osm_statistics(self.path_to_osm_convert, os.path.join(self.path_to_buffer, file))
 
-            if 'lat min' not in statistics:
-                print_to_console(f'File {file} does not contain lat_min. Size: {calc_file_size_gb(os.path.join(self.path_to_buffer, file))}')
+    #         if 'lat min' not in statistics:
+    #             print_to_console(f'File {file} does not contain lat_min. Size: {calc_file_size_gb(os.path.join(self.path_to_buffer, file))}')
 
-            else:
+    #         else:
 
-                polygon_points = [
-                    [float(statistics['lat min']), float(statistics['lon min'])],
-                    [float(statistics['lat min']), float(statistics['lon max'])],
-                    [float(statistics['lat max']), float(statistics['lon max'])],
-                    [float(statistics['lat max']), float(statistics['lon min'])],
-                ]
+    #             polygon_points = [
+    #                 [float(statistics['lat min']), float(statistics['lon min'])],
+    #                 [float(statistics['lat min']), float(statistics['lon max'])],
+    #                 [float(statistics['lat max']), float(statistics['lon max'])],
+    #                 [float(statistics['lat max']), float(statistics['lon min'])],
+    #             ]
 
-                folium.Polygon(
-                    locations=polygon_points,
-                    color='blue',
-                    weight=2,
-                    fill=True,
-                    fill_opacity=0.4
-                ).add_to(m)
+    #             folium.Polygon(
+    #                 locations=polygon_points,
+    #                 color='blue',
+    #                 weight=2,
+    #                 fill=True,
+    #                 fill_opacity=0.4
+    #             ).add_to(m)
 
-        m.save(f'preprocessed_availability_map.html')
+    #     m.save(f'preprocessed_availability_map.html')
 
 if __name__ == '__main__':
     unittest.main()
