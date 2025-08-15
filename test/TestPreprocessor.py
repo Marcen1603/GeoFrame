@@ -35,7 +35,7 @@ class TestPreprocessor(unittest.TestCase):
         # Initialize map
         m = folium.Map(location=[0, 0], zoom_start=2)
 
-        cache_files = glob.glob('..\\src\\resources\\preprocessed\\archive\\cache_file*.json')
+        cache_files = glob.glob(os.path.join('..', 'src', 'resources', 'preprocessed', 'cache_file*.json'))
         if len(cache_files) > 1:
             raise ValueError("Too much cache files!")
 
