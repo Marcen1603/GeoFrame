@@ -3,13 +3,8 @@ import glob
 import json
 import math
 import os
-import time
 import unittest
 import folium
-
-from HelperFunctions import extract_osm_statistics, calc_file_size_gb
-from Preprocessor import print_to_console
-
 
 class TestPreprocessor(unittest.TestCase):
 
