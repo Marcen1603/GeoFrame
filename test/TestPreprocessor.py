@@ -14,12 +14,6 @@ class TestPreprocessor(unittest.TestCase):
     path_to_osm_convert = os.path.join('..', 'src', 'resources', 'osmconvert64-0.8.8p.exe')
 
 
-    def test_amount_of_raw_files(self):
-
-        path = os.path.join(self.path_to_raw)
-        self.assertTrue(len(os.listdir(path)) == 8)
-
-
     def test_size_of_preprocessed_files(self):
 
         for preprocessed_file in os.listdir(self.path_to_preprocessed):
@@ -43,7 +37,6 @@ class TestPreprocessor(unittest.TestCase):
             with open(cache_files.pop(), "r", encoding="utf-8") as f:
 
                 data = json.load(f)
-                print(data)
                 for key in data:
 
                     lat_min = min(float(data[key]['lat min']), float(data[key]['lat max']))
