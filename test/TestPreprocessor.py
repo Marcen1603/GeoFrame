@@ -8,9 +8,9 @@ import folium
 
 class TestPreprocessor(unittest.TestCase):
 
-    path_to_raw = os.path.join('src', 'resources', 'raw')
-    path_to_buffer = os.path.join('src', 'resources', 'buffer')
-    path_to_preprocessed = os.path.join('src', 'resources', 'preprocessed')
+    path_to_raw = os.path.join('..', 'src', 'resources', 'raw')
+    path_to_buffer = os.path.join('..', 'src', 'resources', 'buffer')
+    path_to_preprocessed = os.path.join('..', 'src', 'resources', 'preprocessed')
     path_to_osm_convert = os.path.join('..', 'src', 'resources', 'osmconvert64-0.8.8p.exe')
 
 
