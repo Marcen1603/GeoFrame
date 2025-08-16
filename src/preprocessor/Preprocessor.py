@@ -210,7 +210,8 @@ class Preprocessor:
         print_to_console(f'New file: {path_to_new_file} from {raw_file_path}')
 
         file_size_gb = calc_file_size_gb(path_to_new_file)
-        new_statistics_dict = extract_osm_statistics(self.get_osmconvert_path(), path_to_new_file)
+        osmconvert_path = self.path_to_osm_convert_linux if self.used_os == OS.LINUX else self.path_to_osm_convert
+        new_statistics_dict = extract_osm_statistics(osmconvert_path, path_to_new_file)
 
         # If file again larger than the threshold, move to raw folder to process later
         if file_size_gb > self.max_split_size:
@@ -302,7 +303,8 @@ class Preprocessor:
 
                 path_to_process_file = os.path.join(self.path_to_raw, process_file)
                 file_size_gb = calc_file_size_gb(path_to_process_file)
-                statistics_dict = extract_osm_statistics(self.get_osmconvert_path(), path_to_process_file)
+                osmconvert_path = self.path_to_osm_convert_linux if self.used_os == OS.LINUX else self.path_to_osm_convert
+                statistics_dict = extract_osm_statistics(osmconvert_path, path_to_process_file)
 
                 # If file is lager than the defined threshold, split it into multiple ones
                 if file_size_gb > self.max_split_size:
