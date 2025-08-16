@@ -8,7 +8,7 @@ import unittest
 from multiprocessing import Pool
 from typing import Tuple
 
-from src.HelperFunctions import extract_osm_statistics
+from Utilities import extract_osm_statistics
 
 
 def create_sub_file(path_to_raw_file: str, min_lon: float, min_lat: float, max_lon: float, max_lat: float) -> str:
