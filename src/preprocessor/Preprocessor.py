@@ -37,14 +37,14 @@ class Preprocessor:
 
         print_to_console(f'Available processors: {self.cpu_count} | Multithreading: {self.use_multithreading}')
 
-        self.path_to_raw = os.path.join('resources', 'raw')
-        self.path_to_done = os.path.join('resources', 'done')
-        self.path_to_buffer = os.path.join('resources', 'buffer')
-        self.path_to_preprocessed = os.path.join('resources', 'preprocessed')
-        self.path_to_osm_convert = os.path.join('./', 'resources', 'osmconvert64-0.8.8p.exe')
-        self.path_to_osm_convert_linux = os.path.join('resources', 'osmconvert')
-        self.path_to_cachefile = os.path.join('resources', 'preprocessed', 'cache_file*.json')
-        self.path_to_cachefile_archive = os.path.join('resources', 'preprocessed', 'archive')
+        self.path_to_raw = os.path.join('src', 'preprocessor', 'resources', 'raw')
+        self.path_to_done = os.path.join('src', 'preprocessor', 'resources', 'done')
+        self.path_to_buffer = os.path.join('src', 'preprocessor', 'resources', 'buffer')
+        self.path_to_preprocessed = os.path.join('src', 'preprocessor', 'resources', 'preprocessed')
+        self.path_to_osm_convert = os.path.join('./', 'src', 'preprocessor', 'resources', 'osmconvert64-0.8.8p.exe')
+        self.path_to_osm_convert_linux = os.path.join('src', 'preprocessor', 'resources', 'osmconvert')
+        self.path_to_cachefile = os.path.join('src', 'preprocessor', 'resources', 'preprocessed', 'cache_file*.json')
+        self.path_to_cachefile_archive = os.path.join('src', 'preprocessor', 'resources', 'preprocessed', 'archive')
 
         self.max_split_size = 1 # Defined as gigabyte
         self.split_multiplicator = 2 # Sqrt(file_size) * split_multiplicator
@@ -65,13 +65,13 @@ class Preprocessor:
 
             for cache_file in cache_files:
                 basename = os.path.basename(cache_file)
-                target_path = os.path.join(self.path_to_cachefile_archive, basename)
+                target_path = os.path.join('src', 'preprocessor', self.path_to_cachefile_archive, basename)
                 shutil.move(cache_file, target_path)
                 print_to_console(f"Moved {cache_file} to {target_path}")
 
         # Create cache file
         current_datetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d%H%M%S')
-        with open(os.path.join(self.path_to_preprocessed, f'cache_file_{current_datetime}.json'), 'w') as f:
+        with open(os.path.join('src', 'preprocessor', self.path_to_preprocessed, f'cache_file_{current_datetime}.json'), 'w') as f:
             json.dump({}, f)
 
         self.preprocessed_files_statistics = {}
@@ -116,7 +116,7 @@ class Preprocessor:
         """
 
         basename = os.path.basename(path_to_raw_file).split('/')[-1].split("_")[0].replace('.osm.pbf', '')
-        new_file_name = os.path.join(self.path_to_buffer, f'{basename}_{min_lon}_{min_lat}_{max_lon}_{max_lat}.osm.pbf')
+        new_file_name = os.path.join('src', 'preprocessor', self.path_to_buffer, f'{basename}_{min_lon}_{min_lat}_{max_lon}_{max_lat}.osm.pbf')
         new_file_name_parameter = f'-o={new_file_name}'
         bounding_box_parameter = f'-b={min_lon}, {min_lat}, {max_lon}, {max_lat}'
         
@@ -216,7 +216,7 @@ class Preprocessor:
         # If file again larger than the threshold, move to raw folder to process later
         if file_size_gb > self.max_split_size:
             print_to_console(f'File is larger than {self.max_split_size} GB! Moved to raw and processing later. ' + str(file_size_gb))
-            shutil.move(os.path.join(self.path_to_buffer, name_of_new_file), os.path.join(self.path_to_raw, name_of_new_file))
+            shutil.move(os.path.join('src', 'preprocessor', self.path_to_buffer, name_of_new_file), os.path.join('src', 'preprocessor', self.path_to_raw, name_of_new_file))
         
         # Process file if it is smaller than the threshold
         else:
@@ -225,7 +225,7 @@ class Preprocessor:
             
             # If file contains no data, than the file can be removed -> typically if it covers only parts of the ocean
             if 'lon min' not in new_statistics_dict:
-                delete_file(False, os.path.join(self.path_to_buffer, name_of_new_file))
+                delete_file(False, os.path.join('src', 'preprocessor', self.path_to_buffer, name_of_new_file))
             
             # If the file contains content, than append data to cache file and move to preprocessed
             else:
@@ -236,12 +236,12 @@ class Preprocessor:
                     'lat max': new_statistics_dict['lat max']
                 }
                 try:
-                    self.append_cache_file(os.path.join(self.path_to_preprocessed, name_of_new_file), coordinates)
+                    self.append_cache_file(os.path.join('src', 'preprocessor', self.path_to_preprocessed, name_of_new_file), coordinates)
                 except ValueError as e:
                     print_to_console(f'Error while trying to write to the cache file! Error: {traceback.format_exc()}. {e}')
                     sys.exit(-1)
                 try:
-                    shutil.move(os.path.join(self.path_to_buffer, name_of_new_file), os.path.join(self.path_to_preprocessed, name_of_new_file))
+                    shutil.move(os.path.join('src', 'preprocessor', self.path_to_buffer, name_of_new_file), os.path.join('src', 'preprocessor', self.path_to_preprocessed, name_of_new_file))
                 except Exception as e:
                     print_to_console(f'Error while moving file! Error: {traceback.format_exc()}. {e}')
                     sys.exit(1)
@@ -301,7 +301,7 @@ class Preprocessor:
 
                 print_to_console(f'Processing Raw-File: {process_file}')
 
-                path_to_process_file = os.path.join(self.path_to_raw, process_file)
+                path_to_process_file = os.path.join('src', 'preprocessor', self.path_to_raw, process_file)
                 file_size_gb = calc_file_size_gb(path_to_process_file)
                 osmconvert_path = self.path_to_osm_convert_linux if self.used_os == OS.LINUX else self.path_to_osm_convert
                 statistics_dict = extract_osm_statistics(osmconvert_path, path_to_process_file)
@@ -317,7 +317,7 @@ class Preprocessor:
 
                     print_to_console(f'File is smaller than {self.max_split_size} GB! No split needed!')
                     try:
-                        shutil.copy(path_to_process_file, os.path.join(self.path_to_preprocessed, process_file))
+                        shutil.copy(path_to_process_file, os.path.join('src', 'preprocessor', self.path_to_preprocessed, process_file))
                         coordinates = {
                             'lon min': statistics_dict['lon min'],
                             'lon max': statistics_dict['lon max'],
@@ -325,7 +325,7 @@ class Preprocessor:
                             'lat max': statistics_dict['lat max']
                         }
                         try:
-                            self.append_cache_file(os.path.join(self.path_to_preprocessed, process_file), coordinates)
+                            self.append_cache_file(os.path.join('src', 'preprocessor', self.path_to_preprocessed, process_file), coordinates)
                         except ValueError as e:
                             print_to_console(f'Error while trying to write to the cache file! Error: {traceback.format_exc()}. {e}')
                             sys.exit(-1)
@@ -334,7 +334,7 @@ class Preprocessor:
                         sys.exit(1)
 
                 # After processing the file, move it to the done folder
-                shutil.move(os.path.join(self.path_to_raw, process_file), os.path.join(self.path_to_done, process_file))
+                shutil.move(os.path.join('src', 'preprocessor', self.path_to_raw, process_file), os.path.join('src', 'preprocessor', self.path_to_done, process_file))
 
             # Files which are splited into smaller ones, can still be larger than the threshold. This process is done in 
             # parallel execution and it is not possible to make the process of splitting recursive, so this files will be moved to
