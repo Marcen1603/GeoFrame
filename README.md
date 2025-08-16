@@ -19,6 +19,6 @@ pip uninstall -r requirements.txt -y
 
 ## Error
 
-### Error while installing pyrosm
+### PermissionError: [Errno 13] Permission denied: 'resources/osmconvert'
 
-The reason why the error occur is, that Microsoft Visual C++ 14.0 or greater is required
+chmod +x resources/osmconvert
