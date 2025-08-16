@@ -1,11 +1,119 @@
 import math
+import platform
 
 import pyrosm
 from pyrosm import OSM
+from Utilities import print_to_console
+from preprocessor.Preprocessor import OS
 from src.ColorMapping import ColorMapping
 
 import matplotlib.pyplot as plt
 
+
+class Generator:
+
+
+    def __init__(self, lat: float, lon: float, dis: int):
+        
+        self.used_os = OS.from_str(platform.system())
+        self.latitude = lat
+        self.longitude = lon
+        self.distance = dis
+        
+        
+    def bounding_box(self):
+        """
+        Calculates a bounding box around a geographic point for a given distance in all directions.
+
+        :return: List in the format [west, south, east, north]
+        """
+        # Approximate length of one degree of latitude in meters
+        meters_per_degree_lat = 111320
+
+        # Approximate length of one degree of longitude in meters (varies by latitude)
+        meters_per_degree_lon = 111320 * math.cos(math.radians(self.latitude))
+
+        delta_lat = self.distance / meters_per_degree_lat
+        delta_lon = self.distance / meters_per_degree_lon
+
+        south = self.latitude - delta_lat
+        north = self.latitude + delta_lat
+        west = self.longitude - delta_lon
+        east = self.longitude + delta_lon
+
+        return [west, south, east, north]
+    
+    
+    def select_pbf_file(bbox) -> str:
+        
+        pass
+        
+        
+    def main(self):
+        """Main executin method for the Generator
+        """
+
+        # [west, south, east, north]
+        bbox = bounding_box()
+
+        print_to_console(f'Generate GeoFrame for Bounding-Box: {bbox}')
+
+        # Get correct file
+        pbf_file_path = self.select_pbf_file(bbox)
+
+
+
+        colorMapping = ColorMapping()
+
+        # Path to the clipped.osm.pbf file
+        pbf_path = "resources/planet-250505.osm.pbf"
+
+        # Load pdf file and with bounding box
+        clipped_osm = OSM(pbf_path, bounding_box=bounding_box(latitude, longitude, distance))
+
+        fig, axes = plt.subplots(figsize=(12, 12))
+        background_color = "white"
+        fig.patch.set_facecolor(background_color)
+
+        available_tags = pyrosm.pyrosm.Conf.tags.available
+        print("Available tags:")
+        print(available_tags)
+
+        for value in available_tags:
+            tag_values = clipped_osm.get_data_by_custom_criteria(custom_filter={value: True})
+            if tag_values is not None:
+                print("Found " + value)
+                print(tag_values)
+            else:
+                print(value + " was not found!")
+
+        print("--------------------")
+
+        plot_roads(clipped_osm, axes)
+        plot_natural(clipped_osm, axes)
+        plot_landuse(clipped_osm, axes)
+        plot_buildings(clipped_osm, axes)
+
+        # Kartenlimits setzen
+        axes.set_xlim(bbox[0], bbox[2])
+        axes.set_ylim(bbox[1], bbox[3])
+        axes.set_facecolor(background_color)
+        axes.axis('off')
+        plt.tight_layout()
+        plt.savefig("map.png", dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
+        plt.show()
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 def clip_world_map():
 
@@ -190,3 +298,9 @@ if __name__ == "__main__":
     plt.tight_layout()
     plt.savefig("map.png", dpi=300, bbox_inches='tight', facecolor=fig.get_facecolor())
     plt.show()
+    
+    
+    lat = 22.317380521068817
+    lon = 114.16983034197081
+    dis = 1000
+    generator = Generator(lat, lon, dis)
