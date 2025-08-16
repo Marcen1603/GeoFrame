@@ -1,0 +1,4 @@
+# Makefile im Projekt-Root
+
+run-preprocessor:
+	python3 -m src.preprocessor.Preprocessor
