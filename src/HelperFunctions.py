@@ -1,11 +1,18 @@
 import math
 import multiprocessing
 import os
+import shutil
 import subprocess
 import sys
 import datetime
 import time
 import traceback
+
+
+def print_to_console(message:str):
+
+    current_datetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+    print(f'{current_datetime} (Thread: {multiprocessing.current_process().name}): {message}')
 
 
 def extract_osm_statistics(osm_convert_path: str, file_path: str) -> dict:
@@ -41,7 +48,17 @@ def osm_statistics_to_dict(oms_statistics: str) -> dict:
     return statistics_dict
 
 
-def delete_original_files(raw_file, raw_file_path):
+def get_min_max_lon_lat(statistics_dict: dict):
+    
+    longitudinal_min = float(statistics_dict['lon min'])
+    longitudinal_max = float(statistics_dict['lon max'])
+    latitude_min = float(statistics_dict['lat min'])
+    latitude_max = float(statistics_dict['lat max'])
+    
+    return longitudinal_min, longitudinal_max, latitude_min, latitude_max
+
+
+def delete_file(raw_file, raw_file_path):
     # Delete original file
     if not raw_file:
         try:
@@ -51,12 +68,6 @@ def delete_original_files(raw_file, raw_file_path):
             print_to_console(f'Error while trying to remove file: {traceback.format_exc()}. {e}')
         finally:
             print_to_console(f"File '{raw_file_path}' deleted successfully.")
-
-
-def print_to_console(message:str):
-
-    current_datetime = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-    print(f'{current_datetime} (Thread: {multiprocessing.current_process().name}): {message}')
 
 
 def calc_file_size_gb(file_path: str) -> float:

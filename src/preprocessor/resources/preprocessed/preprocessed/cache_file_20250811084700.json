@@ -1,0 +1,2096 @@
+{
+    "resources/preprocessed/planet-latest_-162.00001_-45.00001_-143.99999_-35.99999.osm.pbf": {
+        "lon min": " -161.0000000",
+        "lon max": " -148.4370056",
+        "lat min": " -41.4368004",
+        "lat max": " -36.4699658"
+    },
+    "resources/preprocessed/planet-latest_-180.0_-90.0_-161.99999_-80.99999.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -162.0000000",
+        "lat min": " -86.6007117",
+        "lat max": " -81.0682742"
+    },
+    "resources/preprocessed/planet-latest_-180.0_-81.00001_-161.99999_-71.99999.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -162.0000000",
+        "lat min": " -80.8514621",
+        "lat max": " -72.0000000"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_-36.00001_-143.99999_-26.99999.osm.pbf": {
+        "lon min": " -160.1893198",
+        "lon max": " -144.0162760",
+        "lat min": " -35.2010220",
+        "lat max": " -27.0023101"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_53.99999_-107.99999_63.00001.osm.pbf": {
+        "lon min": " -126.0000099",
+        "lon max": " -108.0000000",
+        "lat min": " 53.9999905",
+        "lat max": " 63.0000000"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_17.99999_-125.99999_27.00001.osm.pbf": {
+        "lon min": " -143.2177954",
+        "lon max": " -133.2861548",
+        "lat min": " 25.7207549",
+        "lat max": " 26.5492422"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_-27.00001_-143.99999_-17.99999.osm.pbf": {
+        "lon min": " -161.9955921",
+        "lon max": " -144.7223564",
+        "lat min": " -26.9958897",
+        "lat max": " -18.0010778"
+    },
+    "resources/preprocessed/planet-latest_-180.0_-72.00001_-161.99999_-62.99999.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -162.0000000",
+        "lat min": " -72.0000000",
+        "lat max": " -63.3333334"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_62.99999_-107.99999_72.00001.osm.pbf": {
+        "lon min": " -126.0000061",
+        "lon max": " -107.9999903",
+        "lat min": " 62.9999907",
+        "lat max": " 72.0000038"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_26.99999_-125.99999_36.00001.osm.pbf": {
+        "lon min": " -143.9868384",
+        "lon max": " -126.2667000",
+        "lat min": " 27.1178324",
+        "lat max": " 35.6037366"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_-18.00001_-143.99999_-8.99999.osm.pbf": {
+        "lon min": " -161.3082430",
+        "lon max": " -144.0012995",
+        "lat min": " -17.9997155",
+        "lat max": " -8.9999917"
+    },
+    "resources/preprocessed/planet-latest_-180.0_-63.00001_-161.99999_-53.99999.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -162.0830000",
+        "lat min": " -62.5316670",
+        "lat max": " -54.1362900"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_71.99999_-107.99999_81.00001.osm.pbf": {
+        "lon min": " -125.9985390",
+        "lon max": " -108.0000000",
+        "lat min": " 71.9999951",
+        "lat max": " 80.0000000"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_35.99999_-125.99999_45.00001.osm.pbf": {
+        "lon min": " -143.7011938",
+        "lon max": " -127.0130000",
+        "lat min": " 36.1378925",
+        "lat max": " 43.8666667"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_-9.00001_-143.99999_1e-05.osm.pbf": {
+        "lon min": " -161.9977672",
+        "lon max": " -144.0015345",
+        "lat min": " -9.0000063",
+        "lat max": " -0.0046940"
+    },
+    "resources/preprocessed/planet-latest_-180.0_-54.00001_-161.99999_-44.99999.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -171.2868463",
+        "lat min": " -52.9569885",
+        "lat max": " -45.0106545"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_-90.0_-89.99999_-80.99999.osm.pbf": {
+        "lon min": " -106.0245704",
+        "lon max": " -90.0000000",
+        "lat min": " -85.2460032",
+        "lat max": " -81.0296655"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_-1e-05_-143.99999_9.00001.osm.pbf": {
+        "lon min": " -161.9991555",
+        "lon max": " -149.4167000",
+        "lat min": " 0.0040452",
+        "lat max": " 8.9954217"
+    },
+    "resources/preprocessed/planet-latest_-180.0_-45.00001_-161.99999_-35.99999.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -162.4566256",
+        "lat min": " -44.9954075",
+        "lat max": " -36.0051115"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_44.99999_-125.99999_54.00001.osm.pbf": {
+        "lon min": " -140.3333333",
+        "lon max": " -125.9999908",
+        "lat min": " 45.8700000",
+        "lat max": " 54.0000096"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_-81.00001_-89.99999_-71.99999.osm.pbf": {
+        "lon min": " -107.9984128",
+        "lon max": " -90.0000000",
+        "lat min": " -80.9895457",
+        "lat max": " -72.0000197"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_8.99999_-143.99999_18.00001.osm.pbf": {
+        "lon min": " -161.9947239",
+        "lon max": " -151.6711600",
+        "lat min": " 9.0061066",
+        "lat max": " 17.9964200"
+    },
+    "resources/preprocessed/planet-latest_-180.0_-36.00001_-161.99999_-26.99999.osm.pbf": {
+        "lon min": " -179.9565000",
+        "lon max": " -172.1489005",
+        "lat min": " -35.9918985",
+        "lat max": " -27.0000000"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_53.99999_-125.99999_63.00001.osm.pbf": {
+        "lon min": " -144.0000000",
+        "lon max": " -125.9999900",
+        "lat min": " 53.9999904",
+        "lat max": " 63.0000020"
+    },
+    "resources/preprocessed/planet-latest_-180.0_-27.00001_-161.99999_-17.99999.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -162.0081540",
+        "lat min": " -27.0000000",
+        "lat max": " -18.0000245"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_-72.00001_-89.99999_-62.99999.osm.pbf": {
+        "lon min": " -108.0000000",
+        "lon max": " -90.0000000",
+        "lat min": " -71.9997074",
+        "lat max": " -63.0745046"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_17.99999_-143.99999_27.00001.osm.pbf": {
+        "lon min": " -162.0000000",
+        "lon max": " -151.2768000",
+        "lat min": " 18.0066300",
+        "lat max": " 26.4086200"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_62.99999_-125.99999_72.00001.osm.pbf": {
+        "lon min": " -144.0000081",
+        "lon max": " -125.9999939",
+        "lat min": " 62.9999960",
+        "lat max": " 71.9974153"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_71.99999_-125.99999_81.00001.osm.pbf": {
+        "lon min": " -142.5000000",
+        "lon max": " -126.0036180",
+        "lat min": " 72.0013289",
+        "lat max": " 80.0000000"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_-63.00001_-89.99999_-53.99999.osm.pbf": {
+        "lon min": " -108.0000000",
+        "lon max": " -90.0000000",
+        "lat min": " -62.9735024",
+        "lat max": " -60.0000000"
+    },
+    "resources/preprocessed/planet-latest_-180.0_-18.00001_-161.99999_-8.99999.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -162.8349494",
+        "lat min": " -17.9999880",
+        "lat max": " -9.0006274"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_26.99999_-143.99999_36.00001.osm.pbf": {
+        "lon min": " -153.1933813",
+        "lon max": " -144.0088110",
+        "lat min": " 27.4498098",
+        "lat max": " 35.0659911"
+    },
+    "resources/preprocessed/planet-latest_-180.0_-9.00001_-161.99999_1e-05.osm.pbf": {
+        "lon min": " -179.8502937",
+        "lon max": " -162.0070310",
+        "lat min": " -8.9998725",
+        "lat max": " -0.0000684"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_35.99999_-143.99999_45.00001.osm.pbf": {
+        "lon min": " -146.7993384",
+        "lon max": " -144.5141821",
+        "lat min": " 37.0201157",
+        "lat max": " 38.0481084"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_-90.0_-107.99999_-80.99999.osm.pbf": {
+        "lon min": " -125.9988898",
+        "lon max": " -111.2974685",
+        "lat min": " -86.5395441",
+        "lat max": " -84.6082517"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_44.99999_-143.99999_54.00001.osm.pbf": {
+        "lon min": " -156.9320000",
+        "lon max": " -155.5083972",
+        "lat min": " 47.9943348",
+        "lat max": " 52.6360000"
+    },
+    "resources/preprocessed/planet-latest_-180.0_-1e-05_-161.99999_9.00001.osm.pbf": {
+        "lon min": " -179.9519479",
+        "lon max": " -162.0021522",
+        "lat min": " 0.0007220",
+        "lat max": " 8.9899612"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_-36.00001_-89.99999_-26.99999.osm.pbf": {
+        "lon min": " -107.9813974",
+        "lon max": " -101.6849442",
+        "lat min": " -30.2859977",
+        "lat max": " -27.0105705"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_-81.00001_-107.99999_-71.99999.osm.pbf": {
+        "lon min": " -125.9999564",
+        "lon max": " -108.0005496",
+        "lat min": " -80.0147222",
+        "lat max": " -72.9823775"
+    },
+    "resources/preprocessed/planet-latest_-180.0_8.99999_-161.99999_18.00001.osm.pbf": {
+        "lon min": " -173.0328904",
+        "lon max": " -162.0114853",
+        "lat min": " 9.0007519",
+        "lat max": " 17.9945260"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_53.99999_-143.99999_63.00001.osm.pbf": {
+        "lon min": " -162.0000096",
+        "lon max": " -144.0000000",
+        "lat min": " 54.3690116",
+        "lat max": " 63.0000079"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_-27.00001_-89.99999_-17.99999.osm.pbf": {
+        "lon min": " -107.9948730",
+        "lon max": " -101.6447830",
+        "lat min": " -26.9940319",
+        "lat max": " -23.1261864"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_-72.00001_-107.99999_-62.99999.osm.pbf": {
+        "lon min": " -126.0000000",
+        "lon max": " -108.0000000",
+        "lat min": " -70.0000000",
+        "lat max": " -66.0007110"
+    },
+    "resources/preprocessed/planet-latest_-180.0_17.99999_-161.99999_27.00001.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -162.0000000",
+        "lat min": " 18.0024126",
+        "lat max": " 26.9979900"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_62.99999_-143.99999_72.00001.osm.pbf": {
+        "lon min": " -162.0000068",
+        "lon max": " -143.9999912",
+        "lat min": " 62.9999907",
+        "lat max": " 71.5889534"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_-63.00001_-107.99999_-53.99999.osm.pbf": {
+        "lon min": " -112.5000000",
+        "lon max": " -108.0000000",
+        "lat min": " -60.0000000",
+        "lat max": " -60.0000000"
+    },
+    "resources/preprocessed/planet-latest_-180.0_26.99999_-161.99999_36.00001.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -164.9261900",
+        "lat min": " 27.0039900",
+        "lat max": " 34.9666667"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_-54.00001_-107.99999_-44.99999.osm.pbf": {
+        "lon min": " -123.4389150",
+        "lon max": " -123.4389150",
+        "lat min": " -49.0260312",
+        "lat max": " -49.0260312"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_-9.00001_-89.99999_1e-05.osm.pbf": {
+        "lon min": " -94.9313994",
+        "lon max": " -90.0274942",
+        "lat min": " -4.7021972",
+        "lat max": " 0.0000023"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_-90.0_-125.99999_-80.99999.osm.pbf": {
+        "lon min": " -143.9999707",
+        "lon max": " -126.0003270",
+        "lat min": " -89.9980000",
+        "lat max": " -81.0000000"
+    },
+    "resources/preprocessed/planet-latest_-180.0_44.99999_-161.99999_54.00001.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -164.0110000",
+        "lat min": " 48.6720000",
+        "lat max": " 54.0000050"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_-1e-05_-89.99999_9.00001.osm.pbf": {
+        "lon min": " -107.9932379",
+        "lon max": " -90.0739370",
+        "lat min": " 0.0000023",
+        "lat max": " 8.9922563"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_-81.00001_-125.99999_-71.99999.osm.pbf": {
+        "lon min": " -143.9999980",
+        "lon max": " -126.0000212",
+        "lat min": " -81.0000000",
+        "lat max": " -72.1000000"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_-36.00001_-107.99999_-26.99999.osm.pbf": {
+        "lon min": " -125.9903568",
+        "lon max": " -108.0032500",
+        "lat min": " -30.5439682",
+        "lat max": " -27.0000000"
+    },
+    "resources/preprocessed/planet-latest_-180.0_53.99999_-161.99999_63.00001.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -161.9999902",
+        "lat min": " 53.9999911",
+        "lat max": " 63.0000050"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_8.99999_-89.99999_18.00001.osm.pbf": {
+        "lon min": " -107.9890675",
+        "lon max": " -89.9999901",
+        "lat min": " 9.0076643",
+        "lat max": " 18.0000098"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_-72.00001_-125.99999_-62.99999.osm.pbf": {
+        "lon min": " -144.0000000",
+        "lon max": " -126.0000000",
+        "lat min": " -67.2626900",
+        "lat max": " -64.0514100"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_-27.00001_-107.99999_-17.99999.osm.pbf": {
+        "lon min": " -125.9876817",
+        "lon max": " -108.0120468",
+        "lat min": " -27.0000000",
+        "lat max": " -21.3160923"
+    },
+    "resources/preprocessed/planet-latest_-180.0_62.99999_-161.99999_72.00001.osm.pbf": {
+        "lon min": " -180.0000000",
+        "lon max": " -161.9999902",
+        "lat min": " 62.9999971",
+        "lat max": " 71.8180958"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_17.99999_-89.99999_27.00001.osm.pbf": {
+        "lon min": " -108.0000097",
+        "lon max": " -89.9999929",
+        "lat min": " 17.9999900",
+        "lat max": " 27.0000086"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_-63.00001_-125.99999_-53.99999.osm.pbf": {
+        "lon min": " -142.5000017",
+        "lon max": " -127.5000007",
+        "lat min": " -62.9783000",
+        "lat max": " -60.0000000"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_-9.00001_-107.99999_1e-05.osm.pbf": {
+        "lon min": " -125.0060000",
+        "lon max": " -120.9375000",
+        "lat min": " -8.4890000",
+        "lat max": " -0.7031070"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_-54.00001_-125.99999_-44.99999.osm.pbf": {
+        "lon min": " -130.0000000",
+        "lon max": " -130.0000000",
+        "lat min": " -45.0000000",
+        "lat max": " -45.0000000"
+    },
+    "resources/preprocessed/planet-latest_-180.0_80.99999_-161.99999_90.0.osm.pbf": {
+        "lon min": " -170.0000000",
+        "lon max": " -170.0000000",
+        "lat min": " 83.0000000",
+        "lat max": " 83.0000000"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_-1e-05_-107.99999_9.00001.osm.pbf": {
+        "lon min": " -112.3408952",
+        "lon max": " -108.0088843",
+        "lat min": " 6.9361491",
+        "lat max": " 8.9945047"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_-45.00001_-125.99999_-35.99999.osm.pbf": {
+        "lon min": " -142.7202710",
+        "lon max": " -130.0000000",
+        "lat min": " -45.0000000",
+        "lat max": " -43.5801068"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_-90.0_-143.99999_-80.99999.osm.pbf": {
+        "lon min": " -162.0000000",
+        "lon max": " -144.0000486",
+        "lat min": " -87.4371616",
+        "lat max": " -81.0000331"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_44.99999_-89.99999_54.00001.osm.pbf": {
+        "lon min": " -108.0000097",
+        "lon max": " -89.9999901",
+        "lat min": " 44.9999899",
+        "lat max": " 54.0000094"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_-81.00001_-143.99999_-71.99999.osm.pbf": {
+        "lon min": " -162.0000000",
+        "lon max": " -143.9999980",
+        "lat min": " -80.9999498",
+        "lat max": " -72.0000000"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_8.99999_-107.99999_18.00001.osm.pbf": {
+        "lon min": " -117.7499752",
+        "lon max": " -108.0049901",
+        "lat min": " 9.0098925",
+        "lat max": " 17.6552309"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_-36.00001_-125.99999_-26.99999.osm.pbf": {
+        "lon min": " -143.9906563",
+        "lon max": " -126.0081020",
+        "lat min": " -31.2430427",
+        "lat max": " -27.0010649"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_53.99999_-89.99999_63.00001.osm.pbf": {
+        "lon min": " -108.0000074",
+        "lon max": " -90.0000000",
+        "lat min": " 53.9999900",
+        "lat max": " 63.0000014"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_-72.00001_-143.99999_-62.99999.osm.pbf": {
+        "lon min": " -162.0000000",
+        "lon max": " -144.0000000",
+        "lat min": " -72.0000000",
+        "lat max": " -63.0977000"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_-27.00001_-125.99999_-17.99999.osm.pbf": {
+        "lon min": " -143.7701245",
+        "lon max": " -126.0045667",
+        "lat min": " -26.9976200",
+        "lat max": " -18.0000436"
+    },
+    "resources/preprocessed/planet-latest_-126.00001_17.99999_-107.99999_27.00001.osm.pbf": {
+        "lon min": " -117.7500000",
+        "lon max": " -107.9999903",
+        "lat min": " 18.1419890",
+        "lat max": " 27.0000074"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_62.99999_-89.99999_72.00001.osm.pbf": {
+        "lon min": " -108.0000068",
+        "lon max": " -89.9999916",
+        "lat min": " 62.9999907",
+        "lat max": " 72.0000066"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_-18.00001_-125.99999_-8.99999.osm.pbf": {
+        "lon min": " -143.9996284",
+        "lon max": " -132.8364354",
+        "lat min": " -17.9999875",
+        "lat max": " -9.0014227"
+    },
+    "resources/preprocessed/planet-latest_-162.00001_-63.00001_-143.99999_-53.99999.osm.pbf": {
+        "lon min": " -161.8670000",
+        "lon max": " -150.0000000",
+        "lat min": " -62.8767826",
+        "lat max": " -58.8938700"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_71.99999_-89.99999_81.00001.osm.pbf": {
+        "lon min": " -108.0000000",
+        "lon max": " -90.0000000",
+        "lat min": " 71.9999928",
+        "lat max": " 81.0000000"
+    },
+    "resources/preprocessed/planet-latest_-144.00001_-9.00001_-125.99999_1e-05.osm.pbf": {
+        "lon min": " -143.9983828",
+        "lon max": " -135.3332871",
+        "lat min": " -8.9989865",
+        "lat max": " -4.5395605"
+    },
+    "resources/preprocessed/planet-latest_-108.00001_80.99999_-89.99999_90.0.osm.pbf": {
+        "lon min": " -96.6170678",
+        "lon max": " -90.0000000",
+        "lat min": " 80.9999998",
+        "lat max": " 82.2027131"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_-90.0_-71.99999_-80.99999.osm.pbf": {
+        "lon min": " -90.0000000",
+        "lon max": " -74.0000000",
+        "lat min": " -85.4554221",
+        "lat max": " -81.0020575"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_-45.00001_-53.99999_-35.99999.osm.pbf": {
+        "lon min": " -72.0000100",
+        "lon max": " -54.0582279",
+        "lat min": " -45.0000098",
+        "lat max": " -35.9999902"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_-1e-05_-35.99999_9.00001.osm.pbf": {
+        "lon min": " -54.0000070",
+        "lon max": " -37.9326713",
+        "lat min": " -0.0000054",
+        "lat max": " 8.9811421"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_44.99999_-17.99999_54.00001.osm.pbf": {
+        "lon min": " -25.2059830",
+        "lon max": " -18.0318330",
+        "lat min": " 45.3237500",
+        "lat max": " 53.9962830"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_-81.00001_-71.99999_-71.99999.osm.pbf": {
+        "lon min": " -90.0000000",
+        "lon max": " -72.0002856",
+        "lat min": " -80.9895457",
+        "lat max": " -72.0001438"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_-36.00001_-53.99999_-26.99999.osm.pbf": {
+        "lon min": " -72.0000098",
+        "lon max": " -53.9999901",
+        "lat min": " -36.0000099",
+        "lat max": " -26.9999903"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_8.99999_-35.99999_18.00001.osm.pbf": {
+        "lon min": " -53.5834326",
+        "lon max": " -38.3203120",
+        "lat min": " 9.2245968",
+        "lat max": " 13.8057453"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_53.99999_-17.99999_63.00001.osm.pbf": {
+        "lon min": " -35.0000000",
+        "lon max": " -18.0000000",
+        "lat min": " 54.0191670",
+        "lat max": " 62.9979370"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_-72.00001_-71.99999_-62.99999.osm.pbf": {
+        "lon min": " -90.0000000",
+        "lon max": " -72.0000000",
+        "lat min": " -71.9997512",
+        "lat max": " -63.0287265"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_-27.00001_-53.99999_-17.99999.osm.pbf": {
+        "lon min": " -71.9977385",
+        "lon max": " -53.9999904",
+        "lat min": " -27.0000096",
+        "lat max": " -17.9999900"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_17.99999_-35.99999_27.00001.osm.pbf": {
+        "lon min": " -37.9384716",
+        "lon max": " -37.7613556",
+        "lat min": " 19.9501122",
+        "lat max": " 20.1165115"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_62.99999_-17.99999_72.00001.osm.pbf": {
+        "lon min": " -36.0000055",
+        "lon max": " -17.9999918",
+        "lat min": " 63.0014302",
+        "lat max": " 72.0000061"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_-63.00001_-71.99999_-53.99999.osm.pbf": {
+        "lon min": " -90.0000000",
+        "lon max": " -72.0000011",
+        "lat min": " -62.9911174",
+        "lat max": " -53.9999962"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_-18.00001_-53.99999_-8.99999.osm.pbf": {
+        "lon min": " -72.0000098",
+        "lon max": " -53.9999901",
+        "lat min": " -18.0000100",
+        "lat max": " -8.9999903"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_26.99999_-35.99999_36.00001.osm.pbf": {
+        "lon min": " -42.1167178",
+        "lon max": " -42.1167178",
+        "lat min": " 30.1166808",
+        "lat max": " 30.1166808"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_71.99999_-17.99999_81.00001.osm.pbf": {
+        "lon min": " -35.9940434",
+        "lon max": " -18.0000616",
+        "lat min": " 71.9999918",
+        "lat max": " 80.9999764"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_-54.00001_-71.99999_-44.99999.osm.pbf": {
+        "lon min": " -80.8187776",
+        "lon max": " -71.9999903",
+        "lat min": " -54.0000096",
+        "lat max": " -44.9999899"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_-9.00001_-53.99999_1e-05.osm.pbf": {
+        "lon min": " -72.0000064",
+        "lon max": " -54.0000000",
+        "lat min": " -9.0000089",
+        "lat max": " 0.0000087"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_35.99999_-35.99999_45.00001.osm.pbf": {
+        "lon min": " -53.6244444",
+        "lon max": " -36.1013156",
+        "lat min": " 36.3333333",
+        "lat max": " 44.5982074"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_80.99999_-17.99999_90.0.osm.pbf": {
+        "lon min": " -35.9996704",
+        "lon max": " -18.0001829",
+        "lat min": " 81.0001102",
+        "lat max": " 85.0511092"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_-45.00001_-71.99999_-35.99999.osm.pbf": {
+        "lon min": " -83.8608528",
+        "lon max": " -71.9999900",
+        "lat min": " -45.0000058",
+        "lat max": " -35.9999900"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_-1e-05_-53.99999_9.00001.osm.pbf": {
+        "lon min": " -72.0000100",
+        "lon max": " -53.9999936",
+        "lat min": " -0.0000088",
+        "lat max": " 9.0000100"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_44.99999_-35.99999_54.00001.osm.pbf": {
+        "lon min": " -54.0000100",
+        "lon max": " -46.3797151",
+        "lat min": " 45.0035687",
+        "lat max": " 50.0236242"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_-90.0_1e-05_-80.99999.osm.pbf": {
+        "lon min": " -16.8070131",
+        "lon max": " 0.0000000",
+        "lat min": " -90.0000000",
+        "lat max": " -85.0499581"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_-36.00001_-71.99999_-26.99999.osm.pbf": {
+        "lon min": " -84.8479209",
+        "lon max": " -71.9999903",
+        "lat min": " -36.0000081",
+        "lat max": " -27.0030000"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_8.99999_-53.99999_18.00001.osm.pbf": {
+        "lon min": " -72.0000067",
+        "lon max": " -54.1113928",
+        "lat min": " 8.9999900",
+        "lat max": " 18.0000100"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_53.99999_-35.99999_63.00001.osm.pbf": {
+        "lon min": " -53.2714570",
+        "lon max": " -40.8235426",
+        "lat min": " 54.8763544",
+        "lat max": " 63.0000000"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_-81.00001_1e-05_-71.99999.osm.pbf": {
+        "lon min": " -17.9962758",
+        "lon max": " -0.0426755",
+        "lat min": " -75.1395080",
+        "lat max": " -72.0000472"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_-27.00001_-71.99999_-17.99999.osm.pbf": {
+        "lon min": " -83.8333101",
+        "lon max": " -72.0270981",
+        "lat min": " -26.9950000",
+        "lat max": " -18.0076483"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_17.99999_-53.99999_27.00001.osm.pbf": {
+        "lon min": " -72.0000099",
+        "lon max": " -57.9393049",
+        "lat min": " 17.9999901",
+        "lat max": " 26.1678922"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_62.99999_-35.99999_72.00001.osm.pbf": {
+        "lon min": " -54.0000078",
+        "lon max": " -35.9999903",
+        "lat min": " 63.0000000",
+        "lat max": " 72.0000100"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_-72.00001_1e-05_-62.99999.osm.pbf": {
+        "lon min": " -18.0000000",
+        "lon max": " 0.0000003",
+        "lat min": " -71.9998090",
+        "lat max": " -65.0000000"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_-18.00001_-71.99999_-8.99999.osm.pbf": {
+        "lon min": " -86.3920000",
+        "lon max": " -71.9999903",
+        "lat min": " -17.9750000",
+        "lat max": " -8.9999903"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_26.99999_-53.99999_36.00001.osm.pbf": {
+        "lon min": " -71.9952055",
+        "lon max": " -60.0000001",
+        "lat min": " 30.0000013",
+        "lat max": " 35.9999655"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_71.99999_-35.99999_81.00001.osm.pbf": {
+        "lon min": " -54.0000001",
+        "lon max": " -37.1000000",
+        "lat min": " 72.0000061",
+        "lat max": " 78.0000000"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_-63.00001_1e-05_-53.99999.osm.pbf": {
+        "lon min": " -7.5000001",
+        "lon max": " -7.5000001",
+        "lat min": " -60.0000000",
+        "lat max": " -60.0000000"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_-9.00001_-71.99999_1e-05.osm.pbf": {
+        "lon min": " -89.9897436",
+        "lon max": " -71.9999930",
+        "lat min": " -9.0000100",
+        "lat max": " 0.0000098"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_80.99999_-35.99999_90.0.osm.pbf": {
+        "lon min": " -53.9996954",
+        "lon max": " -36.0000614",
+        "lat min": " 81.1337997",
+        "lat max": " 83.7983370"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_35.99999_-53.99999_45.00001.osm.pbf": {
+        "lon min": " -72.0000100",
+        "lon max": " -58.5833000",
+        "lat min": " 36.0165608",
+        "lat max": " 45.0000100"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_-54.00001_1e-05_-44.99999.osm.pbf": {
+        "lon min": " -15.0000000",
+        "lon max": " -8.2000000",
+        "lat min": " -49.5000000",
+        "lat max": " -45.0000000"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_-1e-05_-71.99999_9.00001.osm.pbf": {
+        "lon min": " -89.9781043",
+        "lon max": " -71.9999903",
+        "lat min": " -0.0000100",
+        "lat max": " 9.0000098"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_-90.0_-17.99999_-80.99999.osm.pbf": {
+        "lon min": " -30.8494482",
+        "lon max": " -20.0000000",
+        "lat min": " -89.0000000",
+        "lat max": " -81.0060820"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_44.99999_-53.99999_54.00001.osm.pbf": {
+        "lon min": " -72.0000100",
+        "lon max": " -53.9999900",
+        "lat min": " 44.9999899",
+        "lat max": " 54.0000051"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_-45.00001_1e-05_-35.99999.osm.pbf": {
+        "lon min": " -15.0000000",
+        "lon max": " -9.6117532",
+        "lat min": " -45.0000000",
+        "lat max": " -36.8620000"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_8.99999_-71.99999_18.00001.osm.pbf": {
+        "lon min": " -90.0000096",
+        "lon max": " -71.9999903",
+        "lat min": " 8.9999900",
+        "lat max": " 18.0000100"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_-81.00001_-17.99999_-71.99999.osm.pbf": {
+        "lon min": " -35.9991604",
+        "lon max": " -18.0022611",
+        "lat min": " -80.9906561",
+        "lat max": " -72.0056359"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_53.99999_-53.99999_63.00001.osm.pbf": {
+        "lon min": " -72.0000089",
+        "lon max": " -55.9883694",
+        "lat min": " 53.9999925",
+        "lat max": " 63.0000100"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_-36.00001_1e-05_-26.99999.osm.pbf": {
+        "lon min": " -9.8333536",
+        "lon max": " -9.8333536",
+        "lat min": " -27.1668489",
+        "lat max": " -27.1668489"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_-72.00001_-17.99999_-62.99999.osm.pbf": {
+        "lon min": " -36.0000000",
+        "lon max": " -18.0000000",
+        "lat min": " -71.9575749",
+        "lat max": " -63.0254218"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_62.99999_-53.99999_72.00001.osm.pbf": {
+        "lon min": " -72.0000070",
+        "lon max": " -54.0000001",
+        "lat min": " 62.9999995",
+        "lat max": " 72.0000100"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_17.99999_-71.99999_27.00001.osm.pbf": {
+        "lon min": " -90.0000072",
+        "lon max": " -71.9999920",
+        "lat min": " 17.9999900",
+        "lat max": " 27.0000100"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_-27.00001_1e-05_-17.99999.osm.pbf": {
+        "lon min": " -10.0551784",
+        "lon max": " -9.8782211",
+        "lat min": " -20.0165808",
+        "lat max": " -19.8502252"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_71.99999_-53.99999_81.00001.osm.pbf": {
+        "lon min": " -72.0000000",
+        "lon max": " -54.0000001",
+        "lat min": " 72.0000100",
+        "lat max": " 81.0000032"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_-63.00001_-17.99999_-53.99999.osm.pbf": {
+        "lon min": " -36.0000000",
+        "lon max": " -20.0000000",
+        "lat min": " -62.9646525",
+        "lat max": " -54.1575350"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_-18.00001_1e-05_-8.99999.osm.pbf": {
+        "lon min": " -5.9973424",
+        "lon max": " -5.4234153",
+        "lat min": " -16.2300000",
+        "lat max": " -15.7040000"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_80.99999_-53.99999_90.0.osm.pbf": {
+        "lon min": " -72.0000000",
+        "lon max": " -54.0007207",
+        "lat min": " 81.0000000",
+        "lat max": " 83.6570580"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_-9.00001_1e-05_1e-05.osm.pbf": {
+        "lon min": " -14.6226945",
+        "lon max": " 0.0000000",
+        "lat min": " -8.1930000",
+        "lat max": " 0.0000000"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_-90.0_-35.99999_-80.99999.osm.pbf": {
+        "lon min": " -53.9995175",
+        "lon max": " -36.6022155",
+        "lat min": " -89.9990959",
+        "lat max": " -81.0000155"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_-1e-05_1e-05_9.00001.osm.pbf": {
+        "lon min": " -17.8637695",
+        "lon max": " 0.0000099",
+        "lat min": " 0.0000000",
+        "lat max": " 9.0000100"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_44.99999_-71.99999_54.00001.osm.pbf": {
+        "lon min": " -90.0000100",
+        "lon max": " -71.9999900",
+        "lat min": " 44.9999899",
+        "lat max": " 54.0000000"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_-81.00001_-35.99999_-71.99999.osm.pbf": {
+        "lon min": " -53.9997489",
+        "lon max": " -36.0000428",
+        "lat min": " -80.9999753",
+        "lat max": " -72.0564002"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_8.99999_1e-05_18.00001.osm.pbf": {
+        "lon min": " -17.7498686",
+        "lon max": " 0.0000094",
+        "lat min": " 8.9999900",
+        "lat max": " 18.0000100"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_53.99999_-71.99999_63.00001.osm.pbf": {
+        "lon min": " -90.0000000",
+        "lon max": " -71.9999970",
+        "lat min": " 53.9999912",
+        "lat max": " 63.0000000"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_-72.00001_-35.99999_-62.99999.osm.pbf": {
+        "lon min": " -54.0000000",
+        "lon max": " -36.0000000",
+        "lat min": " -71.9986742",
+        "lat max": " -63.0308457"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_-27.00001_-17.99999_-17.99999.osm.pbf": {
+        "lon min": " -35.9995948",
+        "lon max": " -25.2909473",
+        "lat min": " -23.8721129",
+        "lat max": " -18.0036107"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_17.99999_1e-05_27.00001.osm.pbf": {
+        "lon min": " -17.3190239",
+        "lon max": " 0.0000016",
+        "lat min": " 17.9999904",
+        "lat max": " 27.0000070"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_62.99999_-71.99999_72.00001.osm.pbf": {
+        "lon min": " -90.0000071",
+        "lon max": " -72.0000000",
+        "lat min": " 63.0000000",
+        "lat max": " 72.0000002"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_-18.00001_-17.99999_-8.99999.osm.pbf": {
+        "lon min": " -36.0000099",
+        "lon max": " -26.4769043",
+        "lat min": " -17.9981303",
+        "lat max": " -8.9999917"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_-63.00001_-35.99999_-53.99999.osm.pbf": {
+        "lon min": " -53.9034724",
+        "lon max": " -35.9999978",
+        "lat min": " -62.9458783",
+        "lat max": " -53.9999900"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_26.99999_1e-05_36.00001.osm.pbf": {
+        "lon min": " -18.0000078",
+        "lon max": " 0.0000099",
+        "lat min": " 26.9999907",
+        "lat max": " 35.9999671"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_71.99999_-71.99999_81.00001.osm.pbf": {
+        "lon min": " -90.0000000",
+        "lon max": " -72.0000000",
+        "lat min": " 72.0000000",
+        "lat max": " 81.0000000"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_-9.00001_-17.99999_1e-05.osm.pbf": {
+        "lon min": " -36.0000100",
+        "lon max": " -22.9186725",
+        "lat min": " -9.0000063",
+        "lat max": " -0.0005097"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_-54.00001_-35.99999_-44.99999.osm.pbf": {
+        "lon min": " -53.8638081",
+        "lon max": " -36.4338778",
+        "lat min": " -54.0000094",
+        "lat max": " -49.2821672"
+    },
+    "resources/preprocessed/planet-latest_-90.00001_80.99999_-71.99999_90.0.osm.pbf": {
+        "lon min": " -90.0000000",
+        "lon max": " -72.0000000",
+        "lat min": " 81.0000000",
+        "lat max": " 83.3362128"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_-1e-05_-17.99999_9.00001.osm.pbf": {
+        "lon min": " -32.6761777",
+        "lon max": " -22.9168084",
+        "lat min": " 0.0000398",
+        "lat max": " 4.2704566"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_-45.00001_-35.99999_-35.99999.osm.pbf": {
+        "lon min": " -53.8637541",
+        "lon max": " -50.1936529",
+        "lat min": " -39.5239685",
+        "lat max": " -36.0339298"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_-90.0_-53.99999_-80.99999.osm.pbf": {
+        "lon min": " -69.5366064",
+        "lon max": " -54.0007013",
+        "lat min": " -89.9900000",
+        "lat max": " -81.0000550"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_8.99999_-17.99999_18.00001.osm.pbf": {
+        "lon min": " -35.8374243",
+        "lon max": " -22.4547752",
+        "lat min": " 14.0000508",
+        "lat max": " 17.4071170"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_-36.00001_-35.99999_-26.99999.osm.pbf": {
+        "lon min": " -54.0000097",
+        "lon max": " -42.9105060",
+        "lat min": " -35.9461682",
+        "lat max": " -26.9999900"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_-81.00001_-53.99999_-71.99999.osm.pbf": {
+        "lon min": " -71.9999136",
+        "lon max": " -54.0038167",
+        "lat min": " -80.9999827",
+        "lat max": " -72.0000122"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_17.99999_-17.99999_27.00001.osm.pbf": {
+        "lon min": " -34.0640000",
+        "lon max": " -22.2000000",
+        "lat min": " 18.6080000",
+        "lat max": " 22.2000000"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_53.99999_1e-05_63.00001.osm.pbf": {
+        "lon min": " -18.0000000",
+        "lon max": " 0.0000000",
+        "lat min": " 53.9999901",
+        "lat max": " 62.9988330"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_-72.00001_-53.99999_-62.99999.osm.pbf": {
+        "lon min": " -72.0000024",
+        "lon max": " -54.0000000",
+        "lat min": " -71.9999605",
+        "lat max": " -63.0000006"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_26.99999_-17.99999_36.00001.osm.pbf": {
+        "lon min": " -33.9500000",
+        "lon max": " -17.9999900",
+        "lat min": " 27.2300716",
+        "lat max": " 35.9752806"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_62.99999_1e-05_72.00001.osm.pbf": {
+        "lon min": " -18.0000097",
+        "lon max": " -0.0223430",
+        "lat min": " 63.0007000",
+        "lat max": " 71.9958880"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_-18.00001_-35.99999_-8.99999.osm.pbf": {
+        "lon min": " -54.0000062",
+        "lon max": " -35.9999911",
+        "lat min": " -18.0000100",
+        "lat max": " -8.9999902"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_-63.00001_-53.99999_-53.99999.osm.pbf": {
+        "lon min": " -72.0000011",
+        "lon max": " -54.0025304",
+        "lat min": " -63.0000077",
+        "lat max": " -53.9999907"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_71.99999_1e-05_81.00001.osm.pbf": {
+        "lon min": " -17.9999829",
+        "lon max": " -0.0202890",
+        "lat min": " 72.1618000",
+        "lat max": " 80.9999874"
+    },
+    "resources/preprocessed/planet-latest_-36.00001_35.99999_-17.99999_45.00001.osm.pbf": {
+        "lon min": " -35.6595655",
+        "lon max": " -18.0434275",
+        "lat min": " 36.0002976",
+        "lat max": " 44.8600000"
+    },
+    "resources/preprocessed/planet-latest_-54.00001_-9.00001_-35.99999_1e-05.osm.pbf": {
+        "lon min": " -54.0000054",
+        "lon max": " -35.9999905",
+        "lat min": " -9.0000099",
+        "lat max": " 0.0000094"
+    },
+    "resources/preprocessed/planet-latest_-72.00001_-54.00001_-53.99999_-44.99999.osm.pbf": {
+        "lon min": " -72.0000091",
+        "lon max": " -54.0305243",
+        "lat min": " -54.0000091",
+        "lat max": " -44.9999906"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_-90.0_18.00001_-80.99999.osm.pbf": {
+        "lon min": " 0.0000000",
+        "lon max": " 15.0000000",
+        "lat min": " -90.0000000",
+        "lat max": " -85.0500000"
+    },
+    "resources/preprocessed/planet-latest_-18.00001_80.99999_1e-05_90.0.osm.pbf": {
+        "lon min": " -17.9985604",
+        "lon max": " 0.0000000",
+        "lat min": " 81.0001250",
+        "lat max": " 90.0000000"
+    },
+    "resources/preprocessed/planet-latest_17.99999_-45.00001_36.00001_-35.99999.osm.pbf": {
+        "lon min": " 18.0140309",
+        "lon max": " 35.7688481",
+        "lat min": " -44.9470652",
+        "lat max": " -36.0259039"
+    },
+    "resources/preprocessed/planet-latest_35.99999_-1e-05_54.00001_9.00001.osm.pbf": {
+        "lon min": " 35.9999904",
+        "lon max": " 53.2632000",
+        "lat min": " -0.0000100",
+        "lat max": " 9.0000097"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_-81.00001_18.00001_-71.99999.osm.pbf": {
+        "lon min": " 0.0140333",
+        "lon max": " 17.5890348",
+        "lat min": " -79.4063075",
+        "lat max": " -72.0000000"
+    },
+    "resources/preprocessed/planet-latest_53.99999_44.99999_72.00001_54.00001.osm.pbf": {
+        "lon min": " 53.9999901",
+        "lon max": " 72.0000098",
+        "lat min": " 44.9999908",
+        "lat max": " 54.0000100"
+    },
+    "resources/preprocessed/planet-latest_17.99999_-36.00001_36.00001_-26.99999.osm.pbf": {
+        "lon min": " 17.9999900",
+        "lon max": " 35.9683259",
+        "lat min": " -35.9896880",
+        "lat max": " -26.9999900"
+    },
+    "resources/preprocessed/planet-latest_35.99999_8.99999_54.00001_18.00001.osm.pbf": {
+        "lon min": " 35.9999918",
+        "lon max": " 54.0000099",
+        "lat min": " 8.9999904",
+        "lat max": " 18.0000083"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_-72.00001_18.00001_-62.99999.osm.pbf": {
+        "lon min": " 0.0000000",
+        "lon max": " 18.0000000",
+        "lat min": " -72.0000089",
+        "lat max": " -65.0000000"
+    },
+    "resources/preprocessed/planet-latest_53.99999_53.99999_72.00001_63.00001.osm.pbf": {
+        "lon min": " 53.9999914",
+        "lon max": " 72.0000096",
+        "lat min": " 53.9999900",
+        "lat max": " 63.0000096"
+    },
+    "resources/preprocessed/planet-latest_17.99999_-27.00001_36.00001_-17.99999.osm.pbf": {
+        "lon min": " 17.9999909",
+        "lon max": " 36.0000051",
+        "lat min": " -27.0000098",
+        "lat max": " -17.9999900"
+    },
+    "resources/preprocessed/planet-latest_35.99999_17.99999_54.00001_27.00001.osm.pbf": {
+        "lon min": " 36.0000000",
+        "lon max": " 54.0000100",
+        "lat min": " 17.9999901",
+        "lat max": " 27.0000100"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_-63.00001_18.00001_-53.99999.osm.pbf": {
+        "lon min": " 2.9345531",
+        "lon max": " 15.0000000",
+        "lat min": " -60.0000000",
+        "lat max": " -54.1870000"
+    },
+    "resources/preprocessed/planet-latest_53.99999_62.99999_72.00001_72.00001.osm.pbf": {
+        "lon min": " 53.9999906",
+        "lon max": " 72.0000064",
+        "lat min": " 62.9999907",
+        "lat max": " 71.9999895"
+    },
+    "resources/preprocessed/planet-latest_17.99999_-18.00001_36.00001_-8.99999.osm.pbf": {
+        "lon min": " 17.9999909",
+        "lon max": " 36.0000100",
+        "lat min": " -18.0000100",
+        "lat max": " -8.9999900"
+    },
+    "resources/preprocessed/planet-latest_35.99999_26.99999_54.00001_36.00001.osm.pbf": {
+        "lon min": " 35.9999899",
+        "lon max": " 54.0000100",
+        "lat min": " 26.9999905",
+        "lat max": " 36.0000100"
+    },
+    "resources/preprocessed/planet-latest_53.99999_71.99999_72.00001_81.00001.osm.pbf": {
+        "lon min": " 54.0000326",
+        "lon max": " 71.9999313",
+        "lat min": " 72.0000227",
+        "lat max": " 81.0000063"
+    },
+    "resources/preprocessed/planet-latest_17.99999_-9.00001_36.00001_1e-05.osm.pbf": {
+        "lon min": " 17.9999900",
+        "lon max": " 36.0000100",
+        "lat min": " -9.0000099",
+        "lat max": " 0.0000100"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_-45.00001_18.00001_-35.99999.osm.pbf": {
+        "lon min": " 15.0573581",
+        "lon max": " 17.9259043",
+        "lat min": " -37.7974415",
+        "lat max": " -36.1454344"
+    },
+    "resources/preprocessed/planet-latest_53.99999_80.99999_72.00001_90.0.osm.pbf": {
+        "lon min": " 54.0913532",
+        "lon max": " 71.8571192",
+        "lat min": " 80.9999981",
+        "lat max": " 82.5025033"
+    },
+    "resources/preprocessed/planet-latest_35.99999_35.99999_54.00001_45.00001.osm.pbf": {
+        "lon min": " 35.9999899",
+        "lon max": " 54.0000035",
+        "lat min": " 35.9999900",
+        "lat max": " 45.0000098"
+    },
+    "resources/preprocessed/planet-latest_17.99999_-1e-05_36.00001_9.00001.osm.pbf": {
+        "lon min": " 17.9999902",
+        "lon max": " 36.0000092",
+        "lat min": " -0.0000100",
+        "lat max": " 9.0000100"
+    },
+    "resources/preprocessed/planet-latest_71.99999_-90.0_90.00001_-80.99999.osm.pbf": {
+        "lon min": " 75.0000000",
+        "lon max": " 90.0000000",
+        "lat min": " -85.0500000",
+        "lat max": " -81.0684885"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_-36.00001_18.00001_-26.99999.osm.pbf": {
+        "lon min": " 8.3495199",
+        "lon max": " 18.0000100",
+        "lat min": " -35.9772629",
+        "lat max": " -27.0000208"
+    },
+    "resources/preprocessed/planet-latest_35.99999_44.99999_54.00001_54.00001.osm.pbf": {
+        "lon min": " 35.9999901",
+        "lon max": " 54.0000096",
+        "lat min": " 44.9999900",
+        "lat max": " 54.0000100"
+    },
+    "resources/preprocessed/planet-latest_17.99999_8.99999_36.00001_18.00001.osm.pbf": {
+        "lon min": " 17.9999902",
+        "lon max": " 36.0000099",
+        "lat min": " 8.9999901",
+        "lat max": " 18.0000074"
+    },
+    "resources/preprocessed/planet-latest_71.99999_-81.00001_90.00001_-71.99999.osm.pbf": {
+        "lon min": " 72.5311625",
+        "lon max": " 90.0000000",
+        "lat min": " -80.4173785",
+        "lat max": " -72.1003292"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_-27.00001_18.00001_-17.99999.osm.pbf": {
+        "lon min": " 11.5973697",
+        "lon max": " 18.0000076",
+        "lat min": " -26.9999811",
+        "lat max": " -18.0000019"
+    },
+    "resources/preprocessed/planet-latest_35.99999_53.99999_54.00001_63.00001.osm.pbf": {
+        "lon min": " 35.9999899",
+        "lon max": " 54.0000100",
+        "lat min": " 53.9999900",
+        "lat max": " 63.0000099"
+    },
+    "resources/preprocessed/planet-latest_17.99999_17.99999_36.00001_27.00001.osm.pbf": {
+        "lon min": " 18.0000000",
+        "lon max": " 36.0000001",
+        "lat min": " 18.0000000",
+        "lat max": " 27.0000097"
+    },
+    "resources/preprocessed/planet-latest_71.99999_-72.00001_90.00001_-62.99999.osm.pbf": {
+        "lon min": " 72.0000000",
+        "lon max": " 90.0000000",
+        "lat min": " -71.9701794",
+        "lat max": " -65.0000000"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_-18.00001_18.00001_-8.99999.osm.pbf": {
+        "lon min": " 9.8675000",
+        "lon max": " 18.0000097",
+        "lat min": " -18.0000019",
+        "lat max": " -8.9999903"
+    },
+    "resources/preprocessed/planet-latest_35.99999_62.99999_54.00001_72.00001.osm.pbf": {
+        "lon min": " 35.9999925",
+        "lon max": " 54.0000074",
+        "lat min": " 62.9999902",
+        "lat max": " 72.0000003"
+    },
+    "resources/preprocessed/planet-latest_17.99999_26.99999_36.00001_36.00001.osm.pbf": {
+        "lon min": " 18.0000444",
+        "lon max": " 36.0000100",
+        "lat min": " 26.9999905",
+        "lat max": " 36.0000088"
+    },
+    "resources/preprocessed/planet-latest_71.99999_-63.00001_90.00001_-53.99999.osm.pbf": {
+        "lon min": " 72.0515656",
+        "lon max": " 89.9999999",
+        "lat min": " -59.9999999",
+        "lat max": " -54.0088198"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_-9.00001_18.00001_1e-05.osm.pbf": {
+        "lon min": " 0.0000000",
+        "lon max": " 18.0000097",
+        "lat min": " -9.0000099",
+        "lat max": " 0.0000098"
+    },
+    "resources/preprocessed/planet-latest_35.99999_71.99999_54.00001_81.00001.osm.pbf": {
+        "lon min": " 36.0283910",
+        "lon max": " 53.9999700",
+        "lat min": " 72.0000003",
+        "lat max": " 80.9967986"
+    },
+    "resources/preprocessed/planet-latest_71.99999_-54.00001_90.00001_-44.99999.osm.pbf": {
+        "lon min": " 72.0000000",
+        "lon max": " 79.4090258",
+        "lat min": " -53.9788649",
+        "lat max": " -45.7461996"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_-1e-05_18.00001_9.00001.osm.pbf": {
+        "lon min": " -0.0000098",
+        "lon max": " 18.0000098",
+        "lat min": " -0.0000082",
+        "lat max": " 9.0000100"
+    },
+    "resources/preprocessed/planet-latest_35.99999_80.99999_54.00001_90.0.osm.pbf": {
+        "lon min": " 43.9997092",
+        "lon max": " 53.9971578",
+        "lat min": " 81.0004067",
+        "lat max": " 82.5023693"
+    },
+    "resources/preprocessed/planet-latest_71.99999_-45.00001_90.00001_-35.99999.osm.pbf": {
+        "lon min": " 73.2436650",
+        "lon max": " 81.8108106",
+        "lat min": " -42.0753017",
+        "lat max": " -36.0013326"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_8.99999_18.00001_18.00001.osm.pbf": {
+        "lon min": " -0.0000100",
+        "lon max": " 18.0000093",
+        "lat min": " 8.9999900",
+        "lat max": " 18.0000092"
+    },
+    "resources/preprocessed/planet-latest_53.99999_-90.0_72.00001_-80.99999.osm.pbf": {
+        "lon min": " 54.9666700",
+        "lon max": " 68.5961993",
+        "lat min": " -85.0511325",
+        "lat max": " -82.1116666"
+    },
+    "resources/preprocessed/planet-latest_71.99999_-36.00001_90.00001_-26.99999.osm.pbf": {
+        "lon min": " 74.0376455",
+        "lon max": " 81.0741244",
+        "lat min": " -35.9914501",
+        "lat max": " -34.4536714"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_17.99999_18.00001_27.00001.osm.pbf": {
+        "lon min": " -0.0000080",
+        "lon max": " 18.0000049",
+        "lat min": " 17.9999913",
+        "lat max": " 27.0000083"
+    },
+    "resources/preprocessed/planet-latest_53.99999_-81.00001_72.00001_-71.99999.osm.pbf": {
+        "lon min": " 60.4073397",
+        "lon max": " 70.5102514",
+        "lat min": " -75.6736201",
+        "lat max": " -72.0002466"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_26.99999_18.00001_36.00001.osm.pbf": {
+        "lon min": " -0.0000087",
+        "lon max": " 17.9999882",
+        "lat min": " 26.9999907",
+        "lat max": " 36.0000100"
+    },
+    "resources/preprocessed/planet-latest_17.99999_62.99999_36.00001_72.00001.osm.pbf": {
+        "lon min": " 17.9999900",
+        "lon max": " 36.0000091",
+        "lat min": " 62.9999900",
+        "lat max": " 71.9277860"
+    },
+    "resources/preprocessed/planet-latest_53.99999_-72.00001_72.00001_-62.99999.osm.pbf": {
+        "lon min": " 54.0000000",
+        "lon max": " 72.0000000",
+        "lat min": " -71.9999742",
+        "lat max": " -65.8704568"
+    },
+    "resources/preprocessed/planet-latest_17.99999_71.99999_36.00001_81.00001.osm.pbf": {
+        "lon min": " 18.0000000",
+        "lon max": " 35.9988780",
+        "lat min": " 72.0916570",
+        "lat max": " 80.9992044"
+    },
+    "resources/preprocessed/planet-latest_53.99999_-63.00001_72.00001_-53.99999.osm.pbf": {
+        "lon min": " 67.2370636",
+        "lon max": " 71.9721766",
+        "lat min": " -56.4099931",
+        "lat max": " -54.0094755"
+    },
+    "resources/preprocessed/planet-latest_71.99999_-9.00001_90.00001_1e-05.osm.pbf": {
+        "lon min": " 72.0003791",
+        "lon max": " 87.1724250",
+        "lat min": " -7.4941087",
+        "lat max": " 0.0000026"
+    },
+    "resources/preprocessed/planet-latest_17.99999_80.99999_36.00001_90.0.osm.pbf": {
+        "lon min": " 18.1707250",
+        "lon max": " 35.0000810",
+        "lat min": " 81.0005423",
+        "lat max": " 89.6176565"
+    },
+    "resources/preprocessed/planet-latest_53.99999_-54.00001_72.00001_-44.99999.osm.pbf": {
+        "lon min": " 54.0000000",
+        "lon max": " 72.0000000",
+        "lat min": " -53.9802106",
+        "lat max": " -45.0085865"
+    },
+    "resources/preprocessed/planet-latest_71.99999_-1e-05_90.00001_9.00001.osm.pbf": {
+        "lon min": " 72.0625000",
+        "lon max": " 87.1724250",
+        "lat min": " 0.0000000",
+        "lat max": " 9.0000098"
+    },
+    "resources/preprocessed/planet-latest_35.99999_-90.0_54.00001_-80.99999.osm.pbf": {
+        "lon min": " 45.0000000",
+        "lon max": " 45.0000000",
+        "lat min": " -89.0000000",
+        "lat max": " -81.3587079"
+    },
+    "resources/preprocessed/planet-latest_53.99999_-45.00001_72.00001_-35.99999.osm.pbf": {
+        "lon min": " 54.0185104",
+        "lon max": " 63.8604556",
+        "lat min": " -44.9937045",
+        "lat max": " -43.3117936"
+    },
+    "resources/preprocessed/planet-latest_71.99999_8.99999_90.00001_18.00001.osm.pbf": {
+        "lon min": " 72.0002767",
+        "lon max": " 89.6763018",
+        "lat min": " 8.9999903",
+        "lat max": " 18.0000100"
+    },
+    "resources/preprocessed/planet-latest_35.99999_-81.00001_54.00001_-71.99999.osm.pbf": {
+        "lon min": " 39.6971998",
+        "lon max": " 45.0000000",
+        "lat min": " -80.6441490",
+        "lat max": " -72.3889223"
+    },
+    "resources/preprocessed/planet-latest_35.99999_-72.00001_54.00001_-62.99999.osm.pbf": {
+        "lon min": " 36.0000000",
+        "lon max": " 54.0000000",
+        "lat min": " -70.9521896",
+        "lat max": " -63.4841633"
+    },
+    "resources/preprocessed/planet-latest_71.99999_17.99999_90.00001_27.00001.osm.pbf": {
+        "lon min": " 71.9999912",
+        "lon max": " 90.0000097",
+        "lat min": " 17.9999900",
+        "lat max": " 27.0000100"
+    },
+    "resources/preprocessed/planet-latest_53.99999_-27.00001_72.00001_-17.99999.osm.pbf": {
+        "lon min": " 54.0096412",
+        "lon max": " 63.7158136",
+        "lat min": " -24.7343777",
+        "lat max": " -18.2297613"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_62.99999_18.00001_72.00001.osm.pbf": {
+        "lon min": " 0.0090600",
+        "lon max": " 18.0000099",
+        "lat min": " 62.9999900",
+        "lat max": " 71.9956710"
+    },
+    "resources/preprocessed/planet-latest_35.99999_-63.00001_54.00001_-53.99999.osm.pbf": {
+        "lon min": " 37.5000000",
+        "lon max": " 52.5000000",
+        "lat min": " -62.8186468",
+        "lat max": " -60.0000000"
+    },
+    "resources/preprocessed/planet-latest_71.99999_26.99999_90.00001_36.00001.osm.pbf": {
+        "lon min": " 71.9999903",
+        "lon max": " 90.0000098",
+        "lat min": " 26.9999901",
+        "lat max": " 36.0000091"
+    },
+    "resources/preprocessed/planet-latest_53.99999_-18.00001_72.00001_-8.99999.osm.pbf": {
+        "lon min": " 54.0012710",
+        "lon max": " 69.9999999",
+        "lat min": " -17.3858857",
+        "lat max": " -9.9999999"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_71.99999_18.00001_81.00001.osm.pbf": {
+        "lon min": " 0.0165830",
+        "lon max": " 18.0000000",
+        "lat min": " 72.0064520",
+        "lat max": " 80.9605940"
+    },
+    "resources/preprocessed/planet-latest_35.99999_-54.00001_54.00001_-44.99999.osm.pbf": {
+        "lon min": " 36.1418559",
+        "lon max": " 54.0000000",
+        "lat min": " -50.3097202",
+        "lat max": " -45.0000000"
+    },
+    "resources/preprocessed/planet-latest_71.99999_35.99999_90.00001_45.00001.osm.pbf": {
+        "lon min": " 71.9999903",
+        "lon max": " 90.0000094",
+        "lat min": " 35.9999929",
+        "lat max": " 45.0000100"
+    },
+    "resources/preprocessed/planet-latest_53.99999_-9.00001_72.00001_1e-05.osm.pbf": {
+        "lon min": " 55.0016837",
+        "lon max": " 71.9998472",
+        "lat min": " -7.3999191",
+        "lat max": " -3.5120000"
+    },
+    "resources/preprocessed/planet-latest_-1e-05_80.99999_18.00001_90.0.osm.pbf": {
+        "lon min": " 0.0000000",
+        "lon max": " 17.9965750",
+        "lat min": " 81.1224840",
+        "lat max": " 90.0000000"
+    },
+    "resources/preprocessed/planet-latest_35.99999_-45.00001_54.00001_-35.99999.osm.pbf": {
+        "lon min": " 36.6075396",
+        "lon max": " 53.9934026",
+        "lat min": " -45.0000000",
+        "lat max": " -40.9783139"
+    },
+    "resources/preprocessed/planet-latest_71.99999_44.99999_90.00001_54.00001.osm.pbf": {
+        "lon min": " 71.9999901",
+        "lon max": " 90.0000084",
+        "lat min": " 44.9999902",
+        "lat max": " 54.0000097"
+    },
+    "resources/preprocessed/planet-latest_53.99999_-1e-05_72.00001_9.00001.osm.pbf": {
+        "lon min": " 69.4755970",
+        "lon max": " 70.2522222",
+        "lat min": " 6.0884520",
+        "lat max": " 8.0938889"
+    },
+    "resources/preprocessed/planet-latest_17.99999_-90.0_36.00001_-80.99999.osm.pbf": {
+        "lon min": " 34.3782400",
+        "lon max": " 34.3782400",
+        "lat min": " -82.1081822",
+        "lat max": " -82.1081822"
+    },
+    "resources/preprocessed/planet-latest_35.99999_-36.00001_54.00001_-26.99999.osm.pbf": {
+        "lon min": " 36.0067312",
+        "lon max": " 50.0268087",
+        "lat min": " -33.1855981",
+        "lat max": " -27.0391860"
+    },
+    "resources/preprocessed/planet-latest_53.99999_8.99999_72.00001_18.00001.osm.pbf": {
+        "lon min": " 53.9999913",
+        "lon max": " 71.9987275",
+        "lat min": " 9.5983333",
+        "lat max": " 18.0000092"
+    },
+    "resources/preprocessed/planet-latest_71.99999_53.99999_90.00001_63.00001.osm.pbf": {
+        "lon min": " 71.9999901",
+        "lon max": " 90.0000054",
+        "lat min": " 53.9999902",
+        "lat max": " 63.0000091"
+    },
+    "resources/preprocessed/planet-latest_17.99999_-81.00001_36.00001_-71.99999.osm.pbf": {
+        "lon min": " 18.3564112",
+        "lon max": " 31.9024943",
+        "lat min": " -75.0000000",
+        "lat max": " -72.0000058"
+    },
+    "resources/preprocessed/planet-latest_35.99999_-27.00001_54.00001_-17.99999.osm.pbf": {
+        "lon min": " 35.9999939",
+        "lon max": " 53.9980088",
+        "lat min": " -26.9961803",
+        "lat max": " -17.9999900"
+    },
+    "resources/preprocessed/planet-latest_71.99999_62.99999_90.00001_72.00001.osm.pbf": {
+        "lon min": " 71.9999957",
+        "lon max": " 89.9999993",
+        "lat min": " 62.9999907",
+        "lat max": " 72.0000085"
+    },
+    "resources/preprocessed/planet-latest_53.99999_17.99999_72.00001_27.00001.osm.pbf": {
+        "lon min": " 53.9999914",
+        "lon max": " 72.0000100",
+        "lat min": " 18.0000092",
+        "lat max": " 27.0000089"
+    },
+    "resources/preprocessed/planet-latest_17.99999_-72.00001_36.00001_-62.99999.osm.pbf": {
+        "lon min": " 18.0000000",
+        "lon max": " 36.0000000",
+        "lat min": " -72.0000058",
+        "lat max": " -65.0000000"
+    },
+    "resources/preprocessed/planet-latest_35.99999_-18.00001_54.00001_-8.99999.osm.pbf": {
+        "lon min": " 35.9999899",
+        "lon max": " 53.9895154",
+        "lat min": " -18.0000092",
+        "lat max": " -8.9999931"
+    },
+    "resources/preprocessed/planet-latest_71.99999_71.99999_90.00001_81.00001.osm.pbf": {
+        "lon min": " 72.0001030",
+        "lon max": " 90.0000000",
+        "lat min": " 71.9999929",
+        "lat max": " 80.9965508"
+    },
+    "resources/preprocessed/planet-latest_53.99999_26.99999_72.00001_36.00001.osm.pbf": {
+        "lon min": " 53.9999914",
+        "lon max": " 72.0000096",
+        "lat min": " 26.9999907",
+        "lat max": " 36.0000100"
+    },
+    "resources/preprocessed/planet-latest_17.99999_-63.00001_36.00001_-53.99999.osm.pbf": {
+        "lon min": " 22.5000000",
+        "lon max": " 22.5000000",
+        "lat min": " -60.0000000",
+        "lat max": " -60.0000000"
+    },
+    "resources/preprocessed/planet-latest_35.99999_-9.00001_54.00001_1e-05.osm.pbf": {
+        "lon min": " 35.9999899",
+        "lon max": " 53.8981251",
+        "lat min": " -9.0000070",
+        "lat max": " 0.0000100"
+    },
+    "resources/preprocessed/planet-latest_71.99999_80.99999_90.00001_90.0.osm.pbf": {
+        "lon min": " 72.9391534",
+        "lon max": " 89.9449873",
+        "lat min": " 81.0029712",
+        "lat max": " 81.3845997"
+    },
+    "resources/preprocessed/planet-latest_53.99999_35.99999_72.00001_45.00001.osm.pbf": {
+        "lon min": " 53.9999932",
+        "lon max": " 72.0000091",
+        "lat min": " 35.9999899",
+        "lat max": " 45.0000098"
+    },
+    "resources/preprocessed/planet-latest_17.99999_-54.00001_36.00001_-44.99999.osm.pbf": {
+        "lon min": " 32.7449038",
+        "lon max": " 35.9655241",
+        "lat min": " -50.2333333",
+        "lat max": " -45.0222377"
+    },
+    "resources/preprocessed/planet-latest_89.99999_-90.0_108.00001_-80.99999.osm.pbf": {
+        "lon min": " 90.0000000",
+        "lon max": " 90.0000000",
+        "lat min": " -85.0500000",
+        "lat max": " -85.0500000"
+    },
+    "resources/preprocessed/planet-latest_107.99999_-45.00001_126.00001_-35.99999.osm.pbf": {
+        "lon min": " 111.5241844",
+        "lon max": " 125.9814568",
+        "lat min": " -38.5297073",
+        "lat max": " -36.0000000"
+    },
+    "resources/preprocessed/planet-latest_125.99999_-1e-05_144.00001_9.00001.osm.pbf": {
+        "lon min": " 125.9999900",
+        "lon max": " 143.9958639",
+        "lat min": " -0.0000054",
+        "lat max": " 9.0000063"
+    },
+    "resources/preprocessed/planet-latest_143.99999_44.99999_162.00001_54.00001.osm.pbf": {
+        "lon min": " 143.9999982",
+        "lon max": " 161.9627054",
+        "lat min": " 44.9999908",
+        "lat max": " 54.0000096"
+    },
+    "resources/preprocessed/planet-latest_89.99999_-81.00001_108.00001_-71.99999.osm.pbf": {
+        "lon min": " 90.0000000",
+        "lon max": " 107.9076929",
+        "lat min": " -80.0000000",
+        "lat max": " -72.0037188"
+    },
+    "resources/preprocessed/planet-latest_125.99999_8.99999_144.00001_18.00001.osm.pbf": {
+        "lon min": " 125.9999901",
+        "lon max": " 143.9979979",
+        "lat min": " 8.9999904",
+        "lat max": " 17.9910680"
+    },
+    "resources/preprocessed/planet-latest_107.99999_-36.00001_126.00001_-26.99999.osm.pbf": {
+        "lon min": " 109.5112268",
+        "lon max": " 126.0000000",
+        "lat min": " -36.0000000",
+        "lat max": " -27.0000053"
+    },
+    "resources/preprocessed/planet-latest_143.99999_53.99999_162.00001_63.00001.osm.pbf": {
+        "lon min": " 143.9999914",
+        "lon max": " 162.0000046",
+        "lat min": " 53.9999911",
+        "lat max": " 63.0000090"
+    },
+    "resources/preprocessed/planet-latest_89.99999_-72.00001_108.00001_-62.99999.osm.pbf": {
+        "lon min": " 90.0000000",
+        "lon max": " 108.0000000",
+        "lat min": " -71.9984145",
+        "lat max": " -63.8517588"
+    },
+    "resources/preprocessed/planet-latest_125.99999_17.99999_144.00001_27.00001.osm.pbf": {
+        "lon min": " 126.0016068",
+        "lon max": " 143.9937215",
+        "lat min": " 18.0003123",
+        "lat max": " 26.9999201"
+    },
+    "resources/preprocessed/planet-latest_107.99999_-27.00001_126.00001_-17.99999.osm.pbf": {
+        "lon min": " 109.2334800",
+        "lon max": " 125.9999864",
+        "lat min": " -27.0000053",
+        "lat max": " -18.0000000"
+    },
+    "resources/preprocessed/planet-latest_143.99999_62.99999_162.00001_72.00001.osm.pbf": {
+        "lon min": " 143.9999914",
+        "lon max": " 161.9999957",
+        "lat min": " 62.9999907",
+        "lat max": " 72.0000084"
+    },
+    "resources/preprocessed/planet-latest_89.99999_-63.00001_108.00001_-53.99999.osm.pbf": {
+        "lon min": " 89.9999999",
+        "lon max": " 89.9999999",
+        "lat min": " -59.9999999",
+        "lat max": " -59.9999999"
+    },
+    "resources/preprocessed/planet-latest_107.99999_-18.00001_126.00001_-8.99999.osm.pbf": {
+        "lon min": " 108.0140041",
+        "lon max": " 126.0000048",
+        "lat min": " -18.0000000",
+        "lat max": " -8.9999900"
+    },
+    "resources/preprocessed/planet-latest_143.99999_71.99999_162.00001_81.00001.osm.pbf": {
+        "lon min": " 143.9999914",
+        "lon max": " 161.8757627",
+        "lat min": " 71.9999927",
+        "lat max": " 77.3102287"
+    },
+    "resources/preprocessed/planet-latest_161.99999_-90.0_180.0_-80.99999.osm.pbf": {
+        "lon min": " 162.0000000",
+        "lon max": " 180.0000000",
+        "lat min": " -89.0000000",
+        "lat max": " -81.0682742"
+    },
+    "resources/preprocessed/planet-latest_107.99999_-1e-05_126.00001_9.00001.osm.pbf": {
+        "lon min": " 107.9999961",
+        "lon max": " 126.0000099",
+        "lat min": " -0.0000098",
+        "lat max": " 9.0000093"
+    },
+    "resources/preprocessed/planet-latest_125.99999_44.99999_144.00001_54.00001.osm.pbf": {
+        "lon min": " 125.9999900",
+        "lon max": " 143.9999982",
+        "lat min": " 44.9999903",
+        "lat max": " 54.0000081"
+    },
+    "resources/preprocessed/planet-latest_161.99999_-81.00001_180.0_-71.99999.osm.pbf": {
+        "lon min": " 161.9999919",
+        "lon max": " 180.0000000",
+        "lat min": " -80.9642472",
+        "lat max": " -72.0000019"
+    },
+    "resources/preprocessed/planet-latest_107.99999_8.99999_126.00001_18.00001.osm.pbf": {
+        "lon min": " 107.9999900",
+        "lon max": " 126.0000098",
+        "lat min": " 8.9999904",
+        "lat max": " 18.0000099"
+    },
+    "resources/preprocessed/planet-latest_125.99999_53.99999_144.00001_63.00001.osm.pbf": {
+        "lon min": " 125.9999921",
+        "lon max": " 143.9999914",
+        "lat min": " 53.9999939",
+        "lat max": " 63.0000083"
+    },
+    "resources/preprocessed/planet-latest_161.99999_-72.00001_180.0_-62.99999.osm.pbf": {
+        "lon min": " 161.9999985",
+        "lon max": " 180.0000000",
+        "lat min": " -72.0000019",
+        "lat max": " -63.0000000"
+    },
+    "resources/preprocessed/planet-latest_125.99999_62.99999_144.00001_72.00001.osm.pbf": {
+        "lon min": " 126.0000032",
+        "lon max": " 144.0000073",
+        "lat min": " 62.9999907",
+        "lat max": " 72.0000060"
+    },
+    "resources/preprocessed/planet-latest_107.99999_17.99999_126.00001_27.00001.osm.pbf": {
+        "lon min": " 107.9999911",
+        "lon max": " 125.9778744",
+        "lat min": " 17.9999913",
+        "lat max": " 27.0000095"
+    },
+    "resources/preprocessed/planet-latest_89.99999_-18.00001_108.00001_-8.99999.osm.pbf": {
+        "lon min": " 93.4123727",
+        "lon max": " 107.9912119",
+        "lat min": " -15.5588126",
+        "lat max": " -9.0077748"
+    },
+    "resources/preprocessed/planet-latest_161.99999_-63.00001_180.0_-53.99999.osm.pbf": {
+        "lon min": " 162.0045069",
+        "lon max": " 180.0000000",
+        "lat min": " -63.0000000",
+        "lat max": " -54.0003685"
+    },
+    "resources/preprocessed/planet-latest_125.99999_71.99999_144.00001_81.00001.osm.pbf": {
+        "lon min": " 125.9999999",
+        "lon max": " 143.9999914",
+        "lat min": " 72.0000060",
+        "lat max": " 76.4963083"
+    },
+    "resources/preprocessed/planet-latest_107.99999_26.99999_126.00001_36.00001.osm.pbf": {
+        "lon min": " 107.9999909",
+        "lon max": " 126.0000070",
+        "lat min": " 26.9999905",
+        "lat max": " 36.0000100"
+    },
+    "resources/preprocessed/planet-latest_89.99999_-9.00001_108.00001_1e-05.osm.pbf": {
+        "lon min": " 95.0149395",
+        "lon max": " 108.0000100",
+        "lat min": " -8.9920328",
+        "lat max": " 0.0000076"
+    },
+    "resources/preprocessed/planet-latest_161.99999_-54.00001_180.0_-44.99999.osm.pbf": {
+        "lon min": " 162.0833340",
+        "lon max": " 180.0000000",
+        "lat min": " -53.9862865",
+        "lat max": " -44.9999901"
+    },
+    "resources/preprocessed/planet-latest_107.99999_35.99999_126.00001_45.00001.osm.pbf": {
+        "lon min": " 107.9999908",
+        "lon max": " 126.0000099",
+        "lat min": " 35.9999902",
+        "lat max": " 45.0000098"
+    },
+    "resources/preprocessed/planet-latest_89.99999_-1e-05_108.00001_9.00001.osm.pbf": {
+        "lon min": " 92.3986111",
+        "lon max": " 108.0000097",
+        "lat min": " -0.0000100",
+        "lat max": " 9.0000091"
+    },
+    "resources/preprocessed/planet-latest_161.99999_-45.00001_180.0_-35.99999.osm.pbf": {
+        "lon min": " 162.0019740",
+        "lon max": " 180.0000000",
+        "lat min": " -45.0000098",
+        "lat max": " -35.9999908"
+    },
+    "resources/preprocessed/planet-latest_143.99999_-90.0_162.00001_-80.99999.osm.pbf": {
+        "lon min": " 152.3138975",
+        "lon max": " 162.0000000",
+        "lat min": " -85.0500000",
+        "lat max": " -80.9999924"
+    },
+    "resources/preprocessed/planet-latest_107.99999_44.99999_126.00001_54.00001.osm.pbf": {
+        "lon min": " 107.9999910",
+        "lon max": " 126.0000097",
+        "lat min": " 44.9999912",
+        "lat max": " 54.0000099"
+    },
+    "resources/preprocessed/planet-latest_89.99999_8.99999_108.00001_18.00001.osm.pbf": {
+        "lon min": " 90.1884589",
+        "lon max": " 108.0000097",
+        "lat min": " 8.9999904",
+        "lat max": " 18.0000098"
+    },
+    "resources/preprocessed/planet-latest_161.99999_-36.00001_180.0_-26.99999.osm.pbf": {
+        "lon min": " 162.0170927",
+        "lon max": " 179.9990000",
+        "lat min": " -36.0000092",
+        "lat max": " -27.0000000"
+    },
+    "resources/preprocessed/planet-latest_143.99999_-81.00001_162.00001_-71.99999.osm.pbf": {
+        "lon min": " 145.8187000",
+        "lon max": " 162.0000078",
+        "lat min": " -81.0000044",
+        "lat max": " -72.0005317"
+    },
+    "resources/preprocessed/planet-latest_107.99999_53.99999_126.00001_63.00001.osm.pbf": {
+        "lon min": " 107.9999906",
+        "lon max": " 126.0000032",
+        "lat min": " 53.9999923",
+        "lat max": " 63.0000053"
+    },
+    "resources/preprocessed/planet-latest_161.99999_-27.00001_180.0_-17.99999.osm.pbf": {
+        "lon min": " 162.0044997",
+        "lon max": " 180.0000000",
+        "lat min": " -27.0000000",
+        "lat max": " -17.9999932"
+    },
+    "resources/preprocessed/planet-latest_89.99999_17.99999_108.00001_27.00001.osm.pbf": {
+        "lon min": " 89.9999900",
+        "lon max": " 108.0000098",
+        "lat min": " 17.9999900",
+        "lat max": " 27.0000099"
+    },
+    "resources/preprocessed/planet-latest_143.99999_-72.00001_162.00001_-62.99999.osm.pbf": {
+        "lon min": " 144.0000000",
+        "lon max": " 162.0000061",
+        "lat min": " -71.9999784",
+        "lat max": " -63.1205218"
+    },
+    "resources/preprocessed/planet-latest_107.99999_62.99999_126.00001_72.00001.osm.pbf": {
+        "lon min": " 108.0000022",
+        "lon max": " 126.0000086",
+        "lat min": " 62.9999931",
+        "lat max": " 72.0000086"
+    },
+    "resources/preprocessed/planet-latest_161.99999_-18.00001_180.0_-8.99999.osm.pbf": {
+        "lon min": " 161.9999903",
+        "lon max": " 180.0000000",
+        "lat min": " -18.0000097",
+        "lat max": " -9.1226645"
+    },
+    "resources/preprocessed/planet-latest_89.99999_26.99999_108.00001_36.00001.osm.pbf": {
+        "lon min": " 89.9999903",
+        "lon max": " 108.0000097",
+        "lat min": " 26.9999900",
+        "lat max": " 36.0000100"
+    },
+    "resources/preprocessed/planet-latest_143.99999_-63.00001_162.00001_-53.99999.osm.pbf": {
+        "lon min": " 145.0000000",
+        "lon max": " 161.9936237",
+        "lat min": " -62.3696627",
+        "lat max": " -54.0000000"
+    },
+    "resources/preprocessed/planet-latest_107.99999_71.99999_126.00001_81.00001.osm.pbf": {
+        "lon min": " 108.0000257",
+        "lon max": " 126.0000086",
+        "lat min": " 72.0000000",
+        "lat max": " 78.3135133"
+    },
+    "resources/preprocessed/planet-latest_161.99999_-9.00001_180.0_1e-05.osm.pbf": {
+        "lon min": " 162.6634313",
+        "lon max": " 179.6681333",
+        "lat min": " -8.7926750",
+        "lat max": " -0.0338809"
+    },
+    "resources/preprocessed/planet-latest_89.99999_35.99999_108.00001_45.00001.osm.pbf": {
+        "lon min": " 89.9999918",
+        "lon max": " 108.0000097",
+        "lat min": " 35.9999899",
+        "lat max": " 44.9999984"
+    },
+    "resources/preprocessed/planet-latest_143.99999_-54.00001_162.00001_-44.99999.osm.pbf": {
+        "lon min": " 144.0000019",
+        "lon max": " 161.9707087",
+        "lat min": " -54.0000000",
+        "lat max": " -45.0132475"
+    },
+    "resources/preprocessed/planet-latest_161.99999_-1e-05_180.0_9.00001.osm.pbf": {
+        "lon min": " 162.6972028",
+        "lon max": " 174.1467333",
+        "lat min": " 0.0031306",
+        "lat max": " 8.9999937"
+    },
+    "resources/preprocessed/planet-latest_89.99999_44.99999_108.00001_54.00001.osm.pbf": {
+        "lon min": " 89.9999930",
+        "lon max": " 108.0000029",
+        "lat min": " 44.9999903",
+        "lat max": " 54.0000094"
+    },
+    "resources/preprocessed/planet-latest_143.99999_-45.00001_162.00001_-35.99999.osm.pbf": {
+        "lon min": " 143.9999900",
+        "lon max": " 161.9941810",
+        "lat min": " -44.9983365",
+        "lat max": " -35.9999900"
+    },
+    "resources/preprocessed/planet-latest_125.99999_-90.0_144.00001_-80.99999.osm.pbf": {
+        "lon min": " 136.0000000",
+        "lon max": " 142.0000000",
+        "lat min": " -85.0500000",
+        "lat max": " -81.3574723"
+    },
+    "resources/preprocessed/planet-latest_161.99999_8.99999_180.0_18.00001.osm.pbf": {
+        "lon min": " 162.0000000",
+        "lon max": " 171.2574830",
+        "lat min": " 8.9999904",
+        "lat max": " 17.9930684"
+    },
+    "resources/preprocessed/planet-latest_89.99999_53.99999_108.00001_63.00001.osm.pbf": {
+        "lon min": " 89.9999946",
+        "lon max": " 108.0000097",
+        "lat min": " 53.9999907",
+        "lat max": " 62.9999968"
+    },
+    "resources/preprocessed/planet-latest_143.99999_-36.00001_162.00001_-26.99999.osm.pbf": {
+        "lon min": " 143.9999914",
+        "lon max": " 161.9910205",
+        "lat min": " -36.0000098",
+        "lat max": " -26.9999907"
+    },
+    "resources/preprocessed/planet-latest_125.99999_-81.00001_144.00001_-71.99999.osm.pbf": {
+        "lon min": " 126.0612491",
+        "lon max": " 142.0000000",
+        "lat min": " -80.6140000",
+        "lat max": " -72.0217133"
+    },
+    "resources/preprocessed/planet-latest_161.99999_17.99999_180.0_27.00001.osm.pbf": {
+        "lon min": " 163.0697756",
+        "lon max": " 180.0000000",
+        "lat min": " 18.0022320",
+        "lat max": " 26.9915800"
+    },
+    "resources/preprocessed/planet-latest_89.99999_62.99999_108.00001_72.00001.osm.pbf": {
+        "lon min": " 89.9999993",
+        "lon max": " 108.0000050",
+        "lat min": " 62.9999908",
+        "lat max": " 72.0000060"
+    },
+    "resources/preprocessed/planet-latest_143.99999_-27.00001_162.00001_-17.99999.osm.pbf": {
+        "lon min": " 143.9999902",
+        "lon max": " 161.9567037",
+        "lat min": " -27.0000085",
+        "lat max": " -17.9999900"
+    },
+    "resources/preprocessed/planet-latest_125.99999_-72.00001_144.00001_-62.99999.osm.pbf": {
+        "lon min": " 126.0000000",
+        "lon max": " 144.0000000",
+        "lat min": " -71.9604093",
+        "lat max": " -63.2859084"
+    },
+    "resources/preprocessed/planet-latest_161.99999_26.99999_180.0_36.00001.osm.pbf": {
+        "lon min": " 177.8442100",
+        "lon max": " 180.0000000",
+        "lat min": " 27.0066000",
+        "lat max": " 31.4683176"
+    },
+    "resources/preprocessed/planet-latest_89.99999_71.99999_108.00001_81.00001.osm.pbf": {
+        "lon min": " 90.0000000",
+        "lon max": " 107.9999120",
+        "lat min": " 71.9999919",
+        "lat max": " 81.0000004"
+    },
+    "resources/preprocessed/planet-latest_125.99999_-63.00001_144.00001_-53.99999.osm.pbf": {
+        "lon min": " 136.0000000",
+        "lon max": " 143.5000000",
+        "lat min": " -62.9169079",
+        "lat max": " -60.0000000"
+    },
+    "resources/preprocessed/planet-latest_143.99999_-18.00001_162.00001_-8.99999.osm.pbf": {
+        "lon min": " 143.9999945",
+        "lon max": " 161.9999903",
+        "lat min": " -18.0000061",
+        "lat max": " -8.9999902"
+    },
+    "resources/preprocessed/planet-latest_89.99999_80.99999_108.00001_90.0.osm.pbf": {
+        "lon min": " 90.1088815",
+        "lon max": " 98.2612569",
+        "lat min": " 80.9999996",
+        "lat max": " 81.4741807"
+    },
+    "resources/preprocessed/planet-latest_161.99999_35.99999_180.0_45.00001.osm.pbf": {
+        "lon min": " 175.5000000",
+        "lon max": " 175.5000000",
+        "lat min": " 42.9999995",
+        "lat max": " 42.9999995"
+    },
+    "resources/preprocessed/planet-latest_125.99999_-54.00001_144.00001_-44.99999.osm.pbf": {
+        "lon min": " 141.8276356",
+        "lon max": " 144.0000019",
+        "lat min": " -46.6225662",
+        "lat max": " -45.0240546"
+    },
+    "resources/preprocessed/planet-latest_143.99999_-9.00001_162.00001_1e-05.osm.pbf": {
+        "lon min": " 143.9999905",
+        "lon max": " 161.1804149",
+        "lat min": " -9.0000089",
+        "lat max": " -0.5573576"
+    },
+    "resources/preprocessed/planet-latest_161.99999_44.99999_180.0_54.00001.osm.pbf": {
+        "lon min": " 162.0053331",
+        "lon max": " 180.0000000",
+        "lat min": " 48.0440000",
+        "lat max": " 53.9998438"
+    },
+    "resources/preprocessed/planet-latest_143.99999_-1e-05_162.00001_9.00001.osm.pbf": {
+        "lon min": " 144.0032833",
+        "lon max": " 160.9333333",
+        "lat min": " 0.8232833",
+        "lat max": " 8.9969722"
+    },
+    "resources/preprocessed/planet-latest_125.99999_-45.00001_144.00001_-35.99999.osm.pbf": {
+        "lon min": " 126.0226154",
+        "lon max": " 144.0000098",
+        "lat min": " -44.9897031",
+        "lat max": " -35.9999900"
+    },
+    "resources/preprocessed/planet-latest_107.99999_-81.00001_126.00001_-71.99999.osm.pbf": {
+        "lon min": " 123.2584000",
+        "lon max": " 125.8902590",
+        "lat min": " -75.7092167",
+        "lat max": " -74.2299181"
+    },
+    "resources/preprocessed/planet-latest_161.99999_53.99999_180.0_63.00001.osm.pbf": {
+        "lon min": " 161.9999925",
+        "lon max": " 180.0000000",
+        "lat min": " 54.0012250",
+        "lat max": " 63.0000053"
+    },
+    "resources/preprocessed/planet-latest_143.99999_8.99999_162.00001_18.00001.osm.pbf": {
+        "lon min": " 144.0146636",
+        "lon max": " 162.0000002",
+        "lat min": " 9.0063778",
+        "lat max": " 18.0000000"
+    },
+    "resources/preprocessed/planet-latest_125.99999_-36.00001_144.00001_-26.99999.osm.pbf": {
+        "lon min": " 126.0000000",
+        "lon max": " 144.0000090",
+        "lat min": " -36.0000100",
+        "lat max": " -26.9999916"
+    },
+    "resources/preprocessed/planet-latest_107.99999_-72.00001_126.00001_-62.99999.osm.pbf": {
+        "lon min": " 108.0000000",
+        "lon max": " 126.0000000",
+        "lat min": " -69.0000000",
+        "lat max": " -64.0000000"
+    },
+    "resources/preprocessed/planet-latest_161.99999_62.99999_180.0_72.00001.osm.pbf": {
+        "lon min": " 161.9999957",
+        "lon max": " 180.0000000",
+        "lat min": " 62.9999907",
+        "lat max": " 71.9641094"
+    },
+    "resources/preprocessed/planet-latest_143.99999_17.99999_162.00001_27.00001.osm.pbf": {
+        "lon min": " 144.0074559",
+        "lon max": " 155.7660000",
+        "lat min": " 18.0000000",
+        "lat max": " 24.4901449"
+    },
+    "resources/preprocessed/planet-latest_125.99999_-27.00001_144.00001_-17.99999.osm.pbf": {
+        "lon min": " 126.0000250",
+        "lon max": " 144.0000065",
+        "lat min": " -27.0000091",
+        "lat max": " -17.9999991"
+    },
+    "resources/preprocessed/planet-latest_161.99999_71.99999_180.0_81.00001.osm.pbf": {
+        "lon min": " 162.3840932",
+        "lon max": " 178.2327538",
+        "lat min": " 72.0253564",
+        "lat max": " 75.9070126"
+    },
+    "resources/preprocessed/planet-latest_143.99999_26.99999_162.00001_36.00001.osm.pbf": {
+        "lon min": " 151.6160000",
+        "lon max": " 152.1180000",
+        "lat min": " 30.5500000",
+        "lat max": " 33.0500000"
+    },
+    "resources/preprocessed/planet-latest_125.99999_-18.00001_144.00001_-8.99999.osm.pbf": {
+        "lon min": " 125.9999945",
+        "lon max": " 144.0000087",
+        "lat min": " -18.0000100",
+        "lat max": " -8.9999967"
+    },
+    "resources/preprocessed/planet-latest_143.99999_35.99999_162.00001_45.00001.osm.pbf": {
+        "lon min": " 143.9999900",
+        "lon max": " 155.7360000",
+        "lat min": " 38.7110000",
+        "lat max": " 45.0000098"
+    },
+    "resources/preprocessed/planet-latest_125.99999_-9.00001_144.00001_1e-05.osm.pbf": {
+        "lon min": " 125.9999900",
+        "lon max": " 144.0000052",
+        "lat min": " -8.9999967",
+        "lat max": " 0.0000054"
+    }
+}
