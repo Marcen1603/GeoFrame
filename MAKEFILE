@@ -1,7 +1,7 @@
 # Makefile im Projekt-Root
 
 test:
-    echo "Hallo Make"
+	echo "Hallo Make"
 
 run-preprocessor:
-    python3 -m src.preprocessor.Preprocessor
+	python3 -m src.preprocessor.Preprocessor
