@@ -14,7 +14,7 @@ from multiprocessing import Pool
 
 sys.path.append('../src')
 
-from Utilities import extract_osm_statistics, get_min_max_lon_lat, print_to_console, delete_file, calc_file_size_gb
+from src.Utilities import extract_osm_statistics, get_min_max_lon_lat, print_to_console, delete_file, calc_file_size_gb
 
 
 class OS(Enum):
