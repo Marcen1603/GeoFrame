@@ -11,6 +11,7 @@ import time
 import traceback
 from enum import Enum
 from multiprocessing import Pool
+from urllib.request import urlretrieve
 
 from src.Utilities import extract_osm_statistics, get_min_max_lon_lat, print_to_console, delete_file, calc_file_size_gb
 
@@ -34,12 +35,20 @@ class Preprocessor:
         self.used_os = OS.from_str(platform.system())
         self.cpu_count = 4
         self.use_multithreading = True
-
+        
         print_to_console(f'Available processors: {self.cpu_count} | Multithreading: {self.use_multithreading}')
-
+        
+        # Download
+        self.download_planet_file = False
+        self.download_continent_files = True
+        
+        print_to_console(f'Download planet file: {self.download_planet_file}')
+        print_to_console(f'Download continent files: {self.download_continent_files}')
+        
         self.path_to_raw = os.path.join('src', 'preprocessor', 'resources', 'raw')
         self.path_to_done = os.path.join('src', 'preprocessor', 'resources', 'done')
         self.path_to_buffer = os.path.join('src', 'preprocessor', 'resources', 'buffer')
+        self.path_to_continents = os.path.join('src', 'preprocessor', 'resources', 'continents')
         self.path_to_preprocessed = os.path.join('src', 'preprocessor', 'resources', 'preprocessed')
         self.path_to_osm_convert = os.path.join('./', 'src', 'resources', 'osmconvert', 'osmconvert64-0.8.8p.exe')
         self.path_to_osm_convert_linux = os.path.join('src', 'resources', 'osmconvert', 'osmconvert')
@@ -55,7 +64,7 @@ class Preprocessor:
         self.lat_max_bound = 90.0
 
         # Init folders
-        for path in [self.path_to_preprocessed, self.path_to_buffer, self.path_to_cachefile_archive, self.path_to_done, self.path_to_raw]:
+        for path in [self.path_to_preprocessed, self.path_to_buffer, self.path_to_cachefile_archive, self.path_to_done, self.path_to_raw, self.path_to_continents]:
             if not os.path.exists(path):
                 os.makedirs(path)
 
@@ -75,7 +84,56 @@ class Preprocessor:
             json.dump({}, f)
 
         self.preprocessed_files_statistics = {}
+        
+        
+    def download_files(self):
+        
+        if self.download_planet_file:
+            
+            for file in os.listdir(self.path_to_raw):
+                os.remove(os.path.join(self.path_to_raw, file))
+                
+            print_to_console("Cleaned raw folder")
+            
+            url = 'https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf'
+            filename = os.path.join(self.path_to_raw, 'planet-latest.osm.pbf')
+            print_to_console(f'Downloading planet-latest.osm.pbf')
+            urlretrieve(url, filename)
+            
+        if self.download_continent_files:
+            
+            for file in os.listdir(self.path_to_continents):
+                os.remove(os.path.join(self.path_to_continents, file))
+                
+            print_to_console("Cleaned continents folder")
+            
+            urls = {
+                'africa-latest.osm.pbf': 'https://download.geofabrik.de/africa-latest.osm.pbf',
+                'antarctica-latest.osm.pbf': 'https://download.geofabrik.de/antarctica-latest.osm.pbf',
+                'asia-latest.osm.pbf': 'https://download.geofabrik.de/asia-latest.osm.pbf',
+                'australia-oceania-latest.osm.pbf': 'https://download.geofabrik.de/australia-oceania-latest.osm.pbf',
+                'central-america-latest.osm.pbf': 'https://download.geofabrik.de/central-america-latest.osm.pbf',
+                'europe-latest.osm.pbf': 'https://download.geofabrik.de/europe-latest.osm.pbf',
+                'north-america-latest.osm.pbf': 'https://download.geofabrik.de/north-america-latest.osm.pbf',
+                'south-america-latest.osm.pb': 'https://download.geofabrik.de/south-america-latest.osm.pbf'
+            }
+            
+            for key, value in urls.items():
+                print_to_console(f'Downloading {key}')
+                urlretrieve(value, os.path.join(self.path_to_continents, key))
+                
+            # Add test file to get the cache file for it
 
+            
+#             r = requests.get(url, stream=True)
+# path = '/some/path/for/file.txt'
+# with open(path, 'wb') as f:
+#     total_length = int(r.headers.get('content-length'))
+#     for chunk in progress.bar(r.iter_content(chunk_size=1024), expected_size=(total_length/1024) + 1): 
+#         if chunk:
+#             f.write(chunk)
+#             f.flush()
+            
 
     def append_cache_file(self, key, value):
         """Used to append the key value pairs to the cache file.
@@ -291,6 +349,7 @@ class Preprocessor:
         """
         The main method to execute the preprocessor
         """
+        self.download_files()
         
         # Get all files from the raw folder
         process_files = os.listdir(self.path_to_raw)
