@@ -55,7 +55,7 @@ class Preprocessor:
         self.lat_max_bound = 90.0
 
         # Init folders
-        for path in [self.path_to_preprocessed, self.path_to_buffer, self.path_to_cachefile_archive, self.path_to_done]:
+        for path in [self.path_to_preprocessed, self.path_to_buffer, self.path_to_cachefile_archive, self.path_to_done, self.path_to_raw]:
             if not os.path.exists(path):
                 os.makedirs(path)
 
