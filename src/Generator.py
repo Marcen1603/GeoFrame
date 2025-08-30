@@ -214,23 +214,22 @@ class Generator:
     def main(self):
         """Main executin method for the Generator
         """
-        print_to_console("etst")
         # [west, south, east, north]
         bbox, bbox_dict = self.bounding_box()
 
         print_to_console(f'Generate GeoFrame for Bounding-Box: {bbox}')
 
         # Get correct file
-        pbf_file_path = self.select_pbf_file(bbox_dict)
+        #pbf_file_path = self.select_pbf_file(bbox_dict)
 
         # Bbox must be parsed to a list of style: minx, miny, maxx, maxy
         bbox_list = [bbox_dict['lon min'], bbox_dict['lat min'],
                      bbox_dict['lon max'], bbox_dict['lat max']]
 
         # Load pdf file and with bounding box
-        clipped_osm = OSM(os.path.join(self.path_to_latest_preprocessed, pbf_file_path),
-                          bounding_box=bbox_list)
-
+        clipped_osm = OSM(os.path.join(os.path.join('src', 'preprocessor', 'resources', 'raw', 'planet-latest.osm.pbf')),
+                        bounding_box=bbox_list)
+        
         fig, axes = plt.subplots(figsize=(12, 12))
         background_color = "white"
         fig.patch.set_facecolor(background_color)
@@ -263,12 +262,14 @@ class Generator:
         print("Buildings CRS:", buildings.crs)
         print("Buildings bounds:", buildings.total_bounds)
 
-        print(f'bbox[0]: {bbox[0]}, bbox[2]: {bbox[2]}')
-        print(f'bbox[1]: {bbox[1]}, bbox[3]: {bbox[3]}')
-
         # Kartenlimits setzen
-        axes.set_xlim(bbox[0], bbox[2])
-        axes.set_ylim(bbox[1], bbox[3])
+        xmin = bbox_dict['lon min']
+        ymin = bbox_dict['lat min']
+        xmax = bbox_dict['lon max']
+        ymax = bbox_dict['lat max']
+
+        axes.set_xlim(xmin, xmax)
+        axes.set_ylim(ymin, ymax)
         axes.set_facecolor(background_color)
         axes.axis('off')
         plt.tight_layout()
@@ -308,8 +309,8 @@ if __name__ == "__main__":
     # lat 53.126419385868196,
     # lon 8.648156683716197
 
-    lat = 6.924583774359931
-    lon = 79.99825240349321
+    lat = 53.126419385868196
+    lon = 8.648156683716197
     dis = 10000
     generator = Generator(lat, lon, dis)
     generator.main()

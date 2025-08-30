@@ -43,11 +43,8 @@ class Preprocessor:
 
         # Download
         self.download_planet_file = False
-        self.download_continent_files = True
 
         print_to_console(f'Download planet file: {self.download_planet_file}')
-        print_to_console(
-            f'Download continent files: {self.download_continent_files}')
 
         self.path_to_raw = os.path.join(
             'src', 'preprocessor', 'resources', 'raw')
@@ -55,8 +52,6 @@ class Preprocessor:
             'src', 'preprocessor', 'resources', 'done')
         self.path_to_buffer = os.path.join(
             'src', 'preprocessor', 'resources', 'buffer')
-        self.path_to_continents = os.path.join(
-            'src', 'preprocessor', 'resources', 'continents')
         self.path_to_preprocessed = os.path.join(
             'src', 'preprocessor', 'resources', 'preprocessed')
         self.path_to_osm_convert = os.path.join(
@@ -77,7 +72,7 @@ class Preprocessor:
         self.lat_max_bound = 90.0
 
         # Init folders
-        for path in [self.path_to_preprocessed, self.path_to_buffer, self.path_to_cachefile_archive, self.path_to_done, self.path_to_raw, self.path_to_continents]:
+        for path in [self.path_to_preprocessed, self.path_to_buffer, self.path_to_cachefile_archive, self.path_to_done, self.path_to_raw]:
             if not os.path.exists(path):
                 os.makedirs(path)
 
@@ -129,63 +124,6 @@ class Preprocessor:
             filename = os.path.join(self.path_to_raw, 'planet-latest.osm.pbf')
             print_to_console(f'Downloading planet-latest.osm.pbf')
             download_request(url, filename)
-
-        # Continent files
-        if self.download_continent_files:
-
-            # for file in os.listdir(self.path_to_continents):
-            #     os.remove(os.path.join(self.path_to_continents, file))
-
-            print_to_console("Cleaned continents folder")
-
-            urls = {
-                # 'africa-latest.osm.pbf': 'https://download.geofabrik.de/africa-latest.osm.pbf',
-                # 'antarctica-latest.osm.pbf': 'https://download.geofabrik.de/antarctica-latest.osm.pbf', // Weird min/max values
-                # 'asia-latest.osm.pbf': 'https://download.geofabrik.de/asia-latest.osm.pbf',
-                # 'australia-oceania-latest.osm.pbf': 'https://download.geofabrik.de/australia-oceania-latest.osm.pbf',
-                # 'central-america-latest.osm.pbf': 'https://download.geofabrik.de/central-america-latest.osm.pbf',
-                # 'europe-latest.osm.pbf': 'https://download.geofabrik.de/europe-latest.osm.pbf',
-                # 'north-america-latest.osm.pbf': 'https://download.geofabrik.de/north-america-latest.osm.pbf',
-                # 'south-america-latest.osm.pb': 'https://download.geofabrik.de/south-america-latest.osm.pbf'
-            }
-
-            # for key, value in urls.items():
-            #     print_to_console(f'Downloading {key}')
-            #     download_request(value, os.path.join(
-            #         self.path_to_continents, key))
-
-            # Create cache file
-            cache_file_path = os.path.join(
-                self.path_to_continents, f'cache_file_continents.json')
-            with open(os.path.join(cache_file_path), 'w') as f:
-                json.dump({}, f)
-
-            for file in os.listdir(self.path_to_continents):
-
-                if file.endswith('osm.pbf'):
-
-                    osmconvert_path = self.path_to_osm_convert_linux if self.used_os == OS.LINUX else self.path_to_osm_convert
-                    lon_min, lon_max, lat_min, lat_max = get_min_max_lon_lat(extract_osm_statistics(
-                        osmconvert_path, os.path.join(self.path_to_continents, file)))
-                    statistics_dict = {
-                        "lon min": lon_min,
-                        "lon max": lon_max,
-                        "lat min": lat_min,
-                        "lat max": lat_max
-                    }
-                    try:
-                        with open(os.path.join(cache_file_path), "r", encoding="utf-8") as f:
-
-                            data = json.load(f)
-                            data[file] = statistics_dict
-                            with open(os.path.join(cache_file_path), "w", encoding="utf-8") as f:
-                                json.dump(
-                                    data, f, ensure_ascii=False, indent=4)
-                    except ValueError as e:
-                        print(
-                            f'Error while trying to write to the cache file! Error: {traceback.format_exc()}. {e}')
-                        sys.exit(-1)
-            sys.exit(-1)
 
     def append_cache_file(self, key, value):
         """Used to append the key value pairs to the cache file.
@@ -245,6 +183,7 @@ class Preprocessor:
         try:
             subprocess.run(command, stdout=subprocess.PIPE,
                            stderr=subprocess.PIPE, check=True)
+            print(command)
         except FileNotFoundError as e:
             print_to_console(
                 f'Error: Executable not found: {e}. Command: {command}')
