@@ -5,12 +5,6 @@
         "lat min": " -73.0774431",
         "lat max": " 50.0430757"
     },
-    "antarctica-latest.osm.pbf": {
-        "lon min": " -180.0000000",
-        "lon max": " 180.0000000",
-        "lat min": " -90.0000000",
-        "lat max": " 49.7828275"
-    },
     "asia-latest.osm.pbf": {
         "lon min": " -180.0000000",
         "lon max": " 180.0000000",

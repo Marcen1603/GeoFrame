@@ -1,0 +1,25 @@
+{
+    "africa-latest.osm.pbf": {
+        "timestamp min": " 2006-10-18T00:46:00Z",
+        "timestamp max": " 2025-05-30T20:20:09Z",
+        "lon min": " -25.5731073",
+        "lon max": " 73.1541797",
+        "lat min": " -73.0774431",
+        "lat max": " 50.0430757",
+        "nodes": " 1280498941",
+        "ways": " 155229637",
+        "relations": " 581861",
+        "node id min": " 10",
+        "node id max": " 12876025224",
+        "way id min": " 3715718",
+        "way id max": " 1391036144",
+        "relation id min": " 892",
+        "relation id max": " 19194953",
+        "keyval pairs max": " 525",
+        "keyval pairs max object": " relation 1473947",
+        "noderefs max": " 2000",
+        "noderefs max object": " way 6119260",
+        "relrefs max": " 7637",
+        "relrefs max object": " relation 13985343"
+    }
+}
