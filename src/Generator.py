@@ -308,8 +308,8 @@ if __name__ == "__main__":
     # lat 53.126419385868196,
     # lon 8.648156683716197
 
-    lat = 6.923406087268815
-    lon = 79.98969066499438
+    lat = 6.924583774359931
+    lon = 79.99825240349321
     dis = 10000
     generator = Generator(lat, lon, dis)
     generator.main()
