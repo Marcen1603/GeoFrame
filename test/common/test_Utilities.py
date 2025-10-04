@@ -5,20 +5,19 @@ import platform
 
 from src.common.Utilities import print_to_console, extract_osm_statistics
 
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
-path_to_osm_convert_windows = os.path.join(
-    '..', '..', 'src', 'resources', 'osmconvert', 'osmconvert64-0.8.8p.exe')
-path_to_osm_convert_linux = os.path.join(
-    '..', '..', 'src', 'resources', 'osmconvert', 'osmconvert')
-osm_test_file_path = os.path.join('..', 'resources', 'planet-latest_89.99999_-18.00001_108.00001_-8.99999.osm.pbf')
+path_to_osm_convert_windows = os.path.join(ROOT_DIR, 'src', 'resources', 'osmconvert', 'osmconvert64-0.8.8p.exe')
+path_to_osm_convert_linux = os.path.join(ROOT_DIR, 'src', 'resources', 'osmconvert', 'osmconvert')
 
-osm_convert_path = None
+osm_test_file_path = os.path.join(ROOT_DIR, 'test', 'resources', 'planet-latest_89.99999_-18.00001_108.00001_-8.99999.osm.pbf')
+
 if platform.system().lower() == 'linux':
     osm_convert_path = path_to_osm_convert_linux
 elif platform.system().lower() == 'windows':
     osm_convert_path = path_to_osm_convert_windows
 else:
-    raise NotImplementedError(f'Not supported for the os: {platform.system().lower()}')
+    raise NotImplementedError(f'Unsupported OS: {platform.system()}')
 
 def test_print_to_console(capsys):
 

@@ -17,6 +17,12 @@ pip uninstall -r requirements.txt -y
 
 ## Execution
 
+### Tests
+
+Execute tests locally with the command:
+
+python -m pytest -v
+
 ### Windows
 
 To use the venv under Windwos OS, use the .\venv\Scripts\activate.bat command in the PowerShell.
