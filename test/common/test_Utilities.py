@@ -26,5 +26,5 @@ def test_print_to_console(capsys):
 def test_extract_osm_statistics():
 
     osm_statistics = extract_osm_statistics(path_to_osm_convert_linux, osm_test_file_path)
-
+    print(osm_statistics)
     assert osm_statistics is not None
