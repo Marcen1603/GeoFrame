@@ -27,6 +27,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Make osmconvert executable
+        run: chmod +x src/resources/osmconvert/osmconvert
 
       - name: Run tests
         run: |
