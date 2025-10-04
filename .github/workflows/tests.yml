@@ -29,4 +29,6 @@ jobs:
 
 
       - name: Run tests
-        run: pytest
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/src
+          pytest --import-mode=importlib -v
