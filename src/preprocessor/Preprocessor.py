@@ -203,9 +203,12 @@ class Preprocessor:
         Args:
             longitudinal_min (_type_): The lower value of the longitudinal range.
             longitudinal_split (_type_): The value of longitudinal split range.
+            :param x:
 
         Returns:
             _type_: A pair of the new lower and maximal longitudinal values.
+            :param longitudinal_split:
+            :param longitudinal_min:
         """
 
         new_lon_min = longitudinal_min + (x * longitudinal_split) - self.offset
