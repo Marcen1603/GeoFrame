@@ -13,8 +13,6 @@ https://wiki.openstreetmap.org/wiki/Key:natural
 
 ### Requirements
 
-pip freeze > requirements.txt
-
 pip uninstall -r requirements.txt -y
 
 ## Execution
