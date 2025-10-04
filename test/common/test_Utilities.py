@@ -7,7 +7,7 @@ from src.common.Utilities import print_to_console, extract_osm_statistics
 path_to_osm_convert_linux = os.path.join(
     'src', 'resources', 'osmconvert', 'osmconvert')
 osm_test_file_path = os.path.join(
-    'test', 'resources', 'south-america-latest.osm.pbf')
+    'test', 'resources', 'planet-latest_89.99999_-18.00001_108.00001_-8.99999.osm.pbf')
 
 
 def test_print_to_console(capsys):
