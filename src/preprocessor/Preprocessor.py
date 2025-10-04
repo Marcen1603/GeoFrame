@@ -15,7 +15,8 @@ from progress.bar import Bar
 
 import requests
 
-from src.Utilities import extract_osm_statistics, get_min_max_lon_lat, print_to_console, delete_file, calc_file_size_gb
+from src.common.Utilities import print_to_console, extract_osm_statistics, calc_file_size_gb, delete_file, \
+    get_min_max_lon_lat
 
 
 class OS(Enum):
@@ -196,11 +197,10 @@ class Preprocessor:
         return new_file_name
 
     def calculate_min_max_longitude(self, x, longitudinal_min, longitudinal_split):
-        """Based on the given range of y, the min of longitudinal and the splitted range of longitudinal,
+        """Based on the given range of y, the min of longitudinal and the split range of longitudinal,
         the new values are generated.
 
         Args:
-            y (_type_): The iterate of the split, if split size is 2 than the range is up to 2.
             longitudinal_min (_type_): The lower value of the longitudinal range.
             longitudinal_split (_type_): The value of longitudinal split range.
 

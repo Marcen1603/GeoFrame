@@ -17,6 +17,12 @@ pip freeze > requirements.txt
 
 pip uninstall -r requirements.txt -y
 
+## Execution
+
+### Windows
+
+To use the venv under Windwos OS, use the .\venv\Scripts\activate.bat command in the PowerShell.
+
 ## Error
 
 ### PermissionError: [Errno 13] Permission denied: 'resources/osmconvert'

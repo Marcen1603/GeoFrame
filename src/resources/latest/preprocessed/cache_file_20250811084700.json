@@ -833,6 +833,12 @@
         "lat min": " -89.9990959",
         "lat max": " -81.0000155"
     },
+    "resources/preprocessed/test.osm.pbf": {
+        "lon min": " 8.0",
+        "lon max": " 9.0",
+        "lat min": " 52.0",
+        "lat max": " 54.0"
+    },
     "resources/preprocessed/planet-latest_-18.00001_-1e-05_1e-05_9.00001.osm.pbf": {
         "lon min": " -17.8637695",
         "lon max": " 0.0000099",

@@ -1,0 +1,38 @@
+[
+  {
+    "display name": "Rotes Kreuz",
+    "file name": "cross_mark"
+  },
+  {
+    "display name": "Paerchen Junge Maedchen",
+    "file name": "couple_boy_girl"
+  },
+  {
+    "display name": "Paerchen Junge Junge",
+    "file name": "couple_boy_boy"
+  },
+  {
+    "display name": "Paerchen Maedchen Maedchen",
+    "file name": "couple_girl_girl"
+  },
+  {
+    "display name": "Zielflagge",
+    "file name": "checkered_flag"
+  },
+  {
+    "display name": "Herz",
+    "file name": "heart"
+  },
+  {
+    "display name": "Haus",
+    "file name": "house"
+  },
+  {
+    "display name": "Reisszwecke",
+    "file name": "pushpin"
+  },
+  {
+    "display name": "Gerundete Reisszwecke",
+    "file name": "rounded_pushpin"
+  }
+]
