@@ -4,6 +4,24 @@ import sys
 import matplotlib
 import colorsys
 
+HEX_PATTERN = re.compile(r"^#[0-9a-f]{6}$")
+
+
+def _validate_hex_color(hex_color: str):
+    """Validiert, dass ein String ein gültiger Hex-Farbwert ist."""
+    if not isinstance(hex_color, str):
+        raise TypeError(f"Farbwert muss ein String sein, nicht {type(hex_color).__name__}")
+    if not HEX_PATTERN.match(hex_color):
+        raise ValueError(f"Ungültige Hex-Farbe: {hex_color}")
+
+
+def _validate_percent(percent):
+    """Validiert, dass der Prozentwert im erwarteten Bereich liegt."""
+    if not isinstance(percent, (int, float)):
+        raise TypeError(f"Prozentwert muss Zahl sein, nicht {type(percent).__name__}")
+    if not (0 <= percent <= 100):
+        raise ValueError(f"Prozentwert muss zwischen 0 und 100 liegen, nicht {percent}")
+
 
 def darken(hex_color, percent):
     """
@@ -12,6 +30,9 @@ def darken(hex_color, percent):
     :param percent: Prozentuale Abdunkelung (z. B. 30 für 30 %)
     :return: Abgedunkelte Hex-Farbe
     """
+    _validate_hex_color(hex_color)
+    _validate_percent(percent)
+
     rgb = matplotlib.colors.to_rgb(hex_color)
     h, l, s = colorsys.rgb_to_hls(*rgb)
     l = max(0, l * (1 - percent / 100))
@@ -26,6 +47,9 @@ def lighten(hex_color, percent):
     :param percent: Prozentuale Aufhellung (z. B. 30 für 30 %)
     :return: Aufgehellte Hex-Farbe
     """
+    _validate_hex_color(hex_color)
+    _validate_percent(percent)
+
     rgb = matplotlib.colors.to_rgb(hex_color)
     h, l, s = colorsys.rgb_to_hls(*rgb)
     l = min(1, l + (1 - l) * (percent / 100))

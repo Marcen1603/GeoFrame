@@ -18,6 +18,13 @@ class Generator:
 
     def __init__(self, lat: float, lon: float, dis: int):
 
+        if lat < -90 or lat > 90:
+            raise ValueError(f'Value {lat} for latitude is outside of the boundaries (-90 / 90)')
+        if lon < -180 or lon > 180:
+            raise ValueError(f'Value {lon} for longitude is outside of the boundaries (-180 / 180)')
+        if dis < 1:
+            raise ValueError(f'Value {dis} for distance is outside of the boundaries (min 1)')
+
         # Paths
         self.path_to_latest = os.path.join('src', 'resources', 'latest')
         self.path_to_latest_continents = os.path.join(
@@ -40,6 +47,7 @@ class Generator:
 
         # Coloring
         self.colorMapping = ColorMapping()
+
 
     def bounding_box(self):
         """
