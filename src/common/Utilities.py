@@ -57,7 +57,7 @@ def get_min_max_lon_lat(statistics_dict: dict):
     return longitudinal_min, longitudinal_max, latitude_min, latitude_max
 
 
-def delete_file(raw_file, raw_file_path):
+def delete_file(raw_file: bool, raw_file_path: str):
     # Delete original file
     if not raw_file:
         try:
