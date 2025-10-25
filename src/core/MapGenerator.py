@@ -10,7 +10,7 @@ from pyrosm import OSM
 import matplotlib.pyplot as plt
 
 from src.common.ColorMapping import ColorMapping
-from src.common.Utilities import print_to_console
+from src.common.Utilities import print_to_console, bbox_content_check
 from src.preprocessor.Preprocessor import OS
 
 
@@ -51,34 +51,42 @@ class Generator:
 
     def bounding_box(self):
         """
-        Calculates a bounding box around a geographic point for a given distance in all directions.
+               Calculates a geographic bounding box around a point for a given distance (in meters)
+               in all directions (north, south, east, west).
 
-        :return: List in the format [west, south, east, north]
-        """
-        # Approximate length of one degree of latitude in meters
-        meters_per_degree_lat = 111320
+               Returns:
+                   [lon_min, lon_max, lat_min, lat_max], bbox_dict
+               """
+        # WGS84 mean Earth radius in meters
+        R = 6378137.0
 
-        # Approximate length of one degree of longitude in meters (varies by latitude)
-        meters_per_degree_lon = 111320 * math.cos(math.radians(self.latitude))
+        # Convert latitude to radians for trigonometric functions
+        lat_rad = math.radians(self.latitude)
 
-        delta_lat = self.distance / meters_per_degree_lat
-        delta_lon = self.distance / meters_per_degree_lon
+        # Convert the distance in meters to degrees latitude/longitude
+        delta_lat = (self.distance / R) * (180.0 / math.pi)
+        delta_lon = (self.distance / (R * math.cos(lat_rad))) * (180.0 / math.pi)
 
-        lon_min = self.longitude - delta_lon
-        lon_max = self.longitude + delta_lon
+        # Compute min and max latitude/longitude
         lat_min = self.latitude - delta_lat
         lat_max = self.latitude + delta_lat
+        lon_min = self.longitude - delta_lon
+        lon_max = self.longitude + delta_lon
 
+        # Optional dictionary output for clarity
         bbox_dict = {
-            'lon min': lon_min,
-            'lon max': lon_max,
-            'lat min': lat_min,
-            'lat max': lat_max,
+            "lon min": lon_min,
+            "lon max": lon_max,
+            "lat min": lat_min,
+            "lat max": lat_max,
         }
 
         return [lon_min, lon_max, lat_min, lat_max], bbox_dict
 
     def select_pbf_file(self, bbox_dict: dict) -> str:
+
+        if not bbox_content_check(bbox_dict):
+            raise ValueError("Content of bbox not valid!")
 
         path_to_preprocessed_cache_file = os.path.join(
             self.path_to_latest_preprocessed, 'cache_file*.json')
@@ -256,8 +264,6 @@ class Generator:
                 print_to_console(tag_values)
             else:
                 print_to_console(f'{value} was not found!')
-
-        print("--------------------")
 
         self.plot_roads(clipped_osm, axes)
         self.plot_natural(clipped_osm, axes)

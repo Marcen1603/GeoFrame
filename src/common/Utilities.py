@@ -7,6 +7,8 @@ import datetime
 import time
 import traceback
 
+from matplotlib.streamplot import OutOfBounds
+
 
 def print_to_console(message:str):
 
@@ -77,3 +79,32 @@ def calc_file_size_gb(file_path: str) -> float:
     print_to_console(f'Size in GB: {file_size_gb}')
 
     return file_size_gb
+
+
+def bbox_content_check(bbox_dict: dict) -> bool:
+
+    expected_values = ['lon min', 'lon max', 'lat min', 'lat max']
+
+    missing = [k for k in expected_values if k not in bbox_dict]
+    if len(missing) > 0:
+        raise ValueError(f'{missing} are missing in the bbox_dict!')
+
+    if not -180.0 <= bbox_dict['lon min'] <= 180.0:
+        raise OutOfBounds(f'Longitudinal min value {bbox_dict['lon min']} out of bound -180/180!')
+    if not -180.0 <= bbox_dict['lon max'] <= 180.0:
+        raise OutOfBounds(f'Longitudinal max value {bbox_dict['lon max']} out of bound -180/180!')
+    if not -90.0 <= bbox_dict['lat min'] <= 90.0:
+        raise OutOfBounds(f'Latitude min value {bbox_dict['lat min']} out of bound -90/90!')
+    if not -90.0 <= bbox_dict['lat max'] <= 90.0:
+        raise OutOfBounds(f'Latitude max value {bbox_dict['lat max']} out of bound -90/90!')
+
+    if type(bbox_dict['lon min']) != float:
+        raise TypeError(f'Longitudinal min value {type(bbox_dict['lon min'])} is not equal to float!')
+    if type(bbox_dict['lon max']) != float:
+        raise TypeError(f'Longitudinal max value {type(bbox_dict['lon max'])} is not equal to float!')
+    if type(bbox_dict['lat min']) != float:
+        raise TypeError(f'Lateral min value {type(bbox_dict['lat min'])} is not equal to float!')
+    if type(bbox_dict['lat max']) != float:
+        raise TypeError(f'Lateral max value {type(bbox_dict['lat max'])} is not equal to float!')
+
+    return True

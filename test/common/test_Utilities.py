@@ -3,8 +3,11 @@ import os
 import re
 import platform
 
+import pytest
+from matplotlib.streamplot import OutOfBounds
+
 from src.common.Utilities import print_to_console, extract_osm_statistics, osm_statistics_to_dict, get_min_max_lon_lat, \
-    delete_file
+    delete_file, bbox_content_check, calc_file_size_gb
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
@@ -118,3 +121,177 @@ def test_delete_file():
     # File should not exist
     assert not os.path.exists(os.path.join(ROOT_DIR, 'test', 'common', 'first_file.osm.pbf'))
 
+
+def test_calc_file_size_gb():
+
+    # Successfully
+    assert calc_file_size_gb(osm_test_file_path) == 0.000504993
+
+    # Not valid input path
+    with pytest.raises(OSError):
+        calc_file_size_gb('NotExistingPath')
+
+
+def test_bbox_content_check_missing_values():
+
+    bbox_dict_first = {
+        "lon min": -279.5,
+        "lon max": -179.0,
+        "lat min": -84.0,
+    }
+
+    with pytest.raises(ValueError):
+        bbox_content_check(bbox_dict_first)
+
+
+def test_bbox_content_check_out_of_bound_longitudinal():
+
+    bbox_dict_first = {
+        "lon min": -180.0,
+        "lon max": -179.0,
+        "lat min": -84.0,
+        "lat max": -73.0,
+    }
+
+    bbox_dict_second = {
+        "lon min": 170.0,
+        "lon max": 180.0,
+        "lat min": -84.0,
+        "lat max": -73.0,
+    }
+
+    assert bbox_content_check(bbox_dict_first)
+    assert bbox_content_check(bbox_dict_second)
+
+    bbox_dict_first = {
+        "lon min": -590.0,
+        "lon max": -179.0,
+        "lat min": -84.0,
+        "lat max": -73.0,
+    }
+
+    bbox_dict_second = {
+        "lon min": 590.0,
+        "lon max": -179.0,
+        "lat min": -84.0,
+        "lat max": -73.0,
+    }
+
+    bbox_dict_third = {
+        "lon min": 160.0,
+        "lon max": -590.0,
+        "lat min": -84.0,
+        "lat max": -73.0,
+    }
+
+    bbox_dict_fourth = {
+        "lon min": 160.0,
+        "lon max": 590.0,
+        "lat min": -84.0,
+        "lat max": -73.0,
+    }
+
+    with pytest.raises(OutOfBounds):
+        bbox_content_check(bbox_dict_first)
+    with pytest.raises(OutOfBounds):
+        bbox_content_check(bbox_dict_second)
+    with pytest.raises(OutOfBounds):
+        bbox_content_check(bbox_dict_third)
+    with pytest.raises(OutOfBounds):
+        bbox_content_check(bbox_dict_fourth)
+
+
+def test_bbox_content_check_out_of_bound_lateral():
+
+    bbox_dict_first = {
+        "lon min": -180.0,
+        "lon max": -179.0,
+        "lat min": -84.0,
+        "lat max": -73.0,
+    }
+
+    bbox_dict_second = {
+        "lon min": 170.0,
+        "lon max": 180.0,
+        "lat min": -84.0,
+        "lat max": -73.0,
+    }
+
+    assert bbox_content_check(bbox_dict_first)
+    assert bbox_content_check(bbox_dict_second)
+
+    bbox_dict_first = {
+        "lon min": -180.0,
+        "lon max": -179.0,
+        "lat min": -584.0,
+        "lat max": -73.0,
+    }
+
+    bbox_dict_second = {
+        "lon min": -180.0,
+        "lon max": -179.0,
+        "lat min": 584.0,
+        "lat max": -73.0,
+    }
+
+    bbox_dict_third = {
+        "lon min": -180.0,
+        "lon max": -179.0,
+        "lat min": -84.0,
+        "lat max": -573.0,
+    }
+
+    bbox_dict_fourth = {
+        "lon min": -180.0,
+        "lon max": -179.0,
+        "lat min": -84.0,
+        "lat max": 573.0,
+    }
+
+    with pytest.raises(OutOfBounds):
+        bbox_content_check(bbox_dict_first)
+    with pytest.raises(OutOfBounds):
+        bbox_content_check(bbox_dict_second)
+    with pytest.raises(OutOfBounds):
+        bbox_content_check(bbox_dict_third)
+    with pytest.raises(OutOfBounds):
+        bbox_content_check(bbox_dict_fourth)
+
+
+def test_bbox_content_check_float():
+
+    bbox_dict_first = {
+        "lon min": -180.0,
+        "lon max": -179.0,
+        "lat min": -84.0,
+        "lat max": -73.0,
+    }
+
+    bbox_dict_second = {
+        "lon min": -180.0,
+        "lon max": -179.0,
+        "lat min": -84.0,
+        "lat max": -73.0,
+    }
+
+    assert bbox_content_check(bbox_dict_first)
+    assert bbox_content_check(bbox_dict_second)
+
+    bbox_dict_first = {
+        "lon min": -180,
+        "lon max": -179.0,
+        "lat min": -84.0,
+        "lat max": -73.0,
+    }
+
+    bbox_dict_second = {
+        "lon min": '-180.0',
+        "lon max": -179.0,
+        "lat min": -84.0,
+        "lat max": -73.0,
+    }
+
+    with pytest.raises(TypeError):
+        bbox_content_check(bbox_dict_first)
+    with pytest.raises(TypeError):
+        bbox_content_check(bbox_dict_second)
