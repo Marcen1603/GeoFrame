@@ -293,8 +293,8 @@ class Generator:
 
 if __name__ == "__main__":
 
-    lat = 53.12640694087143
-    lon = 8.648171013164365
-    dis = 750
+    lat = 53.14338
+    lon = 8.21505
+    dis = 500
     generator = Generator(lat, lon, dis)
     generator.main()

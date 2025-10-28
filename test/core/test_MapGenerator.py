@@ -15,7 +15,8 @@ path_to_test_cache_file = os.path.join(ROOT_DIR, 'test', 'resources')
 path_to_osm_convert_windows = os.path.join(ROOT_DIR, 'src', 'resources', 'osmconvert', 'osmconvert64-0.8.8p.exe')
 path_to_osm_convert_linux = os.path.join(ROOT_DIR, 'src', 'resources', 'osmconvert', 'osmconvert')
 
-osm_test_file_path = os.path.join(ROOT_DIR, 'test', 'resources', 'planet-latest_89.99999_-18.00001_108.00001_-8.99999.osm.pbf')
+osm_small_test_file_path = os.path.join(ROOT_DIR, 'test', 'resources', 'planet-latest_89.99999_-18.00001_108.00001_-8.99999.osm.pbf')
+osm_large_test_file_path = os.path.join(ROOT_DIR, 'test', 'resources', 'large_test_file.osm.pbf')
 
 if platform.system().lower() == 'linux':
     osm_convert_path = path_to_osm_convert_linux
@@ -223,19 +224,27 @@ def test_select_pbf_file_out_of_boundaries():
         generator.select_pbf_file(bbox_dict)
 
 
-def plot_roads():
+def test_plot_roads():
     generator = Generator(50.0, 50.0, 750)
-    bbox_dict = extract_osm_statistics(osm_convert_path, osm_test_file_path)
-    _, axes = plt.subplots(figsize=(12, 12))
+    bbox_dict = extract_osm_statistics(osm_convert_path, osm_large_test_file_path)
+    fig, axes = plt.subplots(figsize=(12, 12))
 
     bbox_list = [bbox_dict['lon min'], bbox_dict['lat min'], bbox_dict['lon max'], bbox_dict['lat max']]
-    osm = OSM(osm_test_file_path, bounding_box=bbox_list)
+    osm = OSM(osm_small_test_file_path, bounding_box=bbox_list)
 
     generator.plot_roads(osm, axes)
 
+    # Kartenlimits setzen
+    xmin = bbox_dict['lon min']
+    ymin = bbox_dict['lat min']
+    xmax = bbox_dict['lon max']
+    ymax = bbox_dict['lat max']
 
-if __name__ == "__main__":
-
-    plot_roads()
-
-# ---------- Tests für Static-Methoden ----------
+    axes.set_xlim(xmin, xmax)
+    axes.set_ylim(ymin, ymax)
+    axes.set_facecolor("white")
+    axes.axis('off')
+    plt.tight_layout()
+    plt.savefig("hey_ich_bin_ein_test.png", dpi=300, bbox_inches='tight',
+                facecolor=fig.get_facecolor())
+    plt.show()
